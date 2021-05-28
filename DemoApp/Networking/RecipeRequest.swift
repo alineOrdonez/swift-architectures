@@ -30,7 +30,8 @@ class RecipeRequest: RequestProtocol {
         var urlString = "https://www.thecocktaildb.com/api/json/v1/1/\(path).php?"
         
         if let search = search {
-            urlString.append(search)
+            let newSearch = search.replacingOccurrences(of: " ", with: "_")
+            urlString.append(newSearch)
         }
     
         self.init(url: urlString, httpMethod: .get, timeoutInterval: timeoutInterval)
