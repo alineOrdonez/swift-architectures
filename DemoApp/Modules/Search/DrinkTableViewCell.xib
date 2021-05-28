@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DrinkTableViewCell" rowHeight="100" id="sVL-ej-HHi" customClass="DrinkTableViewCell" customModule="DemoApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sVL-ej-HHi" id="6yV-So-TpM">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ecs-XV-qAA">
+                        <rect key="frame" x="5" y="5" width="404" height="90"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BcX-VM-9Qh">
+                                <rect key="frame" x="0.0" y="0.0" width="192" height="48.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBb-Je-pYd">
+                                        <rect key="frame" x="0.0" y="0.0" width="192" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTO-Tf-jHj">
+                                        <rect key="frame" x="0.0" y="30.5" width="192" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="psT-Yk-BQD">
+                                <rect key="frame" x="212" y="0.0" width="192" height="90"/>
+                            </imageView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ecs-XV-qAA" firstAttribute="leading" secondItem="6yV-So-TpM" secondAttribute="leading" constant="5" id="4kJ-le-kdh"/>
+                    <constraint firstAttribute="trailing" secondItem="ecs-XV-qAA" secondAttribute="trailing" constant="5" id="VwA-0S-ycC"/>
+                    <constraint firstItem="ecs-XV-qAA" firstAttribute="top" secondItem="6yV-So-TpM" secondAttribute="top" constant="5" id="dZ4-6Z-bbx"/>
+                    <constraint firstAttribute="bottom" secondItem="ecs-XV-qAA" secondAttribute="bottom" constant="5" id="xWv-Pc-BA1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="categoryLabel" destination="VTO-Tf-jHj" id="aOJ-Ei-CCw"/>
+                <outlet property="drinkImage" destination="psT-Yk-BQD" id="QMH-8w-IA2"/>
+                <outlet property="drinkLabel" destination="TBb-Je-pYd" id="RFs-bh-Fy6"/>
+            </connections>
+            <point key="canvasLocation" x="119" y="-15"/>
+        </tableViewCell>
+    </objects>
+</document>

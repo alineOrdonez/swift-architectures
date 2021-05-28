@@ -12,7 +12,7 @@ struct Drink: Codable {
     let id: String
     let name: String
     let video: String?
-    let category: String
+    let category: String?
     let thumb: String
     var image: UIImage?
     

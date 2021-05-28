@@ -37,6 +37,8 @@ class SearchViewController: UIViewController, SearchPresenterToViewProtocol, UIS
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 150
+        
+        tableView.register(UINib(nibName: DrinkTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DrinkTableViewCell.identifier)
     }
     
     // MARK: - Search Controller

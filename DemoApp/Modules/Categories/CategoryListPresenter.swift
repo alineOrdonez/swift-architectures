@@ -17,6 +17,10 @@ class CategoryListPresenter: CategoryListViewToPresenterProtocol, CategoryListIn
         interactor?.getCategories()
     }
     
+    func showDrinksForSelectedCategory(_ category: Category) {
+        router?.showDrinksForSelectedCategory(category)
+    }
+    
     func recievedData(categories: [Category]) {
         view?.showData(categories)
     }

@@ -58,5 +58,14 @@ extension CategoryListViewController: UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let category = categories?[indexPath.row] else {
+            return
+        }
+        
+        presenter?.showDrinksForSelectedCategory(category)
+    }
 }

@@ -8,32 +8,35 @@
 import Foundation
 import UIKit
 
-protocol CategoryListViewToPresenterProtocol {
+protocol CategoryListViewToPresenterProtocol: AnyObject {
     var view: CategoryListPresenterToViewProtocol? { get set }
     var interactor: CategoryListPresenterToInteractorProtocol? { get set }
     var router: CategoryListPresenterToRouterProtocol? { get set }
     
     func fetchCategories()
+    func showDrinksForSelectedCategory(_ category: Category)
 }
 
-protocol CategoryListPresenterToViewProtocol {
+protocol CategoryListPresenterToViewProtocol: AnyObject {
     var presenter: CategoryListViewToPresenterProtocol? { get set }
     
     func showData(_ categories: [Category])
     func showError(_ message: String)
 }
 
-protocol CategoryListPresenterToRouterProtocol {
+protocol CategoryListPresenterToRouterProtocol: AnyObject {
     static func createModule() -> UINavigationController
+    
+    func showDrinksForSelectedCategory(_ category: Category)
 }
 
-protocol CategoryListPresenterToInteractorProtocol {
+protocol CategoryListPresenterToInteractorProtocol: AnyObject {
     var presenter: CategoryListInteractorToPresenterProtocol? { get set }
     
     func getCategories()
 }
 
-protocol CategoryListInteractorToPresenterProtocol {
+protocol CategoryListInteractorToPresenterProtocol: AnyObject {
     
     func recievedData(categories: [Category])
     func requestFailed(with message: String)
