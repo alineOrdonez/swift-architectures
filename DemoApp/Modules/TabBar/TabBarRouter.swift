@@ -14,7 +14,7 @@ class TabBarRouter: TabBarPresenterToRouterProtocol {
     typealias SubModules = (search: UIViewController, category: UIViewController, favorite: UIViewController)
     
     static func createModule() -> UITabBarController {
-        let submodules = (search: SearchRouter.createModule(), category: SearchRouter.createModule(), favorite: SearchRouter.createModule())
+        let submodules = (search: SearchRouter.createModule(), category: CategoryListRouter.createModule(), favorite: SearchRouter.createModule())
         let tabs = tabs(using: submodules)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateInitialViewController() as! TabBarController
@@ -38,7 +38,7 @@ class TabBarRouter: TabBarPresenterToRouterProtocol {
         let searchTabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 101)
         submodules.search.tabBarItem = searchTabBarItem
         
-        let categoryTabBarItem = UITabBarItem(title: "Category", image: UIImage(systemName: "square.grid.2x2"), tag: 102)
+        let categoryTabBarItem = UITabBarItem(title: "Categories", image: UIImage(systemName: "square.grid.2x2"), tag: 102)
         submodules.category.tabBarItem = categoryTabBarItem
         
         let favoriteTabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "heart"), tag: 103)

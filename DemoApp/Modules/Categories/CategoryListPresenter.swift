@@ -6,3 +6,22 @@
 //
 
 import Foundation
+
+class CategoryListPresenter: CategoryListViewToPresenterProtocol, CategoryListInteractorToPresenterProtocol {
+    
+    var view: CategoryListPresenterToViewProtocol?
+    var interactor: CategoryListPresenterToInteractorProtocol?
+    var router: CategoryListPresenterToRouterProtocol?
+    
+    func fetchCategories() {
+        interactor?.getCategories()
+    }
+    
+    func recievedData(categories: [Category]) {
+        view?.showData(categories)
+    }
+    
+    func requestFailed(with message: String) {
+        view?.showError(message)
+    }
+}

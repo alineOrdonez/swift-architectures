@@ -19,7 +19,7 @@ protocol CategoryListViewToPresenterProtocol {
 protocol CategoryListPresenterToViewProtocol {
     var presenter: CategoryListViewToPresenterProtocol? { get set }
     
-    func showData(_ drinks: [Category])
+    func showData(_ categories: [Category])
     func showError(_ message: String)
 }
 
@@ -35,6 +35,6 @@ protocol CategoryListPresenterToInteractorProtocol {
 
 protocol CategoryListInteractorToPresenterProtocol {
     
-    func recievedData(drinks: [Category])
+    func recievedData(categories: [Category])
     func requestFailed(with message: String)
 }

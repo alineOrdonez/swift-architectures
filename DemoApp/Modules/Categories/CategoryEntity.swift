@@ -16,7 +16,7 @@ struct Category: Codable {
 }
 
 struct CategoryList: Codable {
-    let categories: [Category]
+    let categories: [Category]?
     
     enum CodingKeys: String, CodingKey {
         case categories = "drinks"

@@ -23,6 +23,7 @@ class SearchViewController: UIViewController, SearchPresenterToViewProtocol, UIS
     
     
     func setupUI() {
+        self.title = "Search Drink"
         // Search Bar
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Find a recipe"
@@ -35,8 +36,6 @@ class SearchViewController: UIViewController, SearchPresenterToViewProtocol, UIS
         // Table View
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.layer.cornerRadius = 10
-        tableView.layer.masksToBounds = true
         tableView.rowHeight = 150
     }
     
