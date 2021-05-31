@@ -38,6 +38,7 @@ class SearchViewController: UIViewController, SearchPresenterToViewProtocol, UIS
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 150
+        tableView.separatorStyle = .none
         
         tableView.register(UINib(nibName: DrinkTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DrinkTableViewCell.identifier)
     }
@@ -109,5 +110,16 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cell.drinkLabel.text = drink.name
         cell.categoryLabel.text = drink.category
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let drink = searchResults?[indexPath.row] else {
+            return
+        }
+        
+        presenter?.showRecipe(for: drink.id, navigationController: self.navigationController!)
+        
     }
 }

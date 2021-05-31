@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class SearchInteractor: SearchPresenterToInteractorProtocol {
-    var presenter: SearchInteractorToPresenterProtocol?
+    weak var presenter: SearchInteractorToPresenterProtocol?
     var manager: NetworkManager
     
     let imageCache = NSCache<AnyObject, UIImage>()

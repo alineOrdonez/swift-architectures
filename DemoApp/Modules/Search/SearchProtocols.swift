@@ -7,16 +7,17 @@
 
 import UIKit
 
-protocol SearchViewToPresenterProtocol {
+protocol SearchViewToPresenterProtocol: AnyObject {
     var view: SearchPresenterToViewProtocol? { get set }
     var interactor: SearchPresenterToInteractorProtocol? { get set }
     var router: SearchPresenterToRouterProtocol? { get set }
     
     func searchRecipe(by name: String)
     func downloadImage(from url: URL)
+    func showRecipe(for id: String, navigationController: UINavigationController) 
 }
 
-protocol SearchPresenterToViewProtocol {
+protocol SearchPresenterToViewProtocol: AnyObject {
     var presenter: SearchViewToPresenterProtocol? { get set }
     
     func showData(_ drinks: [Drink])
@@ -25,18 +26,19 @@ protocol SearchPresenterToViewProtocol {
     func showImage(_ image: UIImage, from url: String)
 }
 
-protocol SearchPresenterToRouterProtocol {
+protocol SearchPresenterToRouterProtocol:AnyObject {
     static func createModule() -> UINavigationController
+    func showRecipe(for id: String, navigationController: UINavigationController) 
 }
 
-protocol SearchPresenterToInteractorProtocol {
+protocol SearchPresenterToInteractorProtocol: AnyObject {
     var presenter: SearchInteractorToPresenterProtocol? { get set }
     
     func searchRecipes(by name: String)
     func downloadImage(from url: URL)
 }
 
-protocol SearchInteractorToPresenterProtocol {
+protocol SearchInteractorToPresenterProtocol: AnyObject {
     
     func recievedData(drinks: [Drink])
     func requestFailed(with message: String)

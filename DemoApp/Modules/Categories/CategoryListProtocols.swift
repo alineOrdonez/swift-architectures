@@ -14,7 +14,7 @@ protocol CategoryListViewToPresenterProtocol: AnyObject {
     var router: CategoryListPresenterToRouterProtocol? { get set }
     
     func fetchCategories()
-    func showDrinksForSelectedCategory(_ category: Category)
+    func showDrinks(for selectedCategory: Category, navigationController: UINavigationController)
 }
 
 protocol CategoryListPresenterToViewProtocol: AnyObject {
@@ -27,7 +27,7 @@ protocol CategoryListPresenterToViewProtocol: AnyObject {
 protocol CategoryListPresenterToRouterProtocol: AnyObject {
     static func createModule() -> UINavigationController
     
-    func showDrinksForSelectedCategory(_ category: Category)
+    func showDrinks(for selectedCategory: Category, navigationController: UINavigationController)
 }
 
 protocol CategoryListPresenterToInteractorProtocol: AnyObject {

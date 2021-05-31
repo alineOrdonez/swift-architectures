@@ -6,3 +6,26 @@
 //
 
 import Foundation
+import UIKit
+
+class RecipeRouter: RecipePresenterToRouterProtocol {
+    
+    static func createModule() -> RecipeViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(identifier: "RecipeViewController") as! RecipeViewController
+        
+        var presenter: RecipeViewToPresenterProtocol & RecipeInteractorToPresenterProtocol = RecipePresenter()
+        var interactor: RecipePresenterToInteractorProtocol = RecipeInteractor()
+        let router: RecipePresenterToRouterProtocol = RecipeRouter()
+        
+        viewController.presenter = presenter
+        presenter.interactor = interactor
+        presenter.view = viewController
+        presenter.router = router
+        interactor.presenter = presenter
+        
+        return viewController
+    }
+    
+    
+}

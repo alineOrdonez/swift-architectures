@@ -26,7 +26,8 @@ class CategoryListViewController: UIViewController, CategoryListPresenterToViewP
         self.title = "Categories"
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 150
+        tableView.rowHeight = 140
+        tableView.separatorStyle = .none
         
     }
     
@@ -66,6 +67,6 @@ extension CategoryListViewController: UITableViewDelegate, UITableViewDataSource
             return
         }
         
-        presenter?.showDrinksForSelectedCategory(category)
+        presenter?.showDrinks(for: category, navigationController: self.navigationController!)
     }
 }

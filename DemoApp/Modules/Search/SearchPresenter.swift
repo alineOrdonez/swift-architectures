@@ -21,6 +21,10 @@ class SearchPresenter: SearchViewToPresenterProtocol, SearchInteractorToPresente
         interactor?.downloadImage(from: url)
     }
     
+    func showRecipe(for id: String, navigationController: UINavigationController)  {
+        router?.showRecipe(for: id, navigationController: navigationController)
+    }
+    
     // MARK: - Search result
     func recievedData(drinks: [Drink]) {
         view?.showData(drinks)

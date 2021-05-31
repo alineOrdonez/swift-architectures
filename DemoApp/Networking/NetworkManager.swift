@@ -36,7 +36,7 @@ public class NetworkManager: NSObject {
                 print("Response: ->")
                 print(String(data: data, encoding: .utf8)!)
                 #endif
-                let result: Result<T> = Decoder.decodeData(data: data)
+                let result: Result<T> = self.decodeData(data: data)
                 DispatchQueue.main.async {
                     completion(result)
                 }
@@ -48,5 +48,21 @@ public class NetworkManager: NSObject {
     
     public func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
+    private func decodeData<T: Decodable>(data: Data?) -> Result<T> {
+        
+        guard let validData = data else {
+            return .failure(NetworkingError.invalidJSON)
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            let decoded = try decoder.decode(T.self, from: validData)
+            return .success(decoded)
+        } catch(let error) {
+            print(error)
+            return .failure(NetworkingError.invalidJSON)
+        }
     }
 }

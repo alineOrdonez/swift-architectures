@@ -13,8 +13,8 @@ class SearchRouter: SearchPresenterToRouterProtocol {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(identifier: "SearchViewController") as! SearchViewController
         
-        var presenter: SearchViewToPresenterProtocol & SearchInteractorToPresenterProtocol = SearchPresenter()
-        var interactor: SearchPresenterToInteractorProtocol = SearchInteractor()
+        let presenter: SearchViewToPresenterProtocol & SearchInteractorToPresenterProtocol = SearchPresenter()
+        let interactor: SearchPresenterToInteractorProtocol = SearchInteractor()
         let router: SearchPresenterToRouterProtocol = SearchRouter()
         
         viewController.presenter = presenter
@@ -24,5 +24,11 @@ class SearchRouter: SearchPresenterToRouterProtocol {
         interactor.presenter = presenter
         
         return UINavigationController(rootViewController: viewController)
+    }
+    
+    func showRecipe(for id: String, navigationController: UINavigationController) {
+        let viewController = RecipeRouter.createModule()
+        viewController.recipeId = id
+        navigationController.pushViewController(viewController, animated: true)
     }
 }

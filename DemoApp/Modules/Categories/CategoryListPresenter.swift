@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class CategoryListPresenter: CategoryListViewToPresenterProtocol, CategoryListInteractorToPresenterProtocol {
     
@@ -17,8 +18,8 @@ class CategoryListPresenter: CategoryListViewToPresenterProtocol, CategoryListIn
         interactor?.getCategories()
     }
     
-    func showDrinksForSelectedCategory(_ category: Category) {
-        router?.showDrinksForSelectedCategory(category)
+    func showDrinks(for selectedCategory: Category, navigationController: UINavigationController) {
+        router?.showDrinks(for: selectedCategory, navigationController: navigationController)
     }
     
     func recievedData(categories: [Category]) {
