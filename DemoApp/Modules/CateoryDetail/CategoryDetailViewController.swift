@@ -93,4 +93,14 @@ extension CategoryDetailViewController: UITableViewDelegate, UITableViewDataSour
         cell.categoryLabel.text = drink.category
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let drink = drinks?[indexPath.row] else {
+            return
+        }
+        
+        presenter?.showRecipe(for: drink.id, navigationController: self.navigationController!)
+    }
 }

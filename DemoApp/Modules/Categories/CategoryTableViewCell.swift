@@ -16,7 +16,7 @@ class CategoryTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         categoryImage.addBlur()
-        categoryImage.layer.cornerRadius = 10
+        categoryImage.layer.cornerRadius = 20
         categoryImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
 

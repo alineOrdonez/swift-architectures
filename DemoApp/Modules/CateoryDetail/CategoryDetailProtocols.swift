@@ -14,6 +14,7 @@ protocol CategoryDetailViewToPresenterProtocol {
     
     func fetchDrinks(by category: String)
     func downloadImage(from url: URL)
+    func showRecipe(for id: String, navigationController: UINavigationController) 
 }
 
 protocol CategoryDetailPresenterToViewProtocol {
@@ -27,6 +28,7 @@ protocol CategoryDetailPresenterToViewProtocol {
 
 protocol CategoryDetailPresenterToRouterProtocol {
     static func createModule() -> CategoryDetailViewController
+    func showRecipe(for id: String, navigationController: UINavigationController)
 }
 
 protocol CategoryDetailPresenterToInteractorProtocol {

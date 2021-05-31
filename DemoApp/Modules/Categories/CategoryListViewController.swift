@@ -28,7 +28,7 @@ class CategoryListViewController: UIViewController, CategoryListPresenterToViewP
         tableView.dataSource = self
         tableView.rowHeight = 140
         tableView.separatorStyle = .none
-        
+        tableView.showsVerticalScrollIndicator = false
     }
     
     func fetchData() {

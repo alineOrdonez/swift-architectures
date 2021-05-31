@@ -39,6 +39,7 @@ class SearchViewController: UIViewController, SearchPresenterToViewProtocol, UIS
         tableView.dataSource = self
         tableView.rowHeight = 150
         tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
         
         tableView.register(UINib(nibName: DrinkTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DrinkTableViewCell.identifier)
     }

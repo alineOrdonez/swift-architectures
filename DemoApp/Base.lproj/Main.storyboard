@@ -28,7 +28,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kdm-eH-2mY">
-                                                    <rect key="frame" x="2" y="2" width="424" height="146"/>
+                                                    <rect key="frame" x="10" y="2" width="408" height="146"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhU-Hf-NoQ">
                                                     <rect key="frame" x="182" y="107" width="64" height="30"/>
@@ -41,9 +41,9 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="MhU-Hf-NoQ" secondAttribute="bottom" constant="2" id="Bhz-Rl-zIZ"/>
                                                 <constraint firstItem="kdm-eH-2mY" firstAttribute="top" secondItem="MLn-Mk-w13" secondAttribute="top" constant="2" id="Cbo-1A-FOS"/>
                                                 <constraint firstAttribute="bottom" secondItem="kdm-eH-2mY" secondAttribute="bottom" constant="2" id="KUC-vi-nTB"/>
-                                                <constraint firstItem="kdm-eH-2mY" firstAttribute="leading" secondItem="MLn-Mk-w13" secondAttribute="leading" constant="2" id="N8T-5Z-bae"/>
+                                                <constraint firstItem="kdm-eH-2mY" firstAttribute="leading" secondItem="MLn-Mk-w13" secondAttribute="leading" constant="10" id="N8T-5Z-bae"/>
                                                 <constraint firstItem="MhU-Hf-NoQ" firstAttribute="centerX" secondItem="MLn-Mk-w13" secondAttribute="centerX" id="Ysu-46-nCc"/>
-                                                <constraint firstAttribute="trailing" secondItem="kdm-eH-2mY" secondAttribute="trailing" constant="2" id="xRj-jl-Fsd"/>
+                                                <constraint firstAttribute="trailing" secondItem="kdm-eH-2mY" secondAttribute="trailing" constant="10" id="xRj-jl-Fsd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -166,14 +166,14 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ip7-HF-gL2">
-                                <rect key="frame" x="5" y="277" width="418" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ip7-HF-gL2">
+                                <rect key="frame" x="5" y="277" width="418" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ts8-kl-zQB">
-                                <rect key="frame" x="5" y="311" width="418" height="571"/>
+                                <rect key="frame" x="5" y="287" width="418" height="595"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>

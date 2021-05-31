@@ -49,6 +49,7 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.showsVerticalScrollIndicator = false
         
         tableView.reloadData()
     }
@@ -139,15 +140,19 @@ extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = UITableViewCell(style: .value1, reuseIdentifier: "RecipeTableViewCell")
             cell.textLabel?.text = dictionary?.keys.first
             cell.detailTextLabel?.text = dictionary?.values.first
+            cell.selectionStyle = .none
             return cell
         case 1:
             let cell = UITableViewCell(style: .value1, reuseIdentifier: "RecipeTableViewCell")
             cell.textLabel?.text = drink.glass
+            cell.selectionStyle = .none
             return cell
         default:
             let cell = UITableViewCell(style: .default, reuseIdentifier: "RecipeTableViewCell")
             cell.textLabel?.text = drink.instructions
+            cell.textLabel?.textAlignment = .justified
             cell.textLabel?.numberOfLines = 0
+            cell.selectionStyle = .none
             return cell
         }
     }

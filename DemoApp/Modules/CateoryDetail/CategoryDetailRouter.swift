@@ -25,4 +25,10 @@ class CategoryDetailRouter: CategoryDetailPresenterToRouterProtocol {
         
         return viewController
     }
+    
+    func showRecipe(for id: String, navigationController: UINavigationController) {
+        let viewController = RecipeRouter.createModule()
+        viewController.recipeId = id
+        navigationController.pushViewController(viewController, animated: true)
+    }
 }

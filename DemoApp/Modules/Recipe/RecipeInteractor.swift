@@ -65,7 +65,13 @@ class RecipeInteractor: RecipePresenterToInteractorProtocol {
     
     func addIngredientes( drink: inout Drink) {
         let ingredients: [String] = [drink.strIngredient1, drink.strIngredient2, drink.strIngredient3, drink.strIngredient4, drink.strIngredient5, drink.strIngredient6, drink.strIngredient7].compactMap({$0}).filter({ !$0.isEmpty })
-        let measures: [String] = [drink.strMeasure1, drink.strMeasure2, drink.strMeasure3, drink.strMeasure4, drink.strMeasure5, drink.strMeasure6, drink.strMeasure7].compactMap({$0}).filter({ !$0.isEmpty })
+        
+        let measures: [String] = [drink.strMeasure1, drink.strMeasure2, drink.strMeasure3, drink.strMeasure4, drink.strMeasure5, drink.strMeasure6, drink.strMeasure7].compactMap { measure in
+            guard let measure = measure, !measure.isEmpty else {
+                return "-"
+            }
+            return measure
+        }
         var array = [[String: String]]()
         
         for (index, element) in ingredients.enumerated() {

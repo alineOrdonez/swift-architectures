@@ -24,6 +24,10 @@ class CategoryDetailPresenter: CategoryDetailViewToPresenterProtocol, CategoryDe
         interactor?.downloadImage(from: url)
     }
     
+    func showRecipe(for id: String, navigationController: UINavigationController) {
+        router?.showRecipe(for: id, navigationController: navigationController)
+    }
+    
     func recievedData(drinks: [Drink]) {
         view?.showData(drinks)
     }
