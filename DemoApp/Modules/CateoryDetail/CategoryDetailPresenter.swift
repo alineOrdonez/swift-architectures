@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class CategoryDetailPresenter: CategoryDetailViewToPresenterProtocol, CategoryDetailInteractorToPresenterProtocol {
     
@@ -19,10 +20,19 @@ class CategoryDetailPresenter: CategoryDetailViewToPresenterProtocol, CategoryDe
         interactor?.getDrinks(by: category)
     }
     
+    func downloadImage(from url: URL) {
+        interactor?.downloadImage(from: url)
+    }
+    
     func recievedData(drinks: [Drink]) {
         view?.showData(drinks)
     }
     func requestFailed(with message: String) {
         view?.showError(message)
+    }
+    
+    // MARK: - Download image
+    func recievedImage(_ image: UIImage, from url: String) {
+        view?.showImage(image, from: url)
     }
 }

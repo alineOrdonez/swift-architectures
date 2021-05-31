@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class SearchPresenter: SearchViewToPresenterProtocol, SearchInteractorToPresenterProtocol {
     var view: SearchPresenterToViewProtocol?
@@ -16,10 +17,20 @@ class SearchPresenter: SearchViewToPresenterProtocol, SearchInteractorToPresente
         interactor?.searchRecipes(by: name)
     }
     
+    func downloadImage(from url: URL) {
+        interactor?.downloadImage(from: url)
+    }
+    
+    // MARK: - Search result
     func recievedData(drinks: [Drink]) {
         view?.showData(drinks)
     }
     func requestFailed(with message: String) {
         view?.showError(message)
+    }
+    
+    // MARK: - Download image
+    func recievedImage(_ image: UIImage, from url: String) {
+        view?.showImage(image, from: url)
     }
 }

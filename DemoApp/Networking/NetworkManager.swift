@@ -45,4 +45,8 @@ public class NetworkManager: NSObject {
         }
         task.resume()
     }
+    
+    public func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
 }

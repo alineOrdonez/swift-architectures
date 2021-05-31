@@ -42,6 +42,14 @@ class CategoryDetailViewController: UIViewController, CategoryDetailPresenterToV
         presenter?.fetchDrinks(by: categoryName)
     }
     
+    func downloadImage(from url: String) {
+        guard let newURL = URL(string: url) else {
+            return
+        }
+        
+        presenter?.downloadImage(from: newURL)
+    }
+    
     func showData(_ drinks: [Drink]) {
         self.drinks = drinks
         tableView.reloadData()
@@ -49,6 +57,17 @@ class CategoryDetailViewController: UIViewController, CategoryDetailPresenterToV
     
     func showError(_ message: String) {
         showAlert(message: message)
+    }
+    
+    func showImage(_ image: UIImage, from url: String) {
+        if var results = drinks, let row = results.firstIndex(where: {$0.thumb == url}) {
+            var drink = results[row]
+            drink.image = image
+            
+            results[row] = drink
+            drinks = results
+            tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
+        }
     }
 }
 
@@ -60,11 +79,18 @@ extension CategoryDetailViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let drink = drinks?[indexPath.row], let cell = tableView.dequeueReusableCell(withIdentifier: "DrinkTableViewCell") as? DrinkTableViewCell else {
+        guard let drink = drinks?[indexPath.row], let cell = tableView.dequeueReusableCell(withIdentifier: DrinkTableViewCell.identifier) as? DrinkTableViewCell else {
             return UITableViewCell()
         }
         
-        cell.setup(with: drink)
+        if drink.image == nil {
+            self.downloadImage(from: drink.thumb)
+        } else {
+            cell.drinkImage.image = drink.image
+        }
+        
+        cell.drinkLabel.text = drink.name
+        cell.categoryLabel.text = drink.category
         return cell
     }
 }

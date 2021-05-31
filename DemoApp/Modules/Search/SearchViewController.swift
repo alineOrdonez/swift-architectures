@@ -12,6 +12,7 @@ class SearchViewController: UIViewController, SearchPresenterToViewProtocol, UIS
     var presenter: SearchViewToPresenterProtocol?
     var searchController = UISearchController(searchResultsController: nil)
     var searchResults: [Drink]?
+    let imageCache = NSCache<AnyObject, AnyObject>()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -58,6 +59,14 @@ class SearchViewController: UIViewController, SearchPresenterToViewProtocol, UIS
         presenter?.searchRecipe(by: name)
     }
     
+    func downloadImage(from url: String) {
+        guard let newURL = URL(string: url) else {
+            return
+        }
+        
+        presenter?.downloadImage(from: newURL)
+    }
+    
     func showData(_ drinks: [Drink]) {
         searchResults = drinks
         tableView.reloadData()
@@ -65,6 +74,17 @@ class SearchViewController: UIViewController, SearchPresenterToViewProtocol, UIS
     
     func showError(_ message: String) {
         showAlert(message: message)
+    }
+    
+    func showImage(_ image: UIImage, from url: String) {
+        if var results = searchResults, let row = results.firstIndex(where: {$0.thumb == url}) {
+            var drink = results[row]
+            drink.image = image
+            
+            results[row] = drink
+            searchResults = results
+            tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
+        }
     }
 }
 
@@ -76,11 +96,18 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let drink = searchResults?[indexPath.row], let cell = tableView.dequeueReusableCell(withIdentifier: "DrinkTableViewCell") as? DrinkTableViewCell else {
+        guard let drink = searchResults?[indexPath.row], let cell = tableView.dequeueReusableCell(withIdentifier: DrinkTableViewCell.identifier) as? DrinkTableViewCell else {
             return UITableViewCell()
         }
         
-        cell.setup(with: drink)
+        if drink.image == nil {
+            self.downloadImage(from: drink.thumb)
+        } else {
+            cell.drinkImage.image = drink.image
+        }
+        
+        cell.drinkLabel.text = drink.name
+        cell.categoryLabel.text = drink.category
         return cell
     }
 }

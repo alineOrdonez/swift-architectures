@@ -13,6 +13,7 @@ protocol SearchViewToPresenterProtocol {
     var router: SearchPresenterToRouterProtocol? { get set }
     
     func searchRecipe(by name: String)
+    func downloadImage(from url: URL)
 }
 
 protocol SearchPresenterToViewProtocol {
@@ -20,6 +21,8 @@ protocol SearchPresenterToViewProtocol {
     
     func showData(_ drinks: [Drink])
     func showError(_ message: String)
+    
+    func showImage(_ image: UIImage, from url: String)
 }
 
 protocol SearchPresenterToRouterProtocol {
@@ -30,10 +33,13 @@ protocol SearchPresenterToInteractorProtocol {
     var presenter: SearchInteractorToPresenterProtocol? { get set }
     
     func searchRecipes(by name: String)
+    func downloadImage(from url: URL)
 }
 
 protocol SearchInteractorToPresenterProtocol {
     
     func recievedData(drinks: [Drink])
     func requestFailed(with message: String)
+    
+    func recievedImage(_ image: UIImage, from url: String)
 }

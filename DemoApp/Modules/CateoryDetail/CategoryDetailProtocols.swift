@@ -13,6 +13,7 @@ protocol CategoryDetailViewToPresenterProtocol {
     var router: CategoryDetailPresenterToRouterProtocol? { get set }
     
     func fetchDrinks(by category: String)
+    func downloadImage(from url: URL)
 }
 
 protocol CategoryDetailPresenterToViewProtocol {
@@ -21,6 +22,7 @@ protocol CategoryDetailPresenterToViewProtocol {
     
     func showData(_ drinks: [Drink])
     func showError(_ message: String)
+    func showImage(_ image: UIImage, from url: String)
 }
 
 protocol CategoryDetailPresenterToRouterProtocol {
@@ -31,10 +33,12 @@ protocol CategoryDetailPresenterToInteractorProtocol {
     var presenter: CategoryDetailInteractorToPresenterProtocol? { get set }
     
     func getDrinks(by category: String)
+    func downloadImage(from url: URL)
 }
 
 protocol CategoryDetailInteractorToPresenterProtocol {
     
     func recievedData(drinks: [Drink])
     func requestFailed(with message: String)
+    func recievedImage(_ image: UIImage, from url: String)
 }
