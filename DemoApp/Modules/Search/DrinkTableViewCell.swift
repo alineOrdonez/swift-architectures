@@ -17,6 +17,7 @@ class DrinkTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         drinkImage.contentMode = .scaleAspectFit
+        drinkImage.image = UIImage(named: "default_drink")
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

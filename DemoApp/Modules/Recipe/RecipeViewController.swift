@@ -52,6 +52,12 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
         tableView.showsVerticalScrollIndicator = false
         
         tableView.reloadData()
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(addToFavorites(_:)))
+    }
+    
+    // MARK: - Add Recipe to Favorites
+    @IBAction func addToFavorites(_ sender: Any) {
     }
     
     //MARK:- Play Video
