@@ -13,8 +13,11 @@ struct CategoriesView: View {
     
     var body: some View {
         NavigationView {
-            content
-                .navigationTitle("Categories")
+            VStack {
+                content
+                    .navigationTitle("Categories")
+                
+            }
         }
         .onAppear(perform: {
             self.viewModel.send(event: .onAppear)

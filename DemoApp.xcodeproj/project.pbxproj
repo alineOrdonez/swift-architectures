@@ -64,6 +64,9 @@
 		D7BA7E0826689DD600728137 /* CategoryDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA7E0726689DD600728137 /* CategoryDetailService.swift */; };
 		D7BA7E0A2668A17B00728137 /* CategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA7E092668A17B00728137 /* CategoryDetailView.swift */; };
 		D7BA7E0C2668A42C00728137 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA7E0B2668A42C00728137 /* String+Extension.swift */; };
+		D7BA7E0F2668AB9300728137 /* ImageLoader in Frameworks */ = {isa = PBXBuildFile; productRef = D7BA7E0E2668AB9300728137 /* ImageLoader */; };
+		D7BA7E112668AF5600728137 /* SearchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA7E102668AF5600728137 /* SearchListViewModel.swift */; };
+		D7BA7E132668B14C00728137 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA7E122668B14C00728137 /* SearchService.swift */; };
 		D7BD78652664475400C13AFA /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD78642664475400C13AFA /* RecipeViewController.swift */; };
 		D7BD78672664476400C13AFA /* RecipeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD78662664476400C13AFA /* RecipeProtocols.swift */; };
 		D7BD78692664477200C13AFA /* RecipeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD78682664477200C13AFA /* RecipeRouter.swift */; };
@@ -137,6 +140,8 @@
 		D7BA7E0726689DD600728137 /* CategoryDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailService.swift; sourceTree = "<group>"; };
 		D7BA7E092668A17B00728137 /* CategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailView.swift; sourceTree = "<group>"; };
 		D7BA7E0B2668A42C00728137 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		D7BA7E102668AF5600728137 /* SearchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewModel.swift; sourceTree = "<group>"; };
+		D7BA7E122668B14C00728137 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		D7BD78642664475400C13AFA /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		D7BD78662664476400C13AFA /* RecipeProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeProtocols.swift; sourceTree = "<group>"; };
 		D7BD78682664477200C13AFA /* RecipeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRouter.swift; sourceTree = "<group>"; };
@@ -167,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7BA7E0F2668AB9300728137 /* ImageLoader in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,13 +184,13 @@
 			children = (
 				D7C456BC2667291800E1DE6F /* ActivityIndicator.swift */,
 				D7567A7D2665E9370069547E /* CategoriesView.swift */,
+				D7BA7E092668A17B00728137 /* CategoryDetailView.swift */,
 				D7F0A77D2664C2DC001C27F8 /* ContentView.swift */,
 				D7F0A77B2664C2DC001C27F8 /* DemoApp_SwiftUI_App.swift */,
 				D7C456B82667132200E1DE6F /* DrinkCell.swift */,
 				D7567A762665D69C0069547E /* FavoritesView.swift */,
 				D7567A7F2665EC670069547E /* SearchBar.swift */,
 				D7567A792665DC400069547E /* SearchView.swift */,
-				D7BA7E092668A17B00728137 /* CategoryDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -207,6 +213,7 @@
 				D7A4C54926603CCA004F476D /* DemoApp */,
 				D7F0A77A2664C2DC001C27F8 /* DemoApp(SwiftUI) */,
 				D7A4C54826603CCA004F476D /* Products */,
+				D7BA7E0D2668AB9300728137 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -354,8 +361,9 @@
 		D7BA7DFF2668813900728137 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				D7BA7E002668815100728137 /* CategoryListService.swift */,
 				D7BA7E0726689DD600728137 /* CategoryDetailService.swift */,
+				D7BA7E002668815100728137 /* CategoryListService.swift */,
+				D7BA7E122668B14C00728137 /* SearchService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -370,11 +378,19 @@
 			path = "../../../../Downloads/ModernMVVM-master/ModernMVVM/Feedback";
 			sourceTree = "<group>";
 		};
+		D7BA7E0D2668AB9300728137 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D7C456BE26672ED300E1DE6F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				D7C456BF26672EF500E1DE6F /* CategoryListViewModel.swift */,
 				D7BA7DF3266862D900728137 /* CategoryDetailViewModel.swift */,
+				D7C456BF26672EF500E1DE6F /* CategoryListViewModel.swift */,
+				D7BA7E102668AF5600728137 /* SearchListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -448,6 +464,9 @@
 			dependencies = (
 			);
 			name = "DemoApp(SwiftUI)";
+			packageProductDependencies = (
+				D7BA7E0E2668AB9300728137 /* ImageLoader */,
+			);
 			productName = "DemoApp(SwiftUI)";
 			productReference = D7F0A7792664C2DC001C27F8 /* DemoApp(SwiftUI).app */;
 			productType = "com.apple.product-type.application";
@@ -580,6 +599,7 @@
 				D7F0A77E2664C2DC001C27F8 /* ContentView.swift in Sources */,
 				D7BA7DFC2668710500728137 /* Agent.swift in Sources */,
 				D7C456B92667132200E1DE6F /* DrinkCell.swift in Sources */,
+				D7BA7E112668AF5600728137 /* SearchListViewModel.swift in Sources */,
 				D7C456BD2667291800E1DE6F /* ActivityIndicator.swift in Sources */,
 				D7567A7E2665E9370069547E /* CategoriesView.swift in Sources */,
 				D7F0A77C2664C2DC001C27F8 /* DemoApp_SwiftUI_App.swift in Sources */,
@@ -588,6 +608,7 @@
 				D7C456C026672EF500E1DE6F /* CategoryListViewModel.swift in Sources */,
 				D7BA7DF22668627000728137 /* View+Extension.swift in Sources */,
 				D7C456C52667316900E1DE6F /* Category.swift in Sources */,
+				D7BA7E132668B14C00728137 /* SearchService.swift in Sources */,
 				D7BA7E012668815100728137 /* CategoryListService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -859,6 +880,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		D7BA7DF626686CCD00728137 /* ImageLoader */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7BA7DF526686CCD00728137 /* XCRemoteSwiftPackageReference "ImageLoader" */;
+			productName = ImageLoader;
+		};
+		D7BA7E0E2668AB9300728137 /* ImageLoader */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D7BA7DF526686CCD00728137 /* XCRemoteSwiftPackageReference "ImageLoader" */;
 			productName = ImageLoader;

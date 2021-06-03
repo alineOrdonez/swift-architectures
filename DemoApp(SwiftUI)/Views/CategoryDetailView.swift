@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ImageLoader
 
 struct CategoryDetailView: View {
     @ObservedObject var viewModel: CategoryDetailViewModel
@@ -15,8 +16,8 @@ struct CategoryDetailView: View {
             .onAppear(perform: {
                 self.viewModel.send(event: .onAppear)
             })
+            .navigationTitle("Drinks")
     }
-    
     
     private var content: some View {
         switch viewModel.state {
@@ -33,7 +34,21 @@ struct CategoryDetailView: View {
     
     private func list(of drinks: [CategoryDetailViewModel.ListItem]) -> some View {
         return List(drinks) { drink in
-            Text(drink.title)
+            HStack {
+                if let url = URL(string: drink.thumb) {
+                    RemoteImageView(url: url, placeholder: {
+                        ActivityIndicator(isAnimating: true, style: .medium)
+                    })
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100)
+                }
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(drink.title)
+                        .font(.title3)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .padding()
+            }
         }
     }
 }

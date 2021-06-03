@@ -1,25 +1,23 @@
 //
-//  CategoryDetailViewModel.swift
+//  SearchListViewModel.swift
 //  DemoApp(SwiftUI)
 //
-//  Created by Aline Arely Ordonez Garcia on 02/06/21.
+//  Created by Aline Arely Ordonez Garcia on 03/06/21.
 //
 
 import Foundation
 import Combine
 import SwiftUI
 
-final class CategoryDetailViewModel: ObservableObject {
+final class SearchListViewModel: ObservableObject {
     
-    @Published private(set) var state: State
+    @Published private(set) var state = State.idle
     
-    private let service = CategoryDetailService()
+    private let service = SearchService()
     private var bag = Set<AnyCancellable>()
     private let input = PassthroughSubject<Event, Never>()
     
-    init(name: String) {
-        state = .idle(name)
-        
+    init() {
         Publishers.system(
             initial: state,
             reduce: Self.reduce,
@@ -43,9 +41,9 @@ final class CategoryDetailViewModel: ObservableObject {
     
     func whenLoading() -> Feedback<State, Event> {
         Feedback { (state: State) -> AnyPublisher<Event, Never> in
-            guard case .loading(let name) = state else { return Empty().eraseToAnyPublisher() }
+            guard case .loading(let drink) = state else { return Empty().eraseToAnyPublisher() }
             
-            return self.service.getDrinks(.drinksIn(name))
+            return self.service.searchRecipe(.search(drink))
                 .map { $0.drinks!.map(ListItem.init) }
                 .map(Event.onDrinksLoaded)
                 .catch { Just(Event.onFailedToLoadDrinks($0)) }
@@ -58,9 +56,9 @@ final class CategoryDetailViewModel: ObservableObject {
     }
 }
 
-extension CategoryDetailViewModel {
+extension SearchListViewModel {
     enum State {
-        case idle(String)
+        case idle
         case loading(String)
         case loaded([ListItem])
         case error(Error)
@@ -68,6 +66,8 @@ extension CategoryDetailViewModel {
     
     enum Event {
         case onAppear
+        case onDidChange(String)
+        case onCancel
         case onSelectDrink(String)
         case onDrinksLoaded([ListItem])
         case onFailedToLoadDrinks(Error)
@@ -86,13 +86,13 @@ extension CategoryDetailViewModel {
     }
 }
 
-extension CategoryDetailViewModel {
+extension SearchListViewModel {
     static func reduce(_ state: State, _ event: Event) -> State {
         switch state {
-        case .idle(let name):
+        case .idle:
             switch event {
-            case .onAppear:
-                return .loading(name)
+            case .onDidChange(let drink):
+                return .loading(drink)
             default:
                 return state
             }
