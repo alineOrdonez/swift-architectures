@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ImageLoader",
+        "repositoryURL": "git@gitlab.com:alineOrdonez/ImageLoader.git",
+        "state": {
+          "branch": null,
+          "revision": "7113ef880a1eada9d0931f887a7adac0edc7f1bd",
+          "version": "1.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
