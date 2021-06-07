@@ -2,7 +2,7 @@
 //  ActivityIndicator.swift
 //  DemoApp(SwiftUI)
 //
-//  Created by Aline Arely Ordonez Garcia on 01/06/21.
+//  Created by Aline Arely Ordonez Garcia on 01/05/21.
 //
 
 import SwiftUI

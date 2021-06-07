@@ -2,7 +2,7 @@
 //  SearchListViewModel.swift
 //  DemoApp(SwiftUI)
 //
-//  Created by Aline Arely Ordonez Garcia on 03/06/21.
+//  Created by Aline Arely Ordonez Garcia on 03/05/21.
 //
 
 import Foundation
@@ -12,24 +12,12 @@ import SwiftUI
 final class SearchListViewModel: ObservableObject {
     
     @Published private(set) var state = State.idle
+    @Published var searchText: String = ""
+    @Published var isSearching: Bool = false
     
     private let service = SearchService()
     private var bag = Set<AnyCancellable>()
     private let input = PassthroughSubject<Event, Never>()
-    
-    init() {
-        Publishers.system(
-            initial: state,
-            reduce: Self.reduce,
-            scheduler: RunLoop.main,
-            feedbacks: [
-                whenLoading(),
-                userInput(input: input.eraseToAnyPublisher())
-            ]
-        )
-        .assign(to: \.state, on: self)
-        .store(in: &bag)
-    }
     
     deinit {
         bag.removeAll()
@@ -39,14 +27,52 @@ final class SearchListViewModel: ObservableObject {
         input.send(event)
     }
     
-    func whenLoading() -> Feedback<State, Event> {
+    var showSearchCancelButton: Bool {
+        return isSearching
+    }
+    
+    func searchStatusChanged(_ value: SearchBar.Status) {
+        let event: Event = {
+            switch value {
+            case .searching:
+                isSearching = true
+                state = .searching
+                return .onStart
+            case .searched:
+                isSearching = false
+                state = .searched
+                searchRecipe()
+                return .onSearch
+            case .notSearching:
+                state = .idle
+                return .onCancel
+            }
+        }()
+        send(event: event)
+    }
+    
+    func searchRecipe() {
+        Publishers.system(
+            initial: self.state,
+            reduce: Self.reduce,
+            scheduler: RunLoop.main,
+            feedbacks: [
+                whenSearching(),
+                userInput(input: input.eraseToAnyPublisher())
+            ]
+        )
+        .assign(to: \.state, on: self)
+        .store(in: &bag)
+    }
+    
+    func whenSearching() -> Feedback<State, Event> {
         Feedback { (state: State) -> AnyPublisher<Event, Never> in
-            guard case .loading(let drink) = state else { return Empty().eraseToAnyPublisher() }
+            guard case .searched = state else { return Empty().eraseToAnyPublisher() }
             
-            return self.service.searchRecipe(.search(drink))
+            return self.service.searchRecipe(.search(self.searchText))
                 .map { $0.drinks!.map(ListItem.init) }
                 .map(Event.onDrinksLoaded)
-                .catch { Just(Event.onFailedToLoadDrinks($0)) }
+                .catch { Just(Event.onFailure($0)) }
                 .eraseToAnyPublisher()
         }
     }
@@ -59,18 +85,18 @@ final class SearchListViewModel: ObservableObject {
 extension SearchListViewModel {
     enum State {
         case idle
-        case loading(String)
+        case searching
+        case searched
         case loaded([ListItem])
         case error(Error)
     }
     
     enum Event {
-        case onAppear
-        case onDidChange(String)
+        case onStart
         case onCancel
-        case onSelectDrink(String)
+        case onSearch
         case onDrinksLoaded([ListItem])
-        case onFailedToLoadDrinks(Error)
+        case onFailure(Error)
     }
     
     struct ListItem: Identifiable {
@@ -87,18 +113,16 @@ extension SearchListViewModel {
 }
 
 extension SearchListViewModel {
+    
     static func reduce(_ state: State, _ event: Event) -> State {
         switch state {
         case .idle:
+            return state
+        case .searching:
+            return state
+        case .searched:
             switch event {
-            case .onDidChange(let drink):
-                return .loading(drink)
-            default:
-                return state
-            }
-        case .loading:
-            switch event {
-            case .onFailedToLoadDrinks(let error):
+            case .onFailure(let error):
                 return .error(error)
             case .onDrinksLoaded(let drinks):
                 return .loaded(drinks)

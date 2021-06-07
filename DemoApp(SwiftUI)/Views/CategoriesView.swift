@@ -30,8 +30,8 @@ struct CategoriesView: View {
             return Color.clear.eraseToAnyView()
         case .loading:
             return ActivityIndicator(isAnimating: true, style: .large).eraseToAnyView()
-        case .error(let error):
-            return Text(error.localizedDescription).eraseToAnyView()
+        case .error:
+            return ErrorView().eraseToAnyView()
         case .loaded(let item):
             return list(of: item).eraseToAnyView()
         }

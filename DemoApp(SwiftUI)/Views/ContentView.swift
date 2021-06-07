@@ -11,7 +11,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            SearchView()
+            SearchView(viewModel: SearchListViewModel())
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search Drink")

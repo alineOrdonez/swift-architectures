@@ -2,7 +2,7 @@
 //  CategoryDetailView.swift
 //  DemoApp(SwiftUI)
 //
-//  Created by Aline Arely Ordonez Garcia on 03/06/21.
+//  Created by Aline Arely Ordonez Garcia on 03/05/21.
 //
 
 import SwiftUI
@@ -25,8 +25,8 @@ struct CategoryDetailView: View {
             return Color.clear.eraseToAnyView()
         case .loading:
             return ActivityIndicator(isAnimating: true, style: .large).eraseToAnyView()
-        case .error(let error):
-            return Text(error.localizedDescription).eraseToAnyView()
+        case .error:
+            return ErrorView().eraseToAnyView()
         case .loaded(let drinks):
             return self.list(of: drinks).eraseToAnyView()
         }
