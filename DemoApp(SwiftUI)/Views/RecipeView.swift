@@ -34,22 +34,28 @@ struct RecipeView: View {
     }
     
     private func recipe(_ item: RecipeViewModel.Item) -> some View {
-        ScrollView {
+        VStack {
             header(item)
             Text(item.title)
                 .font(.title)
-            Spacer(minLength: 20)
-            list(item)
-            GenericViewCell(top: "Glass", bottom: item.glass)
-            Spacer(minLength: 20)
-            GenericViewCell(top: "Instructions", bottom: item.instructions)
-            Spacer()
+            TabView {
+                ScrollView {
+                    list(item)
+                }
+                VStack {
+                    GenericViewCell(top: "Glass", bottom: item.glass)
+                        .padding(.bottom)
+                    GenericViewCell(top: "Instructions", bottom: item.instructions)
+                    Spacer()
+                }
+            }.tabViewStyle(PageTabViewStyle())
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         }
     }
     
     private func header(_ item: RecipeViewModel.Item) -> some View {
         if let video = item.video, let youTubeID = video.youtubeID {
-            return WebView(url: "https://www.youtube.com/embed/\(youTubeID)").aspectRatio(contentMode: .fit)
+            return WebView(url: "https://www.youtube.com/embed/\(youTubeID)")
                 .frame(maxWidth: .infinity).eraseToAnyView()
         }
         

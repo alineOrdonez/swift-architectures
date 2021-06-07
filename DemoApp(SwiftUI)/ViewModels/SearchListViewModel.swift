@@ -70,7 +70,12 @@ final class SearchListViewModel: ObservableObject {
             guard case .searched = state else { return Empty().eraseToAnyPublisher() }
             
             return self.service.searchRecipe(.search(self.searchText))
-                .map { $0.drinks!.map(ListItem.init) }
+                .compactMap({ list in
+                    if let drinks = list.drinks {
+                        return drinks.map(ListItem.init)
+                    }
+                    return nil
+                })
                 .map(Event.onDrinksLoaded)
                 .catch { Just(Event.onFailure($0)) }
                 .eraseToAnyPublisher()
@@ -99,7 +104,7 @@ extension SearchListViewModel {
         case onFailure(Error)
     }
     
-    struct ListItem: Identifiable {
+    struct ListItem: Identifiable, Hashable {
         let id: String
         let title: String
         let thumb: String
