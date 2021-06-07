@@ -48,7 +48,16 @@ struct CategoryDetailView: View {
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding()
+                NavigationLink(destination:RecipeView(viewModel: RecipeViewModel(id: drink.id))) {
+                    EmptyView()
+                }
             }
         }
+    }
+}
+
+struct CategoryDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        CategoryDetailView(viewModel: CategoryDetailViewModel(name: "Cocktail"))
     }
 }

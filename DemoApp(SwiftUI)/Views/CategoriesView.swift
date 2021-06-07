@@ -75,3 +75,10 @@ struct CategoryListItemView: View {
         .padding(6)
     }
 }
+
+
+struct CategoriesView_Previews: PreviewProvider {
+    static var previews: some View {
+        CategoriesView(viewModel: CategoryListViewModel())
+    }
+}

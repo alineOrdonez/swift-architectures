@@ -55,6 +55,9 @@
 		D7A4C5B52660C73C004F476D /* CategoryDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A4C5B02660C73C004F476D /* CategoryDetailPresenter.swift */; };
 		D7B7C7CB266DB2AF00601FA1 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B7C7CA266DB2AF00601FA1 /* ErrorView.swift */; };
 		D7B7C7CD266DB52000601FA1 /* StartSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B7C7CC266DB52000601FA1 /* StartSearchView.swift */; };
+		D7B7C7CF266DE1D300601FA1 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B7C7CE266DE1D300601FA1 /* RecipeView.swift */; };
+		D7B7C7D1266DE1E800601FA1 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B7C7D0266DE1E800601FA1 /* RecipeViewModel.swift */; };
+		D7B7C7D3266DECD900601FA1 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B7C7D2266DECD900601FA1 /* RecipeService.swift */; };
 		D7BA7DF22668627000728137 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA7DF12668627000728137 /* View+Extension.swift */; };
 		D7BA7DF4266862D900728137 /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA7DF3266862D900728137 /* CategoryDetailViewModel.swift */; };
 		D7BA7DF726686CCD00728137 /* ImageLoader in Frameworks */ = {isa = PBXBuildFile; productRef = D7BA7DF626686CCD00728137 /* ImageLoader */; };
@@ -79,6 +82,7 @@
 		D7C456C026672EF500E1DE6F /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C456BF26672EF500E1DE6F /* CategoryListViewModel.swift */; };
 		D7C456C32667313A00E1DE6F /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C456C22667313A00E1DE6F /* Drink.swift */; };
 		D7C456C52667316900E1DE6F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C456C42667316900E1DE6F /* Category.swift */; };
+		D7EEE06E266ED2A4001CA324 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EEE06D266ED2A4001CA324 /* WebView.swift */; };
 		D7F0A77C2664C2DC001C27F8 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F0A77B2664C2DC001C27F8 /* DemoApp.swift */; };
 		D7F0A77E2664C2DC001C27F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F0A77D2664C2DC001C27F8 /* ContentView.swift */; };
 		D7F0A7832664C2DD001C27F8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7F0A7822664C2DD001C27F8 /* Preview Assets.xcassets */; };
@@ -134,6 +138,9 @@
 		D7A4C5B02660C73C004F476D /* CategoryDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDetailPresenter.swift; sourceTree = "<group>"; };
 		D7B7C7CA266DB2AF00601FA1 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		D7B7C7CC266DB52000601FA1 /* StartSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSearchView.swift; sourceTree = "<group>"; };
+		D7B7C7CE266DE1D300601FA1 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
+		D7B7C7D0266DE1E800601FA1 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
+		D7B7C7D2266DECD900601FA1 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
 		D7BA7DF12668627000728137 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		D7BA7DF3266862D900728137 /* CategoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewModel.swift; sourceTree = "<group>"; };
 		D7BA7DF926686E0D00728137 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
@@ -156,6 +163,7 @@
 		D7C456BF26672EF500E1DE6F /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		D7C456C22667313A00E1DE6F /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		D7C456C42667316900E1DE6F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		D7EEE06D266ED2A4001CA324 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		D7F0A7792664C2DC001C27F8 /* DemoApp(SwiftUI).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DemoApp(SwiftUI).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F0A77B2664C2DC001C27F8 /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
 		D7F0A77D2664C2DC001C27F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -194,9 +202,11 @@
 				D7C456B82667132200E1DE6F /* DrinkCell.swift */,
 				D7B7C7CA266DB2AF00601FA1 /* ErrorView.swift */,
 				D7567A762665D69C0069547E /* FavoritesView.swift */,
+				D7B7C7CE266DE1D300601FA1 /* RecipeView.swift */,
 				D7567A7F2665EC670069547E /* SearchBar.swift */,
 				D7567A792665DC400069547E /* SearchView.swift */,
 				D7B7C7CC266DB52000601FA1 /* StartSearchView.swift */,
+				D7EEE06D266ED2A4001CA324 /* WebView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -370,6 +380,7 @@
 				D7BA7E0726689DD600728137 /* CategoryDetailService.swift */,
 				D7BA7E002668815100728137 /* CategoryListService.swift */,
 				D7BA7E122668B14C00728137 /* SearchService.swift */,
+				D7B7C7D2266DECD900601FA1 /* RecipeService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -396,6 +407,7 @@
 			children = (
 				D7BA7DF3266862D900728137 /* CategoryDetailViewModel.swift */,
 				D7C456BF26672EF500E1DE6F /* CategoryListViewModel.swift */,
+				D7B7C7D0266DE1E800601FA1 /* RecipeViewModel.swift */,
 				D7BA7E102668AF5600728137 /* SearchListViewModel.swift */,
 			);
 			path = ViewModels;
@@ -594,11 +606,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7BA7DF4266862D900728137 /* CategoryDetailViewModel.swift in Sources */,
+				D7B7C7D1266DE1E800601FA1 /* RecipeViewModel.swift in Sources */,
 				D7BA7E0C2668A42C00728137 /* String+Extension.swift in Sources */,
 				D7567A7A2665DC400069547E /* SearchView.swift in Sources */,
 				D7BA7E062668962D00728137 /* Feedback.swift in Sources */,
 				D7BA7E052668962D00728137 /* System.swift in Sources */,
 				D7BA7E0826689DD600728137 /* CategoryDetailService.swift in Sources */,
+				D7B7C7CF266DE1D300601FA1 /* RecipeView.swift in Sources */,
 				D7567A772665D69C0069547E /* FavoritesView.swift in Sources */,
 				D7B7C7CB266DB2AF00601FA1 /* ErrorView.swift in Sources */,
 				D7BA7DFA26686E0D00728137 /* NetworkAPI.swift in Sources */,
@@ -608,12 +622,14 @@
 				D7C456B92667132200E1DE6F /* DrinkCell.swift in Sources */,
 				D7BA7E112668AF5600728137 /* SearchListViewModel.swift in Sources */,
 				D7C456BD2667291800E1DE6F /* ActivityIndicator.swift in Sources */,
+				D7EEE06E266ED2A4001CA324 /* WebView.swift in Sources */,
 				D7567A7E2665E9370069547E /* CategoriesView.swift in Sources */,
 				D7F0A77C2664C2DC001C27F8 /* DemoApp.swift in Sources */,
 				D7567A802665EC670069547E /* SearchBar.swift in Sources */,
 				D7BA7E0A2668A17B00728137 /* CategoryDetailView.swift in Sources */,
 				D7C456C026672EF500E1DE6F /* CategoryListViewModel.swift in Sources */,
 				D7BA7DF22668627000728137 /* View+Extension.swift in Sources */,
+				D7B7C7D3266DECD900601FA1 /* RecipeService.swift in Sources */,
 				D7C456C52667316900E1DE6F /* Category.swift in Sources */,
 				D7B7C7CD266DB52000601FA1 /* StartSearchView.swift in Sources */,
 				D7BA7E132668B14C00728137 /* SearchService.swift in Sources */,

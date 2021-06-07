@@ -55,6 +55,9 @@ struct SearchView: View {
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding()
+                NavigationLink(destination:RecipeView(viewModel: RecipeViewModel(id: drink.id))) {
+                    EmptyView()
+                }
             }
         }
     }
