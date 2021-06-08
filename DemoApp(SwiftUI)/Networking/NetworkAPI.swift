@@ -12,12 +12,14 @@ enum APIError: Error {
     case requestFailed
     case invalidResponse
     case invalidJSON
+    case invalidData
     
     var localizedDescription: String {
         switch self {
         case .requestFailed: return "Request Failed"
         case .invalidResponse: return "Response Unsuccessful"
         case .invalidJSON: return "JSON Parsing Failure"
+        case .invalidData: return "Not results found"
         }
     }
 }

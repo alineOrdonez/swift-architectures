@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct ErrorView: View {
+    
+    var textError: String = "Something went wrong. Please try again."
+    
     var body: some View {
         VStack {
             HStack {
                 Text("Error!")
                 Image(systemName: "exclamationmark.triangle.fill").foregroundColor(Color.orange)
             }.font(.headline)
-            Text("Something went wrong. Please try again.")
+            Text(textError)
                 .font(.body)
         }.padding()
     }
@@ -22,6 +25,6 @@ struct ErrorView: View {
 
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorView().previewLayout(.sizeThatFits)
+        ErrorView(textError: "Something went wrong. Please try again.").previewLayout(.sizeThatFits)
     }
 }

@@ -70,11 +70,11 @@ final class SearchListViewModel: ObservableObject {
             guard case .searched = state else { return Empty().eraseToAnyPublisher() }
             
             return self.service.searchRecipe(.search(self.searchText))
-                .compactMap({ list in
-                    if let drinks = list.drinks {
-                        return drinks.map(ListItem.init)
+                .tryMap({ list in
+                    guard let drinks = list.drinks else {
+                        throw APIError.invalidData
                     }
-                    return nil
+                    return drinks.map(ListItem.init)
                 })
                 .map(Event.onDrinksLoaded)
                 .catch { Just(Event.onFailure($0)) }
