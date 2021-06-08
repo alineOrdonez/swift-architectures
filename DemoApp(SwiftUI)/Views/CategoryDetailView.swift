@@ -33,25 +33,24 @@ struct CategoryDetailView: View {
     }
     
     private func list(of drinks: [CategoryDetailViewModel.ListItem]) -> some View {
-        return ScrollView {
-            LazyVStack {
-                ForEach(drinks, id:\.self) { drink in
-                    HStack {
-                        if let url = URL(string: drink.thumb) {
-                            RemoteImageView(url: url, placeholder: {
-                                ActivityIndicator(isAnimating: true, style: .medium)
-                            })
-                            .frame(width: 100, height: 100)
-                            .cornerRadius(10)                }
-                        NavigationLink(destination:RecipeView(viewModel: RecipeViewModel(id: drink.id))) {
-                            Text(drink.title)
-                                .font(.subheadline)
-                                .foregroundColor(.black)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
+        return List {
+            ForEach(drinks, id:\.self) { drink in
+                HStack {
+                    if let url = URL(string: drink.thumb) {
+                        RemoteImageView(url: url, placeholder: {
+                            ActivityIndicator(isAnimating: true, style: .medium)
+                        })
+                        .frame(width: 100, height: 100)
+                        .cornerRadius(10)                }
+                    NavigationLink(destination:RecipeView(viewModel: RecipeViewModel(id: drink.id))) {
+                        Text(drink.title)
+                            .font(.title2)
+                            .fontWeight(.medium)
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
-            }.padding()
+            }
         }
     }
 }

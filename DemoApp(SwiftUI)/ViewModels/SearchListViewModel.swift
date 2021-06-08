@@ -108,11 +108,23 @@ extension SearchListViewModel {
         let id: String
         let title: String
         let thumb: String
+        let category: String
+        var tags: [String]?
         
-        init(category: Drink) {
-            id = category.id
-            title = category.name
-            thumb = category.thumb
+        init(drink: Drink) {
+            id = drink.id
+            title = drink.name
+            thumb = drink.thumb
+            category = drink.category ?? "N/A"
+            tags = getTags(drink: drink)
+        }
+        
+        private func getTags(drink: Drink) -> [String]? {
+            if let string = drink.tags {
+                let tags = string.split(separator: ",").map({String($0)})
+                return tags
+            }
+            return nil
         }
     }
 }

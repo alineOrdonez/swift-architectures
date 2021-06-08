@@ -32,6 +32,7 @@ struct Drink: Identifiable, Codable {
     let strMeasure5: String?
     let strMeasure6: String?
     let strMeasure7: String?
+    let tags: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "idDrink"
@@ -55,6 +56,7 @@ struct Drink: Identifiable, Codable {
         case strMeasure5 = "strMeasure5"
         case strMeasure6 = "strMeasure6"
         case strMeasure7 = "strMeasure7"
+        case tags = "strTags"
     }
 }
 
@@ -66,7 +68,7 @@ struct MockData {
     
     static let drinks = [sampleDrink, sampleDrink, sampleDrink]
     
-    static let sampleDrink = Drink(id: "11007", name: "Margarita", video: nil, category: "Ordinary Drink", thumb: "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg", image: nil, glass: nil, listOfIngredients: nil, instructions: nil, strIngredient1: nil, strIngredient2: nil, strIngredient3: nil, strIngredient4: nil, strIngredient5: nil, strIngredient6: nil, strIngredient7: nil, strMeasure1: nil, strMeasure2: nil, strMeasure3: nil, strMeasure4: nil, strMeasure5: nil, strMeasure6: nil, strMeasure7: nil)
+    static let sampleDrink = Drink(id: "11007", name: "Margarita", video: nil, category: "Ordinary Drink", thumb: "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg", image: nil, glass: nil, listOfIngredients: nil, instructions: nil, strIngredient1: nil, strIngredient2: nil, strIngredient3: nil, strIngredient4: nil, strIngredient5: nil, strIngredient6: nil, strIngredient7: nil, strMeasure1: nil, strMeasure2: nil, strMeasure3: nil, strMeasure4: nil, strMeasure5: nil, strMeasure6: nil, strMeasure7: nil, tags: "N/A")
 }
 
 

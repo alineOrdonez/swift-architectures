@@ -18,6 +18,13 @@ struct RecipeView: View {
                 self.viewModel.send(event: .onAppear)
             })
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                Button(action: {
+                    print("Button tapped")
+                }){
+                    Image(systemName: "heart")
+                }
+            }
     }
     
     private var content: some View {
@@ -29,28 +36,28 @@ struct RecipeView: View {
         case .error:
             return ErrorView().eraseToAnyView()
         case .loaded(let item):
-            return recipe(item).eraseToAnyView()
+            return Recipe(item).eraseToAnyView()
         }
     }
     
-    private func recipe(_ item: RecipeViewModel.Item) -> some View {
+    private func Recipe(_ item: RecipeViewModel.Item) -> some View {
         VStack {
             header(item)
             Text(item.title)
                 .font(.title)
             TabView {
                 ScrollView {
-                    list(item)
+                    ingredients(for: item)
                 }
                 VStack {
-                    GenericViewCell(top: "Glass", bottom: item.glass)
+                    GenericViewCell(top: " Glass", bottom: item.glass)
                         .padding(.bottom)
-                    GenericViewCell(top: "Instructions", bottom: item.instructions)
+                    GenericViewCell(top: " Instructions", bottom: item.instructions)
                     Spacer()
                 }
             }.tabViewStyle(PageTabViewStyle())
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-        }
+        }.padding()
     }
     
     private func header(_ item: RecipeViewModel.Item) -> some View {
@@ -71,9 +78,9 @@ struct RecipeView: View {
         return EmptyView().eraseToAnyView()
     }
     
-    private func list(_ item: RecipeViewModel.Item) -> some View {
+    private func ingredients(for item: RecipeViewModel.Item) -> some View {
         return
-            Section(header: Text("Ingredients").font(.title3)
+            Section(header: Text(" Ingredients").font(.title3)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .background(Color.gray)
                         .foregroundColor(.white)) {

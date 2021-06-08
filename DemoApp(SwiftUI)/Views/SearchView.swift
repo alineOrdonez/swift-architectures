@@ -40,28 +40,67 @@ struct SearchView: View {
     }
     
     private func list(of drinks: [SearchListViewModel.ListItem]) -> some View {
-        return ScrollView {
-            LazyVStack {
-                ForEach(drinks, id:\.self) { drink in
-                    HStack {
-                        if let url = URL(string: drink.thumb) {
-                            RemoteImageView(url: url, placeholder: {
-                                ActivityIndicator(isAnimating: true, style: .medium)
-                            })
-                            .frame(width: 100, height: 100)
-                            .cornerRadius(10)
-                            .padding(5)
-                        }
-                        NavigationLink(destination:RecipeView(viewModel: RecipeViewModel(id: drink.id))) {
-                            Text(drink.title)
-                                .font(.subheadline)
-                                .foregroundColor(.black)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                    }
+        return List {
+            ForEach(drinks, id:\.self) { drink in
+                ResultListItemView(item: drink)
+            }
+        }
+    }
+    
+    struct ResultListItemView: View {
+        let item: SearchListViewModel.ListItem
+        
+        var body: some View {
+            HStack {
+                if let url = URL(string: item.thumb) {
+                    displayImage(from: url)
+                }
+                NavigationLink(destination:RecipeView(viewModel: RecipeViewModel(id: item.id))) {
+                    addDetail()
                 }
             }
-        }.padding(10)
+        }
+        
+        private func displayImage(from url: URL) -> some View {
+            return RemoteImageView(url: url, placeholder: {
+                ActivityIndicator(isAnimating: true, style: .medium)
+            })
+            .frame(width: 100, height: 100)
+            .cornerRadius(10)
+            .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
+        }
+        
+        private func addDetail() -> some View {
+            return VStack(alignment: .leading, spacing: 5) {
+                Text(item.title)
+                    .font(.title2)
+                    .fontWeight(.medium)
+                    .foregroundColor(.black)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text(item.category)
+                    .foregroundColor(.secondary)
+                    .fontWeight(.semibold)
+                if let tags = item.tags {
+                    addTags(tags)
+                }
+            }
+        }
+        
+        private func addTags(_ tags: [String]) -> some View {
+            return HStack {
+                ForEach(tags, id: \.self) { tag in
+                    ZStack {
+                        Text(tag)
+                            .font(.subheadline)
+                            .padding(6)
+                            .foregroundColor(.white)
+                    }.background(Color.gray)
+                    .opacity(0.8)
+                    .cornerRadius(10.0)
+                    .padding(6)
+                }
+            }
+        }
     }
 }
 

@@ -12,8 +12,7 @@ struct FavoritesView: View {
         NavigationView {
             Text("This is just a test")
         }
-        .navigationBarTitle("Favorites")
-        .navigationBarItems(trailing: EditButton())
+        .navigationTitle("Favorites")
     }
 }
 
