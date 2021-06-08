@@ -83,6 +83,12 @@
 		D7C456C32667313A00E1DE6F /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C456C22667313A00E1DE6F /* Drink.swift */; };
 		D7C456C52667316900E1DE6F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C456C42667316900E1DE6F /* Category.swift */; };
 		D7EEE06E266ED2A4001CA324 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EEE06D266ED2A4001CA324 /* WebView.swift */; };
+		D7EEE076266F09C3001CA324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EEE075266F09C3001CA324 /* AppDelegate.swift */; };
+		D7EEE078266F09C3001CA324 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EEE077266F09C3001CA324 /* SceneDelegate.swift */; };
+		D7EEE07A266F09C3001CA324 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EEE079266F09C3001CA324 /* ViewController.swift */; };
+		D7EEE07D266F09C3001CA324 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7EEE07B266F09C3001CA324 /* Main.storyboard */; };
+		D7EEE07F266F09C6001CA324 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7EEE07E266F09C6001CA324 /* Assets.xcassets */; };
+		D7EEE082266F09C6001CA324 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7EEE080266F09C6001CA324 /* LaunchScreen.storyboard */; };
 		D7F0A77C2664C2DC001C27F8 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F0A77B2664C2DC001C27F8 /* DemoApp.swift */; };
 		D7F0A77E2664C2DC001C27F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F0A77D2664C2DC001C27F8 /* ContentView.swift */; };
 		D7F0A7832664C2DD001C27F8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7F0A7822664C2DD001C27F8 /* Preview Assets.xcassets */; };
@@ -164,6 +170,14 @@
 		D7C456C22667313A00E1DE6F /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		D7C456C42667316900E1DE6F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		D7EEE06D266ED2A4001CA324 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		D7EEE073266F09C3001CA324 /* DemoApp(Elm).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DemoApp(Elm).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7EEE075266F09C3001CA324 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D7EEE077266F09C3001CA324 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		D7EEE079266F09C3001CA324 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D7EEE07C266F09C3001CA324 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D7EEE07E266F09C6001CA324 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D7EEE081266F09C6001CA324 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D7EEE083266F09C6001CA324 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7F0A7792664C2DC001C27F8 /* DemoApp(SwiftUI).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DemoApp(SwiftUI).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F0A77B2664C2DC001C27F8 /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
 		D7F0A77D2664C2DC001C27F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -177,6 +191,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7BA7DF726686CCD00728137 /* ImageLoader in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7EEE070266F09C3001CA324 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +249,7 @@
 			children = (
 				D7A4C54926603CCA004F476D /* DemoApp */,
 				D7F0A77A2664C2DC001C27F8 /* DemoApp(SwiftUI) */,
+				D7EEE074266F09C3001CA324 /* DemoApp(Elm) */,
 				D7A4C54826603CCA004F476D /* Products */,
 				D7BA7E0D2668AB9300728137 /* Frameworks */,
 			);
@@ -238,6 +260,7 @@
 			children = (
 				D7A4C54726603CCA004F476D /* DemoApp.app */,
 				D7F0A7792664C2DC001C27F8 /* DemoApp(SwiftUI).app */,
+				D7EEE073266F09C3001CA324 /* DemoApp(Elm).app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -422,6 +445,20 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		D7EEE074266F09C3001CA324 /* DemoApp(Elm) */ = {
+			isa = PBXGroup;
+			children = (
+				D7EEE075266F09C3001CA324 /* AppDelegate.swift */,
+				D7EEE077266F09C3001CA324 /* SceneDelegate.swift */,
+				D7EEE079266F09C3001CA324 /* ViewController.swift */,
+				D7EEE07B266F09C3001CA324 /* Main.storyboard */,
+				D7EEE07E266F09C6001CA324 /* Assets.xcassets */,
+				D7EEE080266F09C6001CA324 /* LaunchScreen.storyboard */,
+				D7EEE083266F09C6001CA324 /* Info.plist */,
+			);
+			path = "DemoApp(Elm)";
+			sourceTree = "<group>";
+		};
 		D7F0A77A2664C2DC001C27F8 /* DemoApp(SwiftUI) */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,6 +506,23 @@
 			productReference = D7A4C54726603CCA004F476D /* DemoApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D7EEE072266F09C3001CA324 /* DemoApp(Elm) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7EEE084266F09C6001CA324 /* Build configuration list for PBXNativeTarget "DemoApp(Elm)" */;
+			buildPhases = (
+				D7EEE06F266F09C3001CA324 /* Sources */,
+				D7EEE070266F09C3001CA324 /* Frameworks */,
+				D7EEE071266F09C3001CA324 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DemoApp(Elm)";
+			productName = "DemoApp(Elm)";
+			productReference = D7EEE073266F09C3001CA324 /* DemoApp(Elm).app */;
+			productType = "com.apple.product-type.application";
+		};
 		D7F0A7782664C2DC001C27F8 /* DemoApp(SwiftUI) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D7F0A7852664C2DD001C27F8 /* Build configuration list for PBXNativeTarget "DemoApp(SwiftUI)" */;
@@ -501,6 +555,9 @@
 					D7A4C54626603CCA004F476D = {
 						CreatedOnToolsVersion = 12.5;
 					};
+					D7EEE072266F09C3001CA324 = {
+						CreatedOnToolsVersion = 12.5;
+					};
 					D7F0A7782664C2DC001C27F8 = {
 						CreatedOnToolsVersion = 12.5;
 					};
@@ -524,6 +581,7 @@
 			targets = (
 				D7A4C54626603CCA004F476D /* DemoApp */,
 				D7F0A7782664C2DC001C27F8 /* DemoApp(SwiftUI) */,
+				D7EEE072266F09C3001CA324 /* DemoApp(Elm) */,
 			);
 		};
 /* End PBXProject section */
@@ -537,6 +595,16 @@
 				D7A4C55426603CCF004F476D /* Assets.xcassets in Resources */,
 				D746F8D82660D1C4003982CF /* DrinkTableViewCell.xib in Resources */,
 				D7A4C55226603CCA004F476D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7EEE071266F09C3001CA324 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7EEE082266F09C6001CA324 /* LaunchScreen.storyboard in Resources */,
+				D7EEE07F266F09C6001CA324 /* Assets.xcassets in Resources */,
+				D7EEE07D266F09C3001CA324 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +669,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D7EEE06F266F09C3001CA324 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7EEE07A266F09C3001CA324 /* ViewController.swift in Sources */,
+				D7EEE076266F09C3001CA324 /* AppDelegate.swift in Sources */,
+				D7EEE078266F09C3001CA324 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D7F0A7752664C2DC001C27F8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -652,6 +730,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				D7A4C55626603CCF004F476D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D7EEE07B266F09C3001CA324 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D7EEE07C266F09C3001CA324 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D7EEE080266F09C6001CA324 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D7EEE081266F09C6001CA324 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -815,6 +909,42 @@
 			};
 			name = Release;
 		};
+		D7EEE085266F09C6001CA324 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "DemoApp(Elm)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aordonez.drinks-Elm";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D7EEE086266F09C6001CA324 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "DemoApp(Elm)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aordonez.drinks-Elm";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		D7F0A7862664C2DD001C27F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -876,6 +1006,15 @@
 			buildConfigurations = (
 				D7A4C55C26603CCF004F476D /* Debug */,
 				D7A4C55D26603CCF004F476D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D7EEE084266F09C6001CA324 /* Build configuration list for PBXNativeTarget "DemoApp(Elm)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7EEE085266F09C6001CA324 /* Debug */,
+				D7EEE086266F09C6001CA324 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
