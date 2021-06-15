@@ -56,6 +56,35 @@ struct Drink: Codable {
         case strMeasure6 = "strMeasure6"
         case strMeasure7 = "strMeasure7"
     }
+    
+    init(id: String, name: String, category: String? = nil, thumb: String) {
+        self.id = id
+        self.name = name
+        self.category = category
+        self.thumb = thumb
+        self.video = nil
+        self.glass = nil
+        self.instructions = nil
+        self.strIngredient1 = nil
+        self.strIngredient2 = nil
+        self.strIngredient3 = nil
+        self.strIngredient4 = nil
+        self.strIngredient5 = nil
+        self.strIngredient6 = nil
+        self.strIngredient7 = nil
+        self.strMeasure1 = nil
+        self.strMeasure2 = nil
+        self.strMeasure3 = nil
+        self.strMeasure4 = nil
+        self.strMeasure5 = nil
+        self.strMeasure6 = nil
+        self.strMeasure7 = nil
+    }
+    
+    func toDTO() -> UDDrink {
+        let drink = UDDrink(id: self.id, name: self.name, category: self.category, thumb: self.thumb)
+        return drink
+    }
 }
 
 struct DrinkList: Codable {

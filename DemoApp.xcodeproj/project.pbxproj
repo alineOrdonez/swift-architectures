@@ -14,6 +14,11 @@
 		D7567A7E2665E9370069547E /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7567A7D2665E9370069547E /* CategoriesView.swift */; };
 		D7567A802665EC670069547E /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7567A7F2665EC670069547E /* SearchBar.swift */; };
 		D7567A812665ECE70069547E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7A4C55326603CCF004F476D /* Assets.xcassets */; };
+		D79A35D72677229B0069B68B /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A35D62677229B0069B68B /* Repository.swift */; };
+		D79A35DA267726000069B68B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = D79A35D9267726000069B68B /* Realm */; };
+		D79A35DC267726000069B68B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D79A35DB267726000069B68B /* RealmSwift */; };
+		D79A35DE267726380069B68B /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A35DD267726380069B68B /* RealmRepository.swift */; };
+		D79A35E0267726440069B68B /* CoreDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A35DF267726440069B68B /* CoreDataRepository.swift */; };
 		D7A4C54B26603CCA004F476D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A4C54A26603CCA004F476D /* AppDelegate.swift */; };
 		D7A4C54F26603CCA004F476D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A4C54E26603CCA004F476D /* ViewController.swift */; };
 		D7A4C55226603CCA004F476D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7A4C55026603CCA004F476D /* Main.storyboard */; };
@@ -60,7 +65,6 @@
 		D7B7C7D3266DECD900601FA1 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B7C7D2266DECD900601FA1 /* RecipeService.swift */; };
 		D7BA7DF22668627000728137 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA7DF12668627000728137 /* View+Extension.swift */; };
 		D7BA7DF4266862D900728137 /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA7DF3266862D900728137 /* CategoryDetailViewModel.swift */; };
-		D7BA7DF726686CCD00728137 /* ImageLoader in Frameworks */ = {isa = PBXBuildFile; productRef = D7BA7DF626686CCD00728137 /* ImageLoader */; };
 		D7BA7DFA26686E0D00728137 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA7DF926686E0D00728137 /* NetworkAPI.swift */; };
 		D7BA7DFC2668710500728137 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA7DFB2668710500728137 /* Agent.swift */; };
 		D7BA7E012668815100728137 /* CategoryListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA7E002668815100728137 /* CategoryListService.swift */; };
@@ -77,6 +81,11 @@
 		D7BD78692664477200C13AFA /* RecipeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD78682664477200C13AFA /* RecipeRouter.swift */; };
 		D7BD786B2664477B00C13AFA /* RecipePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD786A2664477B00C13AFA /* RecipePresenter.swift */; };
 		D7BD786D2664478300C13AFA /* RecipeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD786C2664478300C13AFA /* RecipeInteractor.swift */; };
+		D7BFEC11267840E100F9F9C9 /* CDDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BFEC10267840E100F9F9C9 /* CDDrink.swift */; };
+		D7BFEC132678420C00F9F9C9 /* RDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BFEC122678420C00F9F9C9 /* RDrink.swift */; };
+		D7BFEC1526784BD700F9F9C9 /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BFEC1426784BD700F9F9C9 /* UserDefaultsRepository.swift */; };
+		D7BFEC1726784BF600F9F9C9 /* UDDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BFEC1626784BF600F9F9C9 /* UDDrink.swift */; };
+		D7BFEC1926786D6500F9F9C9 /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BFEC1826786D6500F9F9C9 /* LocalRepository.swift */; };
 		D7C456B92667132200E1DE6F /* DrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C456B82667132200E1DE6F /* DrinkCell.swift */; };
 		D7C456BD2667291800E1DE6F /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C456BC2667291800E1DE6F /* ActivityIndicator.swift */; };
 		D7C456C026672EF500E1DE6F /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C456BF26672EF500E1DE6F /* CategoryListViewModel.swift */; };
@@ -101,6 +110,9 @@
 		D7567A792665DC400069547E /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		D7567A7D2665E9370069547E /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		D7567A7F2665EC670069547E /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		D79A35D62677229B0069B68B /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		D79A35DD267726380069B68B /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
+		D79A35DF267726440069B68B /* CoreDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRepository.swift; sourceTree = "<group>"; };
 		D7A4C54726603CCA004F476D /* DemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A4C54A26603CCA004F476D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7A4C54E26603CCA004F476D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +176,11 @@
 		D7BD78682664477200C13AFA /* RecipeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRouter.swift; sourceTree = "<group>"; };
 		D7BD786A2664477B00C13AFA /* RecipePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePresenter.swift; sourceTree = "<group>"; };
 		D7BD786C2664478300C13AFA /* RecipeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInteractor.swift; sourceTree = "<group>"; };
+		D7BFEC10267840E100F9F9C9 /* CDDrink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDDrink.swift; sourceTree = "<group>"; };
+		D7BFEC122678420C00F9F9C9 /* RDrink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RDrink.swift; sourceTree = "<group>"; };
+		D7BFEC1426784BD700F9F9C9 /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
+		D7BFEC1626784BF600F9F9C9 /* UDDrink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDDrink.swift; sourceTree = "<group>"; };
+		D7BFEC1826786D6500F9F9C9 /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
 		D7C456B82667132200E1DE6F /* DrinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkCell.swift; sourceTree = "<group>"; };
 		D7C456BC2667291800E1DE6F /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		D7C456BF26672EF500E1DE6F /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
@@ -190,7 +207,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7BA7DF726686CCD00728137 /* ImageLoader in Frameworks */,
+				D79A35DC267726000069B68B /* RealmSwift in Frameworks */,
+				D79A35DA267726000069B68B /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +262,19 @@
 			path = Recipe;
 			sourceTree = "<group>";
 		};
+		D79A35D5267722890069B68B /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				D79A35DF267726440069B68B /* CoreDataRepository.swift */,
+				D7BFEC1826786D6500F9F9C9 /* LocalRepository.swift */,
+				D79A35DD267726380069B68B /* RealmRepository.swift */,
+				D79A35D62677229B0069B68B /* Repository.swift */,
+				D7BFEC1426784BD700F9F9C9 /* UserDefaultsRepository.swift */,
+				D7BFEC0F267840CF00F9F9C9 /* Models */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		D7A4C53E26603CCA004F476D = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +317,7 @@
 		D7A4C55E26603CD9004F476D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				D79A35D5267722890069B68B /* Repository */,
 				D785B7F726614532009B586C /* Recipe */,
 				D7A4C5AB2660C534004F476D /* CateoryDetail */,
 				D7A4C5972660A52C004F476D /* Categories */,
@@ -425,6 +457,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D7BFEC0F267840CF00F9F9C9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D7BFEC10267840E100F9F9C9 /* CDDrink.swift */,
+				D7BFEC122678420C00F9F9C9 /* RDrink.swift */,
+				D7BFEC1626784BF600F9F9C9 /* UDDrink.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D7C456BE26672ED300E1DE6F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -448,15 +490,23 @@
 		D7EEE074266F09C3001CA324 /* DemoApp(Elm) */ = {
 			isa = PBXGroup;
 			children = (
+				D7EEE083266F09C6001CA324 /* Info.plist */,
 				D7EEE075266F09C3001CA324 /* AppDelegate.swift */,
 				D7EEE077266F09C3001CA324 /* SceneDelegate.swift */,
 				D7EEE079266F09C3001CA324 /* ViewController.swift */,
-				D7EEE07B266F09C3001CA324 /* Main.storyboard */,
 				D7EEE07E266F09C6001CA324 /* Assets.xcassets */,
 				D7EEE080266F09C6001CA324 /* LaunchScreen.storyboard */,
-				D7EEE083266F09C6001CA324 /* Info.plist */,
+				D7EEE07B266F09C3001CA324 /* Main.storyboard */,
+				D7EEE08A266F3CAD001CA324 /* Elm */,
 			);
 			path = "DemoApp(Elm)";
+			sourceTree = "<group>";
+		};
+		D7EEE08A266F3CAD001CA324 /* Elm */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Elm;
 			sourceTree = "<group>";
 		};
 		D7F0A77A2664C2DC001C27F8 /* DemoApp(SwiftUI) */ = {
@@ -500,7 +550,8 @@
 			);
 			name = DemoApp;
 			packageProductDependencies = (
-				D7BA7DF626686CCD00728137 /* ImageLoader */,
+				D79A35D9267726000069B68B /* Realm */,
+				D79A35DB267726000069B68B /* RealmSwift */,
 			);
 			productName = DemoApp;
 			productReference = D7A4C54726603CCA004F476D /* DemoApp.app */;
@@ -574,6 +625,7 @@
 			mainGroup = D7A4C53E26603CCA004F476D;
 			packageReferences = (
 				D7BA7DF526686CCD00728137 /* XCRemoteSwiftPackageReference "ImageLoader" */,
+				D79A35D8267726000069B68B /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = D7A4C54826603CCA004F476D /* Products */;
 			projectDirPath = "";
@@ -630,9 +682,11 @@
 				D7A4C5852660785D004F476D /* HTTPMethod.swift in Sources */,
 				D7BD786D2664478300C13AFA /* RecipeInteractor.swift in Sources */,
 				D7A4C5B22660C73C004F476D /* CategoryDetailViewController.swift in Sources */,
+				D79A35D72677229B0069B68B /* Repository.swift in Sources */,
 				D7A4C5A12660A5E6004F476D /* CategoryEntity.swift in Sources */,
 				D7A4C5842660785D004F476D /* NetworkManager.swift in Sources */,
 				D746F8DA2660D26D003982CF /* UITableViewCell+Extension.swift in Sources */,
+				D79A35E0267726440069B68B /* CoreDataRepository.swift in Sources */,
 				D7A4C5B42660C73C004F476D /* CategoryDetailRouter.swift in Sources */,
 				D7A4C588266078F1004F476D /* SearchEntity.swift in Sources */,
 				D7A4C56626603D18004F476D /* SearchViewController.swift in Sources */,
@@ -640,15 +694,20 @@
 				D7A4C58A26607A43004F476D /* RecipeRequest.swift in Sources */,
 				D7BD78672664476400C13AFA /* RecipeProtocols.swift in Sources */,
 				D7A4C5822660785D004F476D /* NetworkingError.swift in Sources */,
+				D79A35DE267726380069B68B /* RealmRepository.swift in Sources */,
 				D7A4C59F2660A5D7004F476D /* CategoryListInteractor.swift in Sources */,
+				D7BFEC132678420C00F9F9C9 /* RDrink.swift in Sources */,
 				D7A4C59D2660A5C4004F476D /* CategoryListRouter.swift in Sources */,
+				D7BFEC11267840E100F9F9C9 /* CDDrink.swift in Sources */,
 				D7A4C576266063EE004F476D /* SearchProtocols.swift in Sources */,
+				D7BFEC1726784BF600F9F9C9 /* UDDrink.swift in Sources */,
 				D7A4C5992660A552004F476D /* CategoryListViewController.swift in Sources */,
 				D7A4C574266063E0004F476D /* SearchPresenter.swift in Sources */,
 				D7BD786B2664477B00C13AFA /* RecipePresenter.swift in Sources */,
 				D7A4C579266076E0004F476D /* UIViewController+Extension.swift in Sources */,
 				D7BD78652664475400C13AFA /* RecipeViewController.swift in Sources */,
 				D7BD78692664477200C13AFA /* RecipeRouter.swift in Sources */,
+				D7BFEC1526784BD700F9F9C9 /* UserDefaultsRepository.swift in Sources */,
 				D7A4C5AA2660B400004F476D /* String+Extension.swift in Sources */,
 				D7A4C56E26605A3C004F476D /* SceneDelegate.swift in Sources */,
 				D7A4C56A26604779004F476D /* TabBarRouter.swift in Sources */,
@@ -656,6 +715,7 @@
 				D7A4C57026605EB8004F476D /* TabBarProtocols.swift in Sources */,
 				D7A4C5A32660A777004F476D /* CategoryListProtocols.swift in Sources */,
 				D7A4C56126603CF5004F476D /* TabBarInteractor.swift in Sources */,
+				D7BFEC1926786D6500F9F9C9 /* LocalRepository.swift in Sources */,
 				D7A4C5A82660B1C3004F476D /* CategoryTableViewCell.swift in Sources */,
 				D7A4C58C2660901D004F476D /* DrinkTableViewCell.swift in Sources */,
 				D7A4C572266063D6004F476D /* SearchInteractor.swift in Sources */,
@@ -885,7 +945,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.aordonez.drinks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -905,7 +965,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.aordonez.drinks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -923,7 +983,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aordonez.drinks-Elm";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -941,7 +1001,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aordonez.drinks-Elm";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -963,7 +1023,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aordonez.drinks-SwiftUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -985,7 +1045,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aordonez.drinks-SwiftUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1031,6 +1091,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D79A35D8267726000069B68B /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.7.7;
+			};
+		};
 		D7BA7DF526686CCD00728137 /* XCRemoteSwiftPackageReference "ImageLoader" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@gitlab.com:alineOrdonez/ImageLoader.git";
@@ -1042,10 +1110,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D7BA7DF626686CCD00728137 /* ImageLoader */ = {
+		D79A35D9267726000069B68B /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D7BA7DF526686CCD00728137 /* XCRemoteSwiftPackageReference "ImageLoader" */;
-			productName = ImageLoader;
+			package = D79A35D8267726000069B68B /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		D79A35DB267726000069B68B /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D79A35D8267726000069B68B /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
 		};
 		D7BA7E0E2668AB9300728137 /* ImageLoader */ = {
 			isa = XCSwiftPackageProductDependency;
