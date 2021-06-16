@@ -7,11 +7,15 @@
 
 import Foundation
 
-protocol Repository {
-    associatedtype T
+protocol Repository: AnyObject {
     
-    func get(id: String, completion: @escaping(T?, Error?) -> Void)
-    func list(completion: @escaping([T]?, Error?) -> Void)
-    func add(_ item: T, completion: @escaping(Error?) -> Void)
-    func delete(_ item: T, completion: @escaping(Error?) -> Void)
+    func get(id: String, completion: @escaping(Drink?, Error?) -> Void)
+    func list(completion: @escaping([Drink]?, Error?) -> Void)
+    func add(_ item: Drink, completion: @escaping(Error?) -> Void)
+    func delete(_ item: Drink, completion: @escaping(Error?) -> Void)
+}
+
+protocol DomainModel {
+    associatedtype Drink
+    func toDomainModel() -> Drink
 }

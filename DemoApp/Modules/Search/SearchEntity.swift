@@ -85,6 +85,20 @@ struct Drink: Codable {
         let drink = UDDrink(id: self.id, name: self.name, category: self.category, thumb: self.thumb)
         return drink
     }
+    
+    func toDTO() -> DrinkMO {
+        let drink = DrinkMO()
+        drink.id = self.id
+        drink.name = self.name
+        drink.category = self.category
+        drink.thumb = self.thumb
+        return drink
+    }
+    
+    func toDTO() -> RDrink {
+        let drink = RDrink(id: self.id, name: self.name, category: self.category, thumb: self.thumb)
+        return drink
+    }
 }
 
 struct DrinkList: Codable {

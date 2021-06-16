@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class RDrink: Object {
+class RDrink: Object, DomainModel {
     let id: String
     let name: String
     let category: String?
@@ -19,5 +19,12 @@ class RDrink: Object {
         self.name = name
         self.category = category
         self.thumb = thumb
+    }
+    
+    func toDomainModel() -> Drink {
+        return Drink(id: self.id,
+                     name: self.name,
+                     category: self.category,
+                     thumb: self.thumb)
     }
 }

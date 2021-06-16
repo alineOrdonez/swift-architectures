@@ -19,9 +19,26 @@ enum FileError: String, LocalizedError {
 
 class LocalRepository: Repository {
     
-    typealias T = Drink
+    func exist(id: String, completion: @escaping (Bool) -> Void) {
+        let fullPath = getDocumentsDirectory().appendingPathComponent("Drinks").appendingPathExtension("json")
+        
+        do {
+            let data = try Data(contentsOf: fullPath)
+            let decoder = JSONDecoder()
+            let drinks = try decoder.decode([UDDrink].self, from: data)
+            
+            guard let _ = drinks.first(where: {$0.id == id}) else {
+                return completion(false)
+            }
+            
+            return completion(true)
+            
+        } catch {
+            return completion(false)
+        }
+    }
     
-    func get(id: String, completion: @escaping (T?, Error?) -> Void) {
+    func get(id: String, completion: @escaping (Drink?, Error?) -> Void) {
         let fullPath = getDocumentsDirectory().appendingPathComponent("Drinks").appendingPathExtension("json")
         
         do {
@@ -33,14 +50,14 @@ class LocalRepository: Repository {
                 return completion(nil, FileError.noObject)
             }
             
-            return completion(drink.toEntity(), nil)
+            return completion(drink.toDomainModel(), nil)
             
         } catch {
-            completion(nil, FileError.unableToWriteFile)
+            completion(nil, FileError.unableToReadFile)
         }
     }
     
-    func list(completion: @escaping ([T]?, Error?) -> Void) {
+    func list(completion: @escaping ([Drink]?, Error?) -> Void) {
         let fullPath = getDocumentsDirectory().appendingPathComponent("Drinks").appendingPathExtension("json")
         
         do {
@@ -48,14 +65,14 @@ class LocalRepository: Repository {
             let decoder = JSONDecoder()
             let drinks = try decoder.decode([UDDrink].self, from: data)
             
-            let result = drinks.map{$0.toEntity()}
+            let result = drinks.map{$0.toDomainModel()}
             completion(result, nil)
         } catch {
-            completion(nil, FileError.unableToWriteFile)
+            completion(nil, FileError.unableToReadFile)
         }
     }
     
-    func add(_ item: T, completion: @escaping (Error?) -> Void) {
+    func add(_ item: Drink, completion: @escaping (Error?) -> Void) {
         let fullPath = getDocumentsDirectory().appendingPathComponent("Drinks").appendingPathExtension("json")
         
         do {
@@ -76,7 +93,7 @@ class LocalRepository: Repository {
         }
     }
     
-    func delete(_ item: T, completion: @escaping (Error?) -> Void) {
+    func delete(_ item: Drink, completion: @escaping (Error?) -> Void) {
         let fullPath = getDocumentsDirectory().appendingPathComponent("Drinks").appendingPathExtension("json")
         
         do {

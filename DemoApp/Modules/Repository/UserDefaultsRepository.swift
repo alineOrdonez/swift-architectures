@@ -20,10 +20,7 @@ enum UserDefaultsError: String, LocalizedError {
 
 class UserDefaultsRepository: Repository {
     
-    typealias T = Drink
-    
-    func get(id: String, completion: @escaping (T?, Error?) -> Void) {
-        
+    func get(id: String, completion: @escaping (Drink?, Error?) -> Void) {
         if let data = UserDefaults.standard.data(forKey: "drinks") {
             do {
                 let decoder = JSONDecoder()
@@ -33,7 +30,7 @@ class UserDefaultsRepository: Repository {
                     return completion(nil, UserDefaultsError.noObject)
                 }
                 
-                completion(drink.toEntity(), nil)
+                completion(drink.toDomainModel(), nil)
             } catch(let error) {
                 print("Unable to Decode (\(error))")
                 completion(nil, error)
@@ -42,13 +39,13 @@ class UserDefaultsRepository: Repository {
         completion(nil, UserDefaultsError.noValue)
     }
     
-    func list(completion: @escaping ([T]?, Error?) -> Void) {
+    func list(completion: @escaping ([Drink]?, Error?) -> Void) {
         if let data = UserDefaults.standard.data(forKey: "drinks") {
             do {
                 let decoder = JSONDecoder()
                 let drinks = try decoder.decode([UDDrink].self, from: data)
                 
-                let result = drinks.map{$0.toEntity()}
+                let result = drinks.map{$0.toDomainModel()}
                 completion(result, nil)
             } catch(let error) {
                 print("Unable to Decode (\(error))")
@@ -58,7 +55,7 @@ class UserDefaultsRepository: Repository {
         completion(nil, UserDefaultsError.noValue)
     }
     
-    func add(_ item: T, completion: @escaping (Error?) -> Void) {
+    func add(_ item: Drink, completion: @escaping (Error?) -> Void) {
         if let data = UserDefaults.standard.data(forKey: "drinks") {
             do {
                 let decoder = JSONDecoder()
@@ -76,7 +73,7 @@ class UserDefaultsRepository: Repository {
         completion(UserDefaultsError.noValue)
     }
     
-    func delete(_ item: T, completion: @escaping (Error?) -> Void) {
+    func delete(_ item: Drink, completion: @escaping (Error?) -> Void) {
         if let data = UserDefaults.standard.data(forKey: "drinks") {
             do {
                 let decoder = JSONDecoder()

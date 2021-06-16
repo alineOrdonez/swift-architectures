@@ -14,9 +14,12 @@ struct UDDrink: Codable {
     let thumb: String
 }
 
-extension UDDrink {
-    func toEntity() -> Drink {
-        let drink = Drink(id: self.id, name: self.name, category: self.category, thumb: self.thumb)
-        return drink
+extension UDDrink: DomainModel {
+    
+    func toDomainModel() -> Drink {
+        return Drink(id: self.id,
+                     name: self.name,
+                     category: self.category,
+                     thumb: self.thumb)
     }
 }

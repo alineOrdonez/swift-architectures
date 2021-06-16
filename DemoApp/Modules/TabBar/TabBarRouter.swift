@@ -14,7 +14,7 @@ class TabBarRouter: TabBarPresenterToRouterProtocol {
     typealias SubModules = (search: UIViewController, category: UIViewController, favorite: UIViewController)
     
     static func createModule() -> UITabBarController {
-        let submodules = (search: SearchRouter.createModule(), category: CategoryListRouter.createModule(), favorite: SearchRouter.createModule())
+        let submodules = (search: SearchRouter.createModule(), category: CategoryListRouter.createModule(), favorite: FavoritesRouter.createModule())
         let tabs = tabs(using: submodules)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateInitialViewController() as! TabBarController
