@@ -14,8 +14,11 @@ class RecipeInteractor: RecipePresenterToInteractorProtocol {
     var presenter: RecipeInteractorToPresenterProtocol?
     var manager: NetworkManager
     
-    init(manager: NetworkManager = NetworkManager()) {
+    private var repository: Repository
+    
+    init(manager: NetworkManager = NetworkManager(), repository: Repository) {
         self.manager = manager
+        self.repository = repository
     }
     
     func getRecipe(with id: String) {
@@ -59,6 +62,41 @@ class RecipeInteractor: RecipePresenterToInteractorProtocol {
             
             DispatchQueue.main.async() { [weak self] in
                 self?.presenter?.recievedImage(image)
+            }
+        }
+    }
+    
+    func isFavorite(drink: String) {
+        repository.get(id: drink) { [weak self] (drink, error) in
+            if let _ = drink {
+                self?.presenter?.foundFavoriteRecipe(isFavorite: true)
+                return
+            }
+            
+            self?.presenter?.foundFavoriteRecipe(isFavorite: false)
+        }
+    }
+    
+    func addRemove(drink: Drink, isFavorite: Bool) {
+        if isFavorite {
+            repository.add(drink) { [weak self]  error in
+                if let error = error {
+                    self?.presenter?.requestFailed(with: error.localizedDescription)
+                    return
+                }
+                
+                self?.presenter?.didCompleteAction()
+                return
+            }
+        } else {
+            repository.delete(drink) { [weak self]  error in
+                if let error = error {
+                    self?.presenter?.requestFailed(with: error.localizedDescription)
+                    return
+                }
+                
+                self?.presenter?.didCompleteAction()
+                return
             }
         }
     }

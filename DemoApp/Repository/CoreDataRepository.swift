@@ -39,7 +39,7 @@ class CoreDataRepository: Repository {
     }
     
     func add(_ item: Drink, completion: @escaping(Error?) -> Void) {
-        let drink = DrinkMO()
+        var drink = DrinkMO()
         drink.id = item.id
         drink.name = item.name
         drink.category = item.category

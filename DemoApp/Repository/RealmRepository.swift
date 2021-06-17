@@ -13,6 +13,7 @@ class RealmRepository: Repository {
     private let realm: Realm
     
     init() {
+        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "Drinks"
         realm = try! Realm()
     }
     

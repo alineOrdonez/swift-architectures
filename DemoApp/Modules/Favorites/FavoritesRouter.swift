@@ -9,10 +9,10 @@ import UIKit
 
 class FavoritesRouter: FavoritesPresenterToRouterProtocol {
     
-    static func createModule() -> FavoritesViewController {
+    static func createModule() -> UINavigationController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(identifier: "FavoritesViewController") as! FavoritesViewController
-        let repository: Repository = CoreDataRepository(persistentContainer: CoreDataManager.shared.persistentContainer)
+        let repository: Repository = RealmRepository()
         
         var presenter: FavoritesViewToPresenterProtocol & FavoritesInteractorToPresenterProtocol = FavoritesPresenter()
         var interactor: FavoritesPresenterToInteractorProtocol = FavoritesInteractor(repository: repository)
@@ -24,7 +24,7 @@ class FavoritesRouter: FavoritesPresenterToRouterProtocol {
         presenter.router = router
         interactor.presenter = presenter
         
-        return viewController
+        return UINavigationController(rootViewController: viewController)
     }
     
     func showRecipe(for id: String, navigationController: UINavigationController) {

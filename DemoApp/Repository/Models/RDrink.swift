@@ -9,10 +9,21 @@ import Foundation
 import RealmSwift
 
 class RDrink: Object, DomainModel {
-    let id: String
-    let name: String
-    let category: String?
-    let thumb: String
+    @objc dynamic var id: String
+    @objc dynamic var name: String
+    @objc dynamic var category: String?
+    @objc dynamic var thumb: String
+    
+    override init() {
+        self.id = ""
+        self.name = ""
+        self.category = nil
+        self.thumb = ""
+    }
+    
+    override class func primaryKey() -> String? {
+            return "id"
+        }
     
     init(id: String, name: String, category: String? = nil, thumb: String) {
         self.id = id

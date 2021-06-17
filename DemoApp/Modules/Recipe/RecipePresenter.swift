@@ -22,6 +22,14 @@ class RecipePresenter: RecipeViewToPresenterProtocol, RecipeInteractorToPresente
         interactor?.downloadImage(from: url)
     }
     
+    func isFavorite(drink: String) {
+        interactor?.isFavorite(drink: drink)
+    }
+    
+    func addRemove(drink: Drink, isFavorite: Bool) {
+        interactor?.addRemove(drink: drink, isFavorite: isFavorite)
+    }
+    
     func recievedData(recipe: Drink) {
         view?.showRecipe(recipe)
     }
@@ -32,5 +40,13 @@ class RecipePresenter: RecipeViewToPresenterProtocol, RecipeInteractorToPresente
     
     func recievedImage(_ image: UIImage) {
         view?.showImage(image)
+    }
+    
+    func foundFavoriteRecipe(isFavorite: Bool) {
+        view?.foundFavoriteRecipe(isFavorite: isFavorite)
+    }
+    
+    func didCompleteAction() {
+        view?.didCompleteAction()
     }
 }

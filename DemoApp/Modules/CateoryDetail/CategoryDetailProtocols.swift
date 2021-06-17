@@ -13,7 +13,6 @@ protocol CategoryDetailViewToPresenterProtocol {
     var router: CategoryDetailPresenterToRouterProtocol? { get set }
     
     func fetchDrinks(by category: String)
-    func update(drink: Drink, addToFavorites: Bool)
     func downloadImage(from url: URL)
     func showRecipe(for id: String, navigationController: UINavigationController) 
 }
@@ -21,7 +20,6 @@ protocol CategoryDetailViewToPresenterProtocol {
 protocol CategoryDetailPresenterToViewProtocol {
     var presenter: CategoryDetailViewToPresenterProtocol? { get set }
     var categoryName: String? { get }
-    var isFavorite: Bool { get }
     
     func showData(_ drinks: [Drink])
     func showError(_ message: String)
@@ -37,14 +35,12 @@ protocol CategoryDetailPresenterToInteractorProtocol {
     var presenter: CategoryDetailInteractorToPresenterProtocol? { get set }
     
     func getDrinks(by category: String)
-    func update(drink: Drink, addToFavorites: Bool)
     func downloadImage(from url: URL)
 }
 
 protocol CategoryDetailInteractorToPresenterProtocol {
     
     func recievedData(drinks: [Drink])
-    func actionCompleted()
     func requestFailed(with message: String)
     func recievedImage(_ image: UIImage, from url: String)
 }

@@ -13,13 +13,11 @@ class CategoryDetailInteractor: CategoryDetailPresenterToInteractorProtocol {
     
     var presenter: CategoryDetailInteractorToPresenterProtocol?
     var manager: NetworkManager
-    private var repository: Repository
     
     let imageCache = NSCache<AnyObject, UIImage>()
     
-    init(manager: NetworkManager = NetworkManager(), repository: Repository) {
+    init(manager: NetworkManager = NetworkManager()) {
         self.manager = manager
-        self.repository = repository
     }
     
     func getDrinks(by category: String) {
@@ -37,26 +35,6 @@ class CategoryDetailInteractor: CategoryDetailPresenterToInteractorProtocol {
                 self.presenter?.requestFailed(with: error.localizedDescription)
             }
         }
-    }
-    
-    func update(drink: Drink, addToFavorites: Bool) {
-        if addToFavorites {
-            repository.add(drink) { error in
-                if let error = error {
-                    self.presenter?.requestFailed(with: error.localizedDescription)
-                    return
-                }
-            }
-        } else {
-            repository.delete(drink) { error in
-                if let error = error {
-                    self.presenter?.requestFailed(with: error.localizedDescription)
-                    return
-                }
-            }
-        }
-        
-        self.presenter?.actionCompleted()
     }
     
     func downloadImage(from url: URL) {

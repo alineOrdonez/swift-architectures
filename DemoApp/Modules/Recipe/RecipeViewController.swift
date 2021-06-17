@@ -16,6 +16,17 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
     var recipeId: String = ""
     var drink: Drink?
     
+    private var isFavoriteDrink: Bool = false {
+        didSet {
+            if isFavoriteDrink {
+                let item = UIBarButtonItem(image: UIImage(systemName: "heart.fill")!, style: .plain, target: self, action: #selector(addToFavorites(_:)))
+                self.navigationItem.rightBarButtonItem = item
+            } else {
+                let item = UIBarButtonItem(image: UIImage(systemName: "heart")!, style: .plain, target: self, action: #selector(addToFavorites(_:)))
+                self.navigationItem.rightBarButtonItem = item
+            }
+        }
+    }
     private var webView: WKWebView!
     private var isVideoAvailable: Bool = false {
         didSet {
@@ -40,6 +51,7 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         getData()
+        isFavoriteRecipe()
     }
     
     func setupUI() {
@@ -52,16 +64,19 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
         tableView.showsVerticalScrollIndicator = false
         
         tableView.reloadData()
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(addToFavorites(_:)))
     }
     
     // MARK: - Add Recipe to Favorites
     @IBAction func addToFavorites(_ sender: Any) {
+        isFavoriteDrink = !isFavoriteDrink
+        presenter?.addRemove(drink: drink!, isFavorite: isFavoriteDrink)
+    }
+    
+    func isFavoriteRecipe() {
+        presenter?.isFavorite(drink: recipeId)
     }
     
     //MARK:- Play Video
-    
     func loadYoutube(videoID:String) {
         guard let youtubeURL = URL(string: "https://www.youtube.com/embed/\(videoID)") else {
             return
@@ -104,8 +119,16 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
     func showImage(_ image: UIImage) {
         self.imageView.image = image
     }
+    
+    func foundFavoriteRecipe(isFavorite: Bool) {
+        self.isFavoriteDrink = isFavorite
+    }
+    
+    func didCompleteAction() {
+        let message = isFavoriteDrink ? "Drink was added to Favorites!" : "Drink was removed from Favorites!"
+        showAlert(message: message)
+    }
 }
-
 extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3

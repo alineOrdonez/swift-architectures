@@ -26,7 +26,7 @@ protocol FavoritesPresenterToViewProtocol {
 }
 
 protocol FavoritesPresenterToRouterProtocol {
-    static func createModule() -> FavoritesViewController
+    static func createModule() -> UINavigationController
     func showRecipe(for id: String, navigationController: UINavigationController)
 }
 

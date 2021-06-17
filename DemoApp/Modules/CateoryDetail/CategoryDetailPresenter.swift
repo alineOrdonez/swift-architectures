@@ -28,14 +28,6 @@ class CategoryDetailPresenter: CategoryDetailViewToPresenterProtocol, CategoryDe
         router?.showRecipe(for: id, navigationController: navigationController)
     }
     
-    func update(drink: Drink, _ addToFavorites: Bool) {
-        interactor?.update(drink: drink, addToFavorites)
-    }
-    
-    func actionCompleted() {
-        view?.actionCompleted()
-    }
-    
     func recievedData(drinks: [Drink]) {
         view?.showData(drinks)
     }

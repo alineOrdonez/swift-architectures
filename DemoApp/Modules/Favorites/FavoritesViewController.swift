@@ -18,6 +18,10 @@ class FavoritesViewController: UIViewController, FavoritesPresenterToViewProtoco
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         fetchDrinks()
     }
     
