@@ -13,8 +13,9 @@ class CategoryDetailRouter: CategoryDetailPresenterToRouterProtocol {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(identifier: "CategoryDetailViewController") as! CategoryDetailViewController
         
+        let repository = CoreDataRepository(persistentContainer: CoreDataManager.shared.persistentContainer)
         var presenter: CategoryDetailViewToPresenterProtocol & CategoryDetailInteractorToPresenterProtocol = CategoryDetailPresenter()
-        var interactor: CategoryDetailPresenterToInteractorProtocol = CategoryDetailInteractor()
+        var interactor: CategoryDetailPresenterToInteractorProtocol = CategoryDetailInteractor(repository: repository)
         let router: CategoryDetailPresenterToRouterProtocol = CategoryDetailRouter()
         
         viewController.presenter = presenter

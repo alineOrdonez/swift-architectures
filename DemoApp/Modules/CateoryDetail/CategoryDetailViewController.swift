@@ -12,6 +12,7 @@ class CategoryDetailViewController: UIViewController, CategoryDetailPresenterToV
     var presenter: CategoryDetailViewToPresenterProtocol?
     var drinks: [Drink]?
     var categoryName: String?
+    var isFavorite: Bool = false
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -32,6 +33,27 @@ class CategoryDetailViewController: UIViewController, CategoryDetailPresenterToV
         tableView.rowHeight = 150
         
         tableView.register(UINib(nibName: DrinkTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DrinkTableViewCell.identifier)
+        
+        // Favorite button
+        updateBarButtonItem()
+    }
+    
+    // MARK: - Add to favorites
+    @IBAction func addToFavorites(_ sender: Any) {
+        if isFavorite {
+            //Remove
+            presenter?.update(drink: <#T##Drink#>, addToFavorites: <#T##Bool#>)
+        } else {
+            // Add
+        }
+        isFavorite = !isFavorite
+        updateBarButtonItem()
+    }
+    
+    func updateBarButtonItem() {
+        let image = isFavorite ? "heart" : "heart.fill"
+        let item = UIBarButtonItem(image: UIImage(systemName: image)!, style: .plain, target: self, action: #selector(addToFavorites(_:)))
+        self.navigationItem.rightBarButtonItem = item
     }
     
     // MARK: - Fetch Data
@@ -53,6 +75,11 @@ class CategoryDetailViewController: UIViewController, CategoryDetailPresenterToV
     func showData(_ drinks: [Drink]) {
         self.drinks = drinks
         tableView.reloadData()
+    }
+    
+    func actionCompleted() {
+        let message = isFavorite ? "Recipe was added to favorites." : "Recipe was removed from favorites."
+        showAlert(message: message)
     }
     
     func showError(_ message: String) {

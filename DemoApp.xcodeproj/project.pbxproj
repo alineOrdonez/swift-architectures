@@ -324,6 +324,7 @@
 				D7A4C577266076D1004F476D /* Extensions */,
 				D7A4C55526603CCF004F476D /* LaunchScreen.storyboard */,
 				D7A4C55026603CCA004F476D /* Main.storyboard */,
+				D79A35D5267722890069B68B /* Repository */,
 				D7A4C55E26603CD9004F476D /* Modules */,
 				D7A4C57A2660785D004F476D /* Networking */,
 			);
@@ -333,11 +334,10 @@
 		D7A4C55E26603CD9004F476D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				D7A6DABA2679C93000A2DBC4 /* Favorites */,
-				D79A35D5267722890069B68B /* Repository */,
-				D785B7F726614532009B586C /* Recipe */,
-				D7A4C5AB2660C534004F476D /* CateoryDetail */,
 				D7A4C5972660A52C004F476D /* Categories */,
+				D7A4C5AB2660C534004F476D /* CateoryDetail */,
+				D7A6DABA2679C93000A2DBC4 /* Favorites */,
+				D785B7F726614532009B586C /* Recipe */,
 				D7A4C56426603D05004F476D /* Search */,
 				D7A4C55F26603CE3004F476D /* TabBar */,
 			);
