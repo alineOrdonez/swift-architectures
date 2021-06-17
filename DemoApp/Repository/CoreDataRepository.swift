@@ -17,29 +17,41 @@ class CoreDataRepository: Repository {
         self.persistentContainer = persistentContainer
     }
     
-    func get(id: String, completion: @escaping(Drink?, Error?) -> Void) {
+    func exist(id: String, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+        let predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let total = try getManagedObjects(with: predicate).count
+            completion(.success(total > 0))
+        } catch(let error) {
+            completion(.failure(error))
+        }
+    }
+    
+    func get(id: String, completion: @escaping (RepResult<Drink, Error>) -> Void) {
         let predicate = NSPredicate(format: "id == %@", id)
         do {
             let items = try getManagedObjects(with: predicate)
-            let result = items.map{$0.toDomainModel()}.first
-            completion(result, nil)
-        } catch {
-            completion(nil, error)
+            guard let result = items.map({$0.toDomainModel()}).first else {
+                return completion(.failure(UserDefaultsError.unableToDecode))
+            }
+            completion(.success(result))
+        } catch(let error) {
+            completion(.failure(error))
         }
     }
     
-    func list(completion: @escaping([Drink]?, Error?) -> Void) {
+    func list(completion: @escaping (RepResult<[Drink], Error>) -> Void) {
         do {
             let objects = try getManagedObjects(with: nil)
             let result = objects.map{$0.toDomainModel()}
-            return completion(result, nil)
-        } catch {
-            completion(nil, error)
+            return completion(.success(result))
+        } catch(let error) {
+            completion(.failure(error))
         }
     }
     
-    func add(_ item: Drink, completion: @escaping(Error?) -> Void) {
-        var drink = DrinkMO()
+    func add(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+        let drink = DrinkMO(context: persistentContainer.viewContext)
         drink.id = item.id
         drink.name = item.name
         drink.category = item.category
@@ -48,14 +60,14 @@ class CoreDataRepository: Repository {
         saveContext(completion: completion)
     }
     
-    func delete(_ item: Drink, completion: @escaping(Error?) -> Void) {
+    func delete(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
         let predicate = NSPredicate(format: "id == %@", item.id)
         do {
             let items = try getManagedObjects(with: predicate)
             persistentContainer.viewContext.delete(items.first!)
             saveContext(completion: completion)
-        } catch {
-            completion(error)
+        } catch(let error) {
+            completion(.failure(error))
         }
     }
     
@@ -68,15 +80,15 @@ class CoreDataRepository: Repository {
     }
     
     // MARK: - Core Data Saving support
-    private func saveContext(completion: @escaping(Error?) -> Void) {
+    private func saveContext(completion: @escaping (RepResult<Bool, Error>) -> Void) {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
                 try context.save()
-                completion(nil)
-            } catch {
+                completion(.success(true))
+            } catch(let error) {
                 context.rollback()
-                completion(error)
+                completion(.failure(error))
             }
         }
     }

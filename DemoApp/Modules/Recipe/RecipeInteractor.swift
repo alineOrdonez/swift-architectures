@@ -67,36 +67,34 @@ class RecipeInteractor: RecipePresenterToInteractorProtocol {
     }
     
     func isFavorite(drink: String) {
-        repository.get(id: drink) { [weak self] (drink, error) in
-            if let _ = drink {
-                self?.presenter?.foundFavoriteRecipe(isFavorite: true)
-                return
+        repository.exist(id: drink) {[weak self] result in
+            switch result {
+            case .success(let exist):
+                self?.presenter?.foundFavoriteRecipe(isFavorite: exist)
+            case .failure(_):
+                self?.presenter?.foundFavoriteRecipe(isFavorite: false)
             }
-            
-            self?.presenter?.foundFavoriteRecipe(isFavorite: false)
         }
     }
     
     func addRemove(drink: Drink, isFavorite: Bool) {
         if isFavorite {
-            repository.add(drink) { [weak self]  error in
-                if let error = error {
+            repository.add(drink) { [weak self] result in
+                switch result {
+                case .success(_):
+                    self?.presenter?.didCompleteAction()
+                case .failure(let error):
                     self?.presenter?.requestFailed(with: error.localizedDescription)
-                    return
                 }
-                
-                self?.presenter?.didCompleteAction()
-                return
             }
         } else {
-            repository.delete(drink) { [weak self]  error in
-                if let error = error {
+            repository.delete(drink) { [weak self] result in
+                switch result {
+                case .success(_):
+                    self?.presenter?.didCompleteAction()
+                case .failure(let error):
                     self?.presenter?.requestFailed(with: error.localizedDescription)
-                    return
                 }
-                
-                self?.presenter?.didCompleteAction()
-                return
             }
         }
     }

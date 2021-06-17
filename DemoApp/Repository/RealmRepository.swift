@@ -13,35 +13,44 @@ class RealmRepository: Repository {
     private let realm: Realm
     
     init() {
-        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "Drinks"
         realm = try! Realm()
     }
     
-    func get(id: String, completion: @escaping (Drink?, Error?) -> Void) {
+    func exist(id: String, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+        if let _ = realm.object(ofType: RDrink.self, forPrimaryKey: id) {
+            completion(.success(true))
+        } else {
+            completion(.success(false))
+        }
+    }
+    
+    func get(id: String, completion: @escaping (RepResult<Drink, Error>) -> Void) {
         let predicate = NSPredicate(format: "id == %@", id)
         
         guard let item = realm.objects(RDrink.self).filter(predicate).first else {
-            return completion(nil, UserDefaultsError.noObject)
+            return completion(.failure(UserDefaultsError.noObject))
         }
-        completion(item.toDomainModel(), nil)
+        completion(.success(item.toDomainModel()))
     }
     
-    func list(completion: @escaping ([Drink]?, Error?) -> Void) {
-        completion(getAll(), nil)
+    func list(completion: @escaping (RepResult<[Drink], Error>) -> Void) {
+        let objects = realm.objects(RDrink.self)
+        let domainObjects: [Drink] = objects.compactMap{$0.toDomainModel()}
+        completion(.success(domainObjects))
     }
     
-    func add(_ item: Drink, completion: @escaping (Error?) -> Void) {
+    func add(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
         do {
             try realm.write {
                 realm.add(item.toDTO())
-                completion(nil)
+                completion(.success(true))
             }
-        } catch {
-            completion(error)
+        } catch(let error) {
+            completion(.failure(error))
         }
     }
     
-    func delete(_ item: Drink, completion: @escaping (Error?) -> Void) {
+    func delete(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
         do {
             try realm.write {
                 let predicate = NSPredicate(format: "id == %@", item.id)
@@ -49,15 +58,10 @@ class RealmRepository: Repository {
                     .filter(predicate).first {
                     realm.delete(productToDelete)
                 }
-                completion(nil)
+                completion(.success(true))
             }
-        } catch {
-            completion(error)
+        } catch(let error) {
+            completion(.failure(error))
         }
-    }
-    
-    private func getAll() -> [Drink] {
-        let objects = realm.objects(RDrink.self)
-        return objects.compactMap{$0.toDomainModel()}
     }
 }

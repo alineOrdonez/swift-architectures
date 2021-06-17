@@ -23,11 +23,12 @@ class FavoritesInteractor: FavoritesPresenterToInteractorProtocol {
     }
     
     func getDrinks() {
-        repository.list { (drinks, error) in
-            if let drinks = drinks {
+        repository.list { result in
+            switch result {
+            case .success(let drinks):
                 self.presenter?.recievedData(drinks: drinks)
-            } else {
-                self.presenter?.requestFailed(with: error!.localizedDescription)
+            case .failure(let error):
+                self.presenter?.requestFailed(with: error.localizedDescription)
             }
         }
     }

@@ -16,15 +16,9 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
     var recipeId: String = ""
     var drink: Drink?
     
-    private var isFavoriteDrink: Bool = false {
+    private lazy var isFavoriteDrink: Bool = false {
         didSet {
-            if isFavoriteDrink {
-                let item = UIBarButtonItem(image: UIImage(systemName: "heart.fill")!, style: .plain, target: self, action: #selector(addToFavorites(_:)))
-                self.navigationItem.rightBarButtonItem = item
-            } else {
-                let item = UIBarButtonItem(image: UIImage(systemName: "heart")!, style: .plain, target: self, action: #selector(addToFavorites(_:)))
-                self.navigationItem.rightBarButtonItem = item
-            }
+            updateBarButton()
         }
     }
     private var webView: WKWebView!
@@ -87,6 +81,16 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
         webView.navigationDelegate = self
         webView.load(URLRequest(url: youtubeURL))
         webView.allowsBackForwardNavigationGestures = true
+    }
+    
+    func updateBarButton() {
+        if isFavoriteDrink {
+            let item = UIBarButtonItem(image: UIImage(systemName: "heart.fill")!, style: .plain, target: self, action: #selector(addToFavorites(_:)))
+            self.navigationItem.rightBarButtonItem = item
+        } else {
+            let item = UIBarButtonItem(image: UIImage(systemName: "heart")!, style: .plain, target: self, action: #selector(addToFavorites(_:)))
+            self.navigationItem.rightBarButtonItem = item
+        }
     }
     
     func getData() {
