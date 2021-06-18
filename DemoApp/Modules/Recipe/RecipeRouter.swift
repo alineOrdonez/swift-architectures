@@ -14,7 +14,7 @@ class RecipeRouter: RecipePresenterToRouterProtocol {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(identifier: "RecipeViewController") as! RecipeViewController
         
-        let repository = RealmRepository()
+        let repository = InMemoryRepository()
         var presenter: RecipeViewToPresenterProtocol & RecipeInteractorToPresenterProtocol = RecipePresenter()
         var interactor: RecipePresenterToInteractorProtocol = RecipeInteractor(repository: repository)
         let router: RecipePresenterToRouterProtocol = RecipeRouter()

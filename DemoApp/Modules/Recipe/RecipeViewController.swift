@@ -16,6 +16,7 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
     var recipeId: String = ""
     var drink: Drink?
     
+    private let loadingView = LoadingViewController()
     private lazy var isFavoriteDrink: Bool = false {
         didSet {
             updateBarButton()
@@ -60,6 +61,19 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
         tableView.reloadData()
     }
     
+    func startAnimating() {
+        addChild(loadingView)
+        loadingView.view.frame = view.frame
+        view.addSubview(loadingView.view)
+        loadingView.didMove(toParent: self)
+    }
+    
+    func stopAnimating() {
+        loadingView.willMove(toParent: nil)
+        loadingView.view.removeFromSuperview()
+        loadingView.removeFromParent()
+    }
+    
     // MARK: - Add Recipe to Favorites
     @IBAction func addToFavorites(_ sender: Any) {
         isFavoriteDrink = !isFavoriteDrink
@@ -94,6 +108,7 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
     }
     
     func getData() {
+        startAnimating()
         presenter?.getRecipe(with: recipeId)
     }
     
@@ -104,16 +119,19 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
     }
     
     func showRecipe(_ recipe: Drink) {
-        
-        if let url = recipe.video, let youTubeID = url.youtubeID {
-            isVideoAvailable = true
-            loadYoutube(videoID: youTubeID)
-        } else {
-            downloadImage(drink: recipe)
+        DispatchQueue.main.async { [weak self] in
+            self?.stopAnimating()
+            
+            if let url = recipe.video, let youTubeID = url.youtubeID {
+                self?.isVideoAvailable = true
+                self?.loadYoutube(videoID: youTubeID)
+            } else {
+                self?.downloadImage(drink: recipe)
+            }
+            
+            self?.drink = recipe
+            self?.setupUI()
         }
-       
-        self.drink = recipe
-        setupUI()
     }
     
     func showError(_ message: String) {

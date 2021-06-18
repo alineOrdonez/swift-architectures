@@ -14,6 +14,8 @@
 		D7567A7E2665E9370069547E /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7567A7D2665E9370069547E /* CategoriesView.swift */; };
 		D7567A802665EC670069547E /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7567A7F2665EC670069547E /* SearchBar.swift */; };
 		D7567A812665ECE70069547E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7A4C55326603CCF004F476D /* Assets.xcassets */; };
+		D784EF27267C25BA00B4E9AF /* InMemoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784EF26267C25BA00B4E9AF /* InMemoryRepository.swift */; };
+		D784EF29267C32D700B4E9AF /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784EF28267C32D700B4E9AF /* LoadingViewController.swift */; };
 		D79A35D72677229B0069B68B /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A35D62677229B0069B68B /* Repository.swift */; };
 		D79A35DA267726000069B68B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = D79A35D9267726000069B68B /* Realm */; };
 		D79A35DC267726000069B68B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D79A35DB267726000069B68B /* RealmSwift */; };
@@ -117,6 +119,8 @@
 		D7567A792665DC400069547E /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		D7567A7D2665E9370069547E /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		D7567A7F2665EC670069547E /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		D784EF26267C25BA00B4E9AF /* InMemoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryRepository.swift; sourceTree = "<group>"; };
+		D784EF28267C32D700B4E9AF /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		D79A35D62677229B0069B68B /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		D79A35DD267726380069B68B /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		D79A35DF267726440069B68B /* CoreDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRepository.swift; sourceTree = "<group>"; };
@@ -279,14 +283,15 @@
 		D79A35D5267722890069B68B /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				D7A6DAB62679B24800A2DBC4 /* CoreDataManager.swift */,
 				D79A35DF267726440069B68B /* CoreDataRepository.swift */,
+				D784EF26267C25BA00B4E9AF /* InMemoryRepository.swift */,
 				D7BFEC1826786D6500F9F9C9 /* LocalRepository.swift */,
 				D79A35DD267726380069B68B /* RealmRepository.swift */,
 				D79A35D62677229B0069B68B /* Repository.swift */,
 				D7BFEC1426784BD700F9F9C9 /* UserDefaultsRepository.swift */,
-				D7BFEC0F267840CF00F9F9C9 /* Models */,
 				D7A6DAB126798C8F00A2DBC4 /* CoreDataModel.xcdatamodeld */,
-				D7A6DAB62679B24800A2DBC4 /* CoreDataManager.swift */,
+				D7BFEC0F267840CF00F9F9C9 /* Models */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -412,6 +417,7 @@
 			isa = PBXGroup;
 			children = (
 				D7A4C5A52660B115004F476D /* Bluring.swift */,
+				D784EF28267C32D700B4E9AF /* LoadingViewController.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -732,6 +738,7 @@
 				D7A4C59F2660A5D7004F476D /* CategoryListInteractor.swift in Sources */,
 				D7BFEC132678420C00F9F9C9 /* RDrink.swift in Sources */,
 				D7A4C59D2660A5C4004F476D /* CategoryListRouter.swift in Sources */,
+				D784EF29267C32D700B4E9AF /* LoadingViewController.swift in Sources */,
 				D7BFEC11267840E100F9F9C9 /* DrinkMO.swift in Sources */,
 				D7A4C576266063EE004F476D /* SearchProtocols.swift in Sources */,
 				D7BFEC1726784BF600F9F9C9 /* UDDrink.swift in Sources */,
@@ -762,6 +769,7 @@
 				D7A4C5B12660C73C004F476D /* CategoryDetailInteractor.swift in Sources */,
 				D7A4C54B26603CCA004F476D /* AppDelegate.swift in Sources */,
 				D7A4C5862660785D004F476D /* RequestProtocol.swift in Sources */,
+				D784EF27267C25BA00B4E9AF /* InMemoryRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
