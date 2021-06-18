@@ -64,7 +64,7 @@ class FavoritesViewController: UIViewController, FavoritesPresenterToViewProtoco
             
             results[row] = drink
             drinks = results
-            tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
+            tableView.reloadData()
         }
     }
     
