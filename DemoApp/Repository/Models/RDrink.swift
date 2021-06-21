@@ -8,22 +8,24 @@
 import Foundation
 import RealmSwift
 
-class RDrink: Object, DomainModel {
+class RDrink: Object, Storable {
+    typealias Entity = Drink
+    
     @objc dynamic var id: String
     @objc dynamic var name: String
     @objc dynamic var category: String?
     @objc dynamic var thumb: String
     
-    override init() {
-        self.id = ""
-        self.name = ""
-        self.category = nil
-        self.thumb = ""
+    override class func primaryKey() -> String? {
+        return "id"
     }
     
-    override class func primaryKey() -> String? {
-            return "id"
-        }
+    required init(drink: Drink) {
+        self.id = drink.id
+        self.name = drink.name
+        self.category = drink.category
+        self.thumb = drink.thumb
+    }
     
     init(id: String, name: String, category: String? = nil, thumb: String) {
         self.id = id
@@ -32,10 +34,7 @@ class RDrink: Object, DomainModel {
         self.thumb = thumb
     }
     
-    func toDomainModel() -> Drink {
-        return Drink(id: self.id,
-                     name: self.name,
-                     category: self.category,
-                     thumb: self.thumb)
+    var model: Entity {
+        return Entity(id: self.id, name: self.name, category: self.category, thumb: self.thumb)
     }
 }

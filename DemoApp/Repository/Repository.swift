@@ -21,7 +21,10 @@ protocol Repository: AnyObject {
     func delete(_ item: Drink, completion: @escaping(RepResult<Bool, Error>) -> Void)
 }
 
-protocol DomainModel {
-    associatedtype Drink
-    func toDomainModel() -> Drink
+protocol Storable {
+    associatedtype Entity
+    
+    init(drink: Entity)
+    
+    var model: Entity { get }
 }

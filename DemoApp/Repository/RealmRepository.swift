@@ -30,19 +30,19 @@ class RealmRepository: Repository {
         guard let item = realm.objects(RDrink.self).filter(predicate).first else {
             return completion(.failure(UserDefaultsError.noObject))
         }
-        completion(.success(item.toDomainModel()))
+        completion(.success(item.model))
     }
     
     func list(completion: @escaping (RepResult<[Drink], Error>) -> Void) {
         let objects = realm.objects(RDrink.self)
-        let domainObjects: [Drink] = objects.compactMap{$0.toDomainModel()}
+        let domainObjects: [Drink] = objects.compactMap{$0.model}
         completion(.success(domainObjects))
     }
     
     func add(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
         do {
             try realm.write {
-                realm.add(item.toDTO())
+                realm.add(RDrink.init(drink: item))
                 completion(.success(true))
             }
         } catch(let error) {

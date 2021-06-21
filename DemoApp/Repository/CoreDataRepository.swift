@@ -31,7 +31,7 @@ class CoreDataRepository: Repository {
         let predicate = NSPredicate(format: "id == %@", id)
         do {
             let items = try getManagedObjects(with: predicate)
-            guard let result = items.map({$0.toDomainModel()}).first else {
+            guard let result = items.map({$0.model}).first else {
                 return completion(.failure(UserDefaultsError.unableToDecode))
             }
             completion(.success(result))
@@ -43,7 +43,7 @@ class CoreDataRepository: Repository {
     func list(completion: @escaping (RepResult<[Drink], Error>) -> Void) {
         do {
             let objects = try getManagedObjects(with: nil)
-            let result = objects.map{$0.toDomainModel()}
+            let result = objects.map{$0.model}
             return completion(.success(result))
         } catch(let error) {
             completion(.failure(error))

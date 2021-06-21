@@ -53,7 +53,7 @@ class LocalRepository: Repository {
                 return completion(.failure(FileError.noObject))
             }
             
-            completion(.success(drink.toDomainModel()))
+            completion(.success(drink.model))
             
         } catch {
             completion(.failure(FileError.unableToReadFile))
@@ -66,7 +66,7 @@ class LocalRepository: Repository {
             let decoder = JSONDecoder()
             let drinks = try decoder.decode([UDDrink].self, from: data)
             
-            let result = drinks.map{$0.toDomainModel()}
+            let result = drinks.map{$0.model}
             completion(.success(result))
         } catch {
             completion(.failure(FileError.unableToReadFile))
@@ -126,7 +126,7 @@ extension LocalRepository {
             
             let decoder = JSONDecoder()
             var drinks = try decoder.decode([UDDrink].self, from: data)
-            drinks.append(item.toDTO())
+            drinks.append(UDDrink.init(drink: item))
             
             let encoder = JSONEncoder()
             data = try encoder.encode(drinks)
@@ -141,7 +141,7 @@ extension LocalRepository {
     
     private func insert(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
         do {
-            let drinks: [UDDrink] = [item.toDTO()]
+            let drinks: [UDDrink] = [UDDrink.init(drink: item)]
             let encoder = JSONEncoder()
             let data = try encoder.encode(drinks)
             try data.write(to: fullPath, options: [.atomicWrite])

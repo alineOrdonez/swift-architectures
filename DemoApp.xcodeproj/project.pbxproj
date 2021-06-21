@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D733E5CB268052A100B0928E /* DrinkMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733E5C9268052A100B0928E /* DrinkMO+CoreDataClass.swift */; };
+		D733E5CC268052A100B0928E /* DrinkMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733E5CA268052A100B0928E /* DrinkMO+CoreDataProperties.swift */; };
 		D746F8D82660D1C4003982CF /* DrinkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D746F8D72660D1C4003982CF /* DrinkTableViewCell.xib */; };
 		D746F8DA2660D26D003982CF /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D746F8D92660D26D003982CF /* UITableViewCell+Extension.swift */; };
 		D7567A772665D69C0069547E /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7567A762665D69C0069547E /* FavoritesView.swift */; };
@@ -90,7 +92,6 @@
 		D7BD78692664477200C13AFA /* RecipeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD78682664477200C13AFA /* RecipeRouter.swift */; };
 		D7BD786B2664477B00C13AFA /* RecipePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD786A2664477B00C13AFA /* RecipePresenter.swift */; };
 		D7BD786D2664478300C13AFA /* RecipeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD786C2664478300C13AFA /* RecipeInteractor.swift */; };
-		D7BFEC11267840E100F9F9C9 /* DrinkMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BFEC10267840E100F9F9C9 /* DrinkMO.swift */; };
 		D7BFEC132678420C00F9F9C9 /* RDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BFEC122678420C00F9F9C9 /* RDrink.swift */; };
 		D7BFEC1526784BD700F9F9C9 /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BFEC1426784BD700F9F9C9 /* UserDefaultsRepository.swift */; };
 		D7BFEC1726784BF600F9F9C9 /* UDDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BFEC1626784BF600F9F9C9 /* UDDrink.swift */; };
@@ -113,6 +114,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D733E5C9268052A100B0928E /* DrinkMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrinkMO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D733E5CA268052A100B0928E /* DrinkMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrinkMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D746F8D72660D1C4003982CF /* DrinkTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrinkTableViewCell.xib; sourceTree = "<group>"; };
 		D746F8D92660D26D003982CF /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		D7567A762665D69C0069547E /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
@@ -194,7 +197,6 @@
 		D7BD78682664477200C13AFA /* RecipeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRouter.swift; sourceTree = "<group>"; };
 		D7BD786A2664477B00C13AFA /* RecipePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePresenter.swift; sourceTree = "<group>"; };
 		D7BD786C2664478300C13AFA /* RecipeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInteractor.swift; sourceTree = "<group>"; };
-		D7BFEC10267840E100F9F9C9 /* DrinkMO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkMO.swift; sourceTree = "<group>"; };
 		D7BFEC122678420C00F9F9C9 /* RDrink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RDrink.swift; sourceTree = "<group>"; };
 		D7BFEC1426784BD700F9F9C9 /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
 		D7BFEC1626784BF600F9F9C9 /* UDDrink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDDrink.swift; sourceTree = "<group>"; };
@@ -495,7 +497,8 @@
 		D7BFEC0F267840CF00F9F9C9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D7BFEC10267840E100F9F9C9 /* DrinkMO.swift */,
+				D733E5C9268052A100B0928E /* DrinkMO+CoreDataClass.swift */,
+				D733E5CA268052A100B0928E /* DrinkMO+CoreDataProperties.swift */,
 				D7BFEC122678420C00F9F9C9 /* RDrink.swift */,
 				D7BFEC1626784BF600F9F9C9 /* UDDrink.swift */,
 			);
@@ -721,6 +724,7 @@
 				D7BD786D2664478300C13AFA /* RecipeInteractor.swift in Sources */,
 				D7A4C5B22660C73C004F476D /* CategoryDetailViewController.swift in Sources */,
 				D79A35D72677229B0069B68B /* Repository.swift in Sources */,
+				D733E5CB268052A100B0928E /* DrinkMO+CoreDataClass.swift in Sources */,
 				D7A4C5A12660A5E6004F476D /* CategoryEntity.swift in Sources */,
 				D7A6DAB326798C8F00A2DBC4 /* CoreDataModel.xcdatamodeld in Sources */,
 				D7A6DAC42679C97F00A2DBC4 /* FavoritesInteractor.swift in Sources */,
@@ -739,7 +743,6 @@
 				D7BFEC132678420C00F9F9C9 /* RDrink.swift in Sources */,
 				D7A4C59D2660A5C4004F476D /* CategoryListRouter.swift in Sources */,
 				D784EF29267C32D700B4E9AF /* LoadingViewController.swift in Sources */,
-				D7BFEC11267840E100F9F9C9 /* DrinkMO.swift in Sources */,
 				D7A4C576266063EE004F476D /* SearchProtocols.swift in Sources */,
 				D7BFEC1726784BF600F9F9C9 /* UDDrink.swift in Sources */,
 				D7A4C5992660A552004F476D /* CategoryListViewController.swift in Sources */,
@@ -766,6 +769,7 @@
 				D7A6DAB72679B24800A2DBC4 /* CoreDataManager.swift in Sources */,
 				D7A4C56826603D7B004F476D /* TabBarController.swift in Sources */,
 				D7A4C5832660785D004F476D /* Result.swift in Sources */,
+				D733E5CC268052A100B0928E /* DrinkMO+CoreDataProperties.swift in Sources */,
 				D7A4C5B12660C73C004F476D /* CategoryDetailInteractor.swift in Sources */,
 				D7A4C54B26603CCA004F476D /* AppDelegate.swift in Sources */,
 				D7A4C5862660785D004F476D /* RequestProtocol.swift in Sources */,

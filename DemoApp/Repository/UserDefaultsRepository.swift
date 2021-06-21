@@ -20,8 +20,11 @@ enum UserDefaultsError: String, LocalizedError {
 
 class UserDefaultsRepository: Repository {
     
+    private let userDefaults = UserDefaults.standard
+    private let dataKey = "drinks"
+    
     func exist(id: String, completion: @escaping (RepResult<Bool, Error>) -> Void) {
-        guard let data = UserDefaults.standard.data(forKey: "drinks") else {
+        guard let data = userDefaults.data(forKey: dataKey) else {
             return completion(.failure(UserDefaultsError.noValue))
         }
         
@@ -40,7 +43,7 @@ class UserDefaultsRepository: Repository {
     }
     
     func get(id: String, completion: @escaping (RepResult<Drink, Error>) -> Void) {
-        guard let data = UserDefaults.standard.data(forKey: "drinks") else {
+        guard let data = userDefaults.data(forKey: dataKey) else {
             return completion(.failure(UserDefaultsError.noValue))
         }
         
@@ -52,14 +55,14 @@ class UserDefaultsRepository: Repository {
                 return completion(.failure(UserDefaultsError.noObject))
             }
             
-            completion(.success(drink.toDomainModel()))
+            completion(.success(drink.model))
         } catch (let error) {
             completion(.failure(error))
         }
     }
     
     func list(completion: @escaping (RepResult<[Drink], Error>) -> Void) {
-        guard let data = UserDefaults.standard.data(forKey: "drinks") else {
+        guard let data = userDefaults.data(forKey: dataKey) else {
             return completion(.failure(UserDefaultsError.noValue))
         }
         
@@ -67,7 +70,7 @@ class UserDefaultsRepository: Repository {
             let decoder = JSONDecoder()
             let drinks = try decoder.decode([UDDrink].self, from: data)
             
-            let result = drinks.map{$0.toDomainModel()}
+            let result = drinks.map{$0.model}
             completion(.success(result))
         } catch(let error) {
             completion(.failure(error))
@@ -75,17 +78,17 @@ class UserDefaultsRepository: Repository {
     }
     
     func add(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
-        guard let data = UserDefaults.standard.data(forKey: "drinks") else {
+        guard let data = userDefaults.data(forKey: dataKey) else {
             return completion(.failure(UserDefaultsError.noValue))
         }
         do {
             let decoder = JSONDecoder()
             var drinks = try decoder.decode([UDDrink].self, from: data)
-            drinks.append(item.toDTO())
+            drinks.append(UDDrink.init(drink: item))
             
             let encoder = JSONEncoder()
             let data = try encoder.encode(drinks)
-            UserDefaults.standard.set(data, forKey: "drinks")
+            userDefaults.set(data, forKey: dataKey)
             completion(.success(true))
         } catch (let error) {
             completion(.failure(error))
@@ -93,7 +96,7 @@ class UserDefaultsRepository: Repository {
     }
     
     func delete(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
-        guard let data = UserDefaults.standard.data(forKey: "drinks") else {
+        guard let data = userDefaults.data(forKey: dataKey) else {
             return completion(.failure(UserDefaultsError.noValue))
         }
         
@@ -108,7 +111,7 @@ class UserDefaultsRepository: Repository {
             
             let encoder = JSONEncoder()
             let data = try encoder.encode(drinks)
-            UserDefaults.standard.set(data, forKey: "drinks")
+            userDefaults.set(data, forKey: dataKey)
             completion(.success(true))
         } catch(let error) {
             print("Unable to Decode (\(error))")
@@ -119,6 +122,6 @@ class UserDefaultsRepository: Repository {
 
 extension UserDefaultsRepository {
     var foundData: Bool {
-        return UserDefaults.standard.data(forKey: "drinks") != nil
+        return userDefaults.data(forKey: dataKey) != nil
     }
 }
