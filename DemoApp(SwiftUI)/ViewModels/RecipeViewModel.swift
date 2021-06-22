@@ -12,14 +12,17 @@ import SwiftUI
 final class RecipeViewModel: ObservableObject {
     
     @Published private(set) var state: State
+    @Published var favorite: Item?
     
     private let service = RecipeService()
     private var bag = Set<AnyCancellable>()
     private let input = PassthroughSubject<Event, Never>()
     
+    let id: String
+    
     init(id: String) {
         state = .idle(id)
-        
+        self.id = id
         Publishers.system(
             initial: state,
             reduce: Self.reduce,
