@@ -46,7 +46,6 @@ class TextfieldDelegate: NSObject, UITextFieldDelegate {
     }
 }
 
-let reusableCellIdentifier = "Cell"
 class TableViewBacking<A>: NSObject, UITableViewDataSource, UITableViewDelegate {
     let cells: [TableViewCell<A>]
     let callback: ((A) -> ())?
@@ -55,14 +54,19 @@ class TableViewBacking<A>: NSObject, UITableViewDataSource, UITableViewDelegate 
         self.callback = callback
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cells.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reusableCellIdentifier, for: indexPath)
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "CellIdentifier")
         let item = cells[indexPath.row]
         cell.textLabel?.text = item.text
-        cell.accessoryType = item.accessory
+        cell.detailTextLabel?.text = item.category
+        cell.imageView?.image = item.image
         return cell
     }
     
@@ -108,19 +112,6 @@ public struct Renderer<A> {
         self.callback = callback
     }
     
-    private mutating func render(_ button: Button<A>, into b: UIButton) {
-        b.removeTarget(nil, action: nil, for: .touchUpInside)
-        if let action = button.onTap {
-            let cb = self.callback
-            let target = TargetAction { cb(action) }
-            strongReferences.append(target)
-            b.addTarget(target, action: #selector(TargetAction.performAction(sender:)), for: .touchUpInside)
-        }
-        
-        b.setTitle(button.text, for: .normal)
-        b.backgroundColor = .lightGray
-    }
-    
     private func render(label text: String, into l: UILabel) {
         l.text = text
         l.backgroundColor = .white
@@ -132,42 +123,9 @@ public struct Renderer<A> {
         result.backgroundColor = stackView.backgroundColor
     }
     
-    private mutating func render(_ textField: TextField<A>, into result: UITextField) {
-        result.text = textField.text
-        result.borderStyle = .roundedRect
-        result.removeTarget(nil, action: nil, for: .editingChanged)
-        if let onChange = textField.onChange {
-            let cb = self.callback
-            let target = TargetAction { [unowned result] in
-                cb(onChange(result.text))
-            }
-            result.addTarget(target, action: #selector(TargetAction.performAction(sender:)), for: .editingChanged)
-            strongReferences.append(target)
-        }
-        let delegate = TextfieldDelegate()
-        result.delegate = delegate
-        strongReferences.append(delegate)
-    }
-    
-    private mutating func render(_ slider: Slider<A>, into result: UISlider) {
-        result.minimumValue = 0
-        result.maximumValue = slider.max
-        result.value = slider.progress
-        result.backgroundColor = .white
-        result.removeTarget(nil, action: nil, for: .valueChanged)
-        if let action = slider.onChange {
-            let cb = self.callback
-            let target = TargetAction { [unowned result] in
-                cb(action(result.value))
-            }
-            result.addTarget(target, action: #selector(TargetAction.performAction(sender:)), for: .valueChanged)
-            strongReferences.append(target)
-        }
-    }
-    
     public mutating func render(_ tableView: TableView<A>, into result: UITableView) {
         let backing = TableViewBacking(cells: tableView.items, callback: self.callback)
-        result.register(UITableViewCell.self, forCellReuseIdentifier: reusableCellIdentifier)
+        result.register(UITableViewCell.self, forCellReuseIdentifier: "CellIdentifier")
         result.delegate = backing
         result.dataSource = backing
         strongReferences.append(backing)
@@ -176,10 +134,6 @@ public struct Renderer<A> {
     
     public mutating func render(view: View<A>) -> UIView {
         switch view {
-        case let ._button(button):
-            let b = UIButton()
-            render(button, into: b)
-            return b
         case let .label(text: text):
             let l = UILabel()
             render(label: text, into: l)
@@ -189,16 +143,8 @@ public struct Renderer<A> {
             let result = UIStackView(arrangedSubviews: views)
             render(stackView, into: result)
             return result
-        case let ._textfield(textField):
-            let result = UITextField()
-            render(textField, into: result)
-            return result
         case let .imageView(image):
             return UIImageView(image: image)
-        case let ._slider(slider):
-            let result = UISlider()
-            render(slider, into: result)
-            return result
         case let .tableView(tableView):
             let result = UITableView(frame: .zero, style: .plain)
             render(tableView, into: result)
@@ -212,12 +158,6 @@ public struct Renderer<A> {
     
     public mutating func update(view: View<A>, into existing: UIView) -> UIView {
         switch view {
-        case let ._button(button):
-            guard let b = existing as? UIButton else {
-                return render(view: view)
-            }
-            render(button, into: b)
-            return b
         case let .label(text: text):
             guard let l = existing as? UILabel else {
                 return render(view: view)
@@ -243,18 +183,6 @@ public struct Renderer<A> {
                 }
             }
             render(stackView, into: result)
-            return result
-        case let ._textfield(textField):
-            guard let result = existing as? UITextField else {
-                return render(view: view)
-            }
-            render(textField, into: result)
-            return result
-        case let ._slider(slider):
-            guard let result = existing as? UISlider else {
-                return render(view: view)
-            }
-            render(slider, into: result)
             return result
         case let .imageView(image):
             guard let result = existing as? UIImageView else {
@@ -313,15 +241,6 @@ extension NavigationItem {
         strongReferences.append(leftBarButtonItem?.render(callback, viewController: viewController, change: &ni.leftBarButtonItem) ?? [])
         ni.leftItemsSupplementBackButton = leftItemsSupplementsBackButton
         ni.title = title
-        var rightBarButtonItems: [UIBarButtonItem] = []
-        for button in self.rightBarButtonItems {
-            var result: UIBarButtonItem? = nil
-            strongReferences.append(contentsOf: button.render(callback, viewController: viewController, change: &result))
-            if let r = result {
-                rightBarButtonItems.append(r)
-            }
-        }
-        ni.rightBarButtonItems = rightBarButtonItems
         return strongReferences
     }
 }

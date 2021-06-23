@@ -10,7 +10,10 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    let driver = Driver(DemoApp())
+    let driver = Driver(DemoApp(),
+                        commands: [
+                            .request(URLRequest(url: DemoApp.findURL), available: { DemoApp.Message.receivedData($0) })
+    ])
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {

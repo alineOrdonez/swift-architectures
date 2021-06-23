@@ -4,42 +4,43 @@
 //
 //  Created by Aline Ordoñez Garcia on 17/06/21.
 //
+import UIKit
 
-struct Todo {
-    var title: String
-    var done: Bool
+struct Drink: Identifiable, Codable {
+    let id: String
+    let name: String
+    let category: String
+    let thumb: String
+    var image: UIImage?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "idDrink"
+        case name = "strDrink"
+        case category = "strCategory"
+        case thumb = "strDrinkThumb"
+    }
 }
 
-struct List {
-    var title: String
-    var items: [Todo]
+struct DrinkList: Codable {
+    let drinks: [Drink]?
 }
 
 public struct DemoApp {
-    var lists: [List]
-    var selectedListIndex: Int?
+    var lists: [Drink]
+    var selectedIndex: Int?
+    var loading: Bool = false
     
     public init() {
         lists = []
-        selectedListIndex = nil
+        selectedIndex = nil
     }
 }
 
-extension List {
-    var tableView: TableView<DemoApp.Message> {
-        let cells: [TableViewCell<DemoApp.Message>] = items.enumerated().map { el in
-            let (index, todo) = el
-            return TableViewCell<DemoApp.Message>(text: todo.title, onSelect: DemoApp.Message.toggleDone(index: index), accessory: todo.done ? .checkmark: .none, onDelete: nil)
-        }
-        return TableView<DemoApp.Message>(items: cells)
-    }
-}
-
-extension Array where Element == List {
+extension Array where Element == Drink {
     var tableViewController: ViewController<DemoApp.Message> {
-        let cells: [TableViewCell<DemoApp.Message>] = zip(self, self.indices).map { (el) in
-            let (item, index) = el
-            return TableViewCell(text: item.title, onSelect: .select(listIndex: index), onDelete: .delete(listIndex: index))
+        let cells: [TableViewCell<DemoApp.Message>] = zip(self, self.indices).map { (element) in
+            let (item, index) = element
+            return TableViewCell(text: item.name, onSelect: .select(listIndex: index), image: item.image, onDelete: .delete(listIndex: index), category: item.category)
         }
         return ViewController.tableViewController(TableView(items: cells))
     }
@@ -47,76 +48,74 @@ extension Array where Element == List {
 
 extension DemoApp: Component {
     
-    public enum Message {
-        case back
-        case select(listIndex: Int)
-        case addList
-        case addItem
-        case createList(String?)
-        case createItem(String?)
-        case delete(listIndex: Int)
-        case toggleDone(index: Int)
+    static var findURL: URL {
+        return URL(string: "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=coffee")!
     }
     
-    var selectedList: List? {
+    public enum Message {
+        case back
+        case receivedData(Data?)
+        case downloadImage(Int, Data)
+        case select(listIndex: Int)
+        case delete(listIndex: Int)
+    }
+    
+    var selectedItem: Drink? {
         get {
-            guard let i = selectedListIndex else { return nil }
+            guard let i = selectedIndex else { return nil }
             return lists[i]
         }
         set {
-            guard let i = selectedListIndex, let value = newValue else { return }
+            guard let i = selectedIndex, let value = newValue else { return }
             lists[i] = value
         }
     }
     
     public var viewController: ViewController<Message> {
-        let addList: BarButtonItem<Message> = BarButtonItem.system(.add, action: .addList)
         
         var viewControllers: [NavigationItem<Message>] = [
-            NavigationItem(title: "Todos", leftBarButtonItem: nil, rightBarButtonItems: [addList], viewController: lists.tableViewController)
+            NavigationItem(title: "Favorite Drinks", leftBarButtonItem: nil, viewController: lists.tableViewController)
         ]
-        if let list = selectedList {
-            viewControllers.append(NavigationItem(title: list.title, rightBarButtonItems: [.system(.add, action: .addItem)], viewController: .tableViewController(list.tableView)))
+        if let item = selectedItem {
+            viewControllers.append(NavigationItem(title: item.name, leftBarButtonItem: nil, viewController: .viewController(.label(text: item.name))))
         }
         return ViewController.navigationController(NavigationController(viewControllers: viewControllers, back: .back))
     }
     
     mutating public func send(_ msg: Message) -> [Command<Message>] {
         switch msg {
-        case .addList:
-            return [
-                .modalTextAlert(title: "Add List",
-                                accept: "OK",
-                                cancel: "Cancel",
-                                convert: { .createList($0) })]
-        case .addItem:
-            
-            return [
-                .modalTextAlert(title: "Add Item",
-                                accept: "OK",
-                                cancel: "Cancel",
-                                convert: { .createItem($0) })]
-            
-        case .createList(let title):
-            guard let title = title else { return [] }
-            lists.append(List(title: title, items: []))
-            return []
-        case .createItem(let title):
-            guard let title = title else { return [] }
-            selectedList?.items.append(Todo(title: title, done: false))
+        case .receivedData(let data):
+            guard let validData = data else {
+                return []
+            }
+            do {
+                let decoder = JSONDecoder()
+                let decoded = try decoder.decode(DrinkList.self, from: validData)
+                
+                guard let drinks = decoded.drinks else {
+                    return []
+                }
+                lists = drinks
+            } catch {
+                return []
+            }
+            var commands: [Command<Message>] = []
+            for (index, element) in lists.enumerated() {
+                let url = URL(string: element.thumb)!
+                commands.append(.request(URLRequest(url: url), available: {.downloadImage(index, $0!)}))
+            }
+            return commands
+        case .downloadImage(let index, let data):
+            lists[index].image = UIImage(data: data)
             return []
         case .select(listIndex: let index):
-            selectedListIndex = index
+            selectedIndex = index
             return []
         case .back:
-            selectedListIndex = nil
+            selectedIndex = nil
             return []
         case .delete(listIndex: let index):
             lists.remove(at: index)
-            return []
-        case .toggleDone(index: let index):
-            guard let i = selectedListIndex else { return [] }
-            lists[i].items[index].done = !lists[i].items[index].done
             return []
         }
     }
