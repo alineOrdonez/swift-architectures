@@ -138,8 +138,8 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
         showAlert(message: message)
     }
     
-    func showImage(_ image: UIImage) {
-        self.imageView.image = image
+    func showImage(_ image: Data) {
+        self.imageView.image = UIImage(data: image)
     }
     
     func foundFavoriteRecipe(isFavorite: Bool) {

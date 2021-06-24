@@ -81,7 +81,7 @@ class UserDefaultsRepository: Repository {
     }
     
     func add(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
-        updoadImage(item) { result in
+        uploadImage(item) { result in
             switch result {
             case .success(let drink):
                 if self.foundData {
@@ -106,22 +106,24 @@ class UserDefaultsRepository: Repository {
             return completion(.failure(UserDefaultsError.noValue))
         }
         
-        do {
-            let decoder = JSONDecoder()
-            var drinks = try decoder.decode([UDDrink].self, from: data)
-            
-            guard let index = drinks.firstIndex(where: {$0.id == item.id}) else {
-                return completion(.failure(UserDefaultsError.noObject))
+        deleteImage(item.name) { _ in
+            do {
+                let decoder = JSONDecoder()
+                var drinks = try decoder.decode([UDDrink].self, from: data)
+                
+                guard let index = drinks.firstIndex(where: {$0.id == item.id}) else {
+                    return completion(.failure(UserDefaultsError.noObject))
+                }
+                drinks.remove(at: index)
+                
+                let encoder = JSONEncoder()
+                let data = try encoder.encode(drinks)
+                self.userDefaults.set(data, forKey: self.dataKey)
+                completion(.success(true))
+            } catch(let error) {
+                print("Unable to Decode (\(error))")
+                completion(.failure(error))
             }
-            drinks.remove(at: index)
-            
-            let encoder = JSONEncoder()
-            let data = try encoder.encode(drinks)
-            userDefaults.set(data, forKey: dataKey)
-            completion(.success(true))
-        } catch(let error) {
-            print("Unable to Decode (\(error))")
-            completion(.failure(error))
         }
     }
 }

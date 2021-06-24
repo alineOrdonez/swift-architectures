@@ -36,8 +36,8 @@ class SearchInteractor: SearchPresenterToInteractorProtocol {
     }
     
     func downloadImage(from url: URL) {
-        if let imageFromCache = imageCache.object(forKey: url as AnyObject) {
-            self.presenter?.recievedImage(imageFromCache, from: url.absoluteString)
+        if let imageFromCache = imageCache.object(forKey: url as AnyObject), let data = imageFromCache.jpegData(compressionQuality: 1.0) {
+            self.presenter?.recievedImage(data, from: url.absoluteString)
             return
         }
         
@@ -63,7 +63,7 @@ class SearchInteractor: SearchPresenterToInteractorProtocol {
             
             DispatchQueue.main.async() { [weak self] in
                 self?.imageCache.setObject(image, forKey: url as AnyObject)
-                self?.presenter?.recievedImage(image, from: url.absoluteString)
+                self?.presenter?.recievedImage(data, from: url.absoluteString)
             }
         }
     }

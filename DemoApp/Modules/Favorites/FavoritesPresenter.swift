@@ -36,7 +36,7 @@ class FavoritesPresenter: FavoritesViewToPresenterProtocol, FavoritesInteractorT
     }
     
     // MARK: - Download image
-    func recievedImage(_ image: UIImage, from url: String) {
+    func recievedImage(_ image: Data, from url: String) {
         view?.showImage(image, from: url)
     }
 }

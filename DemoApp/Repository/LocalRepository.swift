@@ -71,17 +71,33 @@ class LocalRepository: Repository {
             
             let result = drinks.map{$0.model}
             completion(.success(result))
-        } catch {
+        } catch(let error) {
+            print(error)
             completion(.failure(FileError.unableToReadFile))
         }
     }
     
     func add(_ item: Drink, completion: @escaping(RepResult<Bool, Error>) -> Void) {
-        if fileExist {
-            update(item, completion: completion)
-        } else {
-            insert(item, completion: completion)
+        uploadImage(item) { result in
+            switch result {
+            case .success(let drink):
+                if self.fileExist {
+                    self.update(drink, completion: completion)
+                } else {
+                    self.insert(drink, completion: completion)
+                }
+                completion(.success(true))
+            case .failure(_):
+                if self.fileExist {
+                    self.update(item, completion: completion)
+                } else {
+                    self.insert(item, completion: completion)
+                }
+                completion(.success(true))
+            }
+            
         }
+        
     }
     
     func delete(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
@@ -151,6 +167,49 @@ extension LocalRepository {
             
             completion(.success(true))
             
+        } catch {
+            completion(.failure(FileError.unableToWriteFile))
+        }
+    }
+    
+    func uploadImage(_ item: Drink, completion: @escaping(RepResult<Drink, Error>) -> Void) {
+        let path = getDocumentsDirectory().appendingPathComponent("images")
+        
+        if !FileManager.default.fileExists(atPath: path.path) {
+            do {
+                try FileManager.default.createDirectory(atPath: path.path, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print(error.localizedDescription)
+                completion(.failure(FileError.unableToWriteFile))
+            }
+        }
+        
+        let fileName = "\(item.id).jpg"
+        let fileURL = path.appendingPathComponent(fileName)
+        
+        if !FileManager.default.fileExists(atPath: fileURL.absoluteString) {
+            do {
+                guard let data = try? Data(contentsOf: URL(string: item.thumb)!) else {
+                    return completion(.failure(FileError.noObject))
+                }
+                
+                try data.write(to: fileURL)
+                
+                var newDrink = item
+                newDrink.thumb = fileURL.absoluteString
+                completion(.success(newDrink))
+            } catch(let error) {
+                print(error)
+                completion(.failure(FileError.unableToWriteFile))
+            }
+        }
+    }
+    
+    func deleteImage(_ name: String, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+        let fileName = "\(name).jpg"
+        let path = getDocumentsDirectory().appendingPathComponent("images").appendingPathComponent(fileName)
+        do {
+            try FileManager.default.removeItem(atPath: path.absoluteString)
         } catch {
             completion(.failure(FileError.unableToWriteFile))
         }

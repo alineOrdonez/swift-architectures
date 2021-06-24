@@ -6,6 +6,35 @@
 //
 
 import Foundation
+import FirebaseStorage
+
+enum RepoType: Int {
+    case coreData
+    case realm
+    case localStorage
+    case userDefaults
+    case inMemoryStorage
+    case keyChain
+    
+    static var current: RepoType = .userDefaults
+    
+    func repository() -> Repository {
+        switch self {
+        case .coreData:
+            return CoreDataRepository(persistentContainer: CoreDataManager.shared.persistentContainer)
+        case .realm:
+            return RealmRepository()
+        case .localStorage:
+            return LocalRepository()
+        case .inMemoryStorage:
+            return InMemoryRepository()
+        case .userDefaults:
+            return UserDefaultsRepository()
+        case .keyChain:
+            return UserDefaultsRepository()
+        }
+    }
+}
 
 enum RepResult<Success, Failure> where Failure : Error {
     case success(Success)
@@ -21,12 +50,13 @@ protocol Repository: AnyObject {
     func add(_ item: Drink, completion: @escaping(RepResult<Bool, Error>) -> Void)
     func delete(_ item: Drink, completion: @escaping(RepResult<Bool, Error>) -> Void)
     
-    func updoadImage(_ item: Drink, completion: @escaping(RepResult<Drink, Error>) -> Void)
+    func uploadImage(_ item: Drink, completion: @escaping(RepResult<Drink, Error>) -> Void)
+    func deleteImage(_ name: String, completion: @escaping(RepResult<Bool, Error>) -> Void)
 }
 
 extension Repository {
     
-    func updoadImage(_ item: Drink, completion: @escaping(RepResult<Drink, Error>) -> Void) {
+    func uploadImage(_ item: Drink, completion: @escaping(RepResult<Drink, Error>) -> Void) {
         
         guard let data = try? Data(contentsOf: URL(string: item.thumb)!) else {
             return completion(.failure(FileError.noObject))
@@ -45,6 +75,16 @@ extension Repository {
                 updatedDrink.thumb = url.absoluteString
                 return completion(.success(updatedDrink))
             }
+        }
+    }
+    
+    func deleteImage(_ name: String, completion: @escaping(RepResult<Bool, Error>) -> Void) {
+        storage.child("images/\(name).jpg").delete { error in
+            guard error == nil else {
+                return completion(.failure(error!))
+            }
+            
+            return completion(.success(true))
         }
     }
 }

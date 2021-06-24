@@ -78,7 +78,7 @@ class SearchViewController: UIViewController, SearchPresenterToViewProtocol, UIS
         showAlert(message: message)
     }
     
-    func showImage(_ image: UIImage, from url: String) {
+    func showImage(_ image: Data, from url: String) {
         if var results = searchResults, let row = results.firstIndex(where: {$0.thumb == url}) {
             var drink = results[row]
             drink.image = image
@@ -102,10 +102,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        if drink.image == nil {
-            self.downloadImage(from: drink.thumb)
+        if let data = drink.image {
+            cell.drinkImage.image = UIImage(data: data)
         } else {
-            cell.drinkImage.image = drink.image
+            self.downloadImage(from: drink.thumb)
         }
         
         cell.drinkLabel.text = drink.name

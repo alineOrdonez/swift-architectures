@@ -22,7 +22,7 @@ protocol FavoritesPresenterToViewProtocol {
     
     func showData(_ drinks: [Drink])
     func showError(_ message: String)
-    func showImage(_ image: UIImage, from url: String)
+    func showImage(_ image: Data, from url: String)
 }
 
 protocol FavoritesPresenterToRouterProtocol {
@@ -41,5 +41,5 @@ protocol FavoritesInteractorToPresenterProtocol {
     
     func recievedData(drinks: [Drink])
     func requestFailed(with message: String)
-    func recievedImage(_ image: UIImage, from url: String)
+    func recievedImage(_ image: Data, from url: String)
 }

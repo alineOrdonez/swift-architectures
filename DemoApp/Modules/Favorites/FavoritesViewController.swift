@@ -34,6 +34,42 @@ class FavoritesViewController: UIViewController, FavoritesPresenterToViewProtoco
         tableView.rowHeight = 150
         
         tableView.register(UINib(nibName: DrinkTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DrinkTableViewCell.identifier)
+        
+        let item = UIBarButtonItem(image: UIImage(systemName: "cylinder.split.1x2")!, style: .plain, target: self, action: #selector(showRepositories(_:)))
+        self.navigationItem.rightBarButtonItem = item
+    }
+    
+    @IBAction func showRepositories(_ sender: Any) {
+        let alert = UIAlertController(title: "Choose your storage", message: "Where do you want to save your favorite drinks?", preferredStyle: .actionSheet)
+        
+        let coreDataAction = UIAlertAction(title: "Core Data", style: .default, handler: { action in
+            RepoType.current = .coreData
+            self.fetchDrinks()
+        })
+        let realmAction = UIAlertAction(title: "Realm", style: .default, handler: { action in
+            RepoType.current = .realm
+            self.fetchDrinks()
+        })
+        let localStorageAction = UIAlertAction(title: "Local Storage", style: .default, handler: { action in
+            RepoType.current = .localStorage
+            self.fetchDrinks()
+        })
+        let userDefaultsAction = UIAlertAction(title: "User Defaults", style: .default, handler: { action in
+            RepoType.current = .userDefaults
+            self.fetchDrinks()
+        })
+        let inMemoryStorageAction = UIAlertAction(title: "In Memory Storage", style: .default, handler: { action in
+            RepoType.current = .inMemoryStorage
+            self.fetchDrinks()
+        })
+        
+        alert.addAction(coreDataAction)
+        alert.addAction(realmAction)
+        alert.addAction(localStorageAction)
+        alert.addAction(userDefaultsAction)
+        alert.addAction(inMemoryStorageAction)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     private func fetchDrinks() {
@@ -57,7 +93,7 @@ class FavoritesViewController: UIViewController, FavoritesPresenterToViewProtoco
         showAlert(message: message)
     }
     
-    func showImage(_ image: UIImage, from url: String) {
+    func showImage(_ image: Data, from url: String) {
         if var results = drinks, let row = results.firstIndex(where: {$0.thumb == url}) {
             var drink = results[row]
             drink.image = image
@@ -83,10 +119,10 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        if drink.image == nil {
-            self.downloadImage(from: drink.thumb)
+        if let data = drink.image {
+            cell.drinkImage.image = UIImage(data: data)
         } else {
-            cell.drinkImage.image = drink.image
+            self.downloadImage(from: drink.thumb)
         }
         
         cell.drinkLabel.text = drink.name

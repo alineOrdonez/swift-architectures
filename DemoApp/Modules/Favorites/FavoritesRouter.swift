@@ -12,8 +12,8 @@ class FavoritesRouter: FavoritesPresenterToRouterProtocol {
     static func createModule() -> UINavigationController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(identifier: "FavoritesViewController") as! FavoritesViewController
-        let repository: Repository = InMemoryRepository()
-        
+        let repository: Repository = RepoType.current.repository()
+            
         var presenter: FavoritesViewToPresenterProtocol & FavoritesInteractorToPresenterProtocol = FavoritesPresenter()
         var interactor: FavoritesPresenterToInteractorProtocol = FavoritesInteractor(repository: repository)
         let router: FavoritesPresenterToRouterProtocol = FavoritesRouter()

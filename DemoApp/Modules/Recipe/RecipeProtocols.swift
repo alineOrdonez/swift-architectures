@@ -24,7 +24,7 @@ protocol RecipePresenterToViewProtocol {
     
     func showRecipe(_ recipe: Drink)
     func showError(_ message: String)
-    func showImage(_ image: UIImage)
+    func showImage(_ image: Data)
     func foundFavoriteRecipe(isFavorite: Bool)
     func didCompleteAction()
 }
@@ -46,7 +46,7 @@ protocol RecipeInteractorToPresenterProtocol {
     
     func recievedData(recipe: Drink)
     func requestFailed(with message: String)
-    func recievedImage(_ image: UIImage)
+    func recievedImage(_ image: Data)
     func foundFavoriteRecipe(isFavorite: Bool)
     func didCompleteAction()
 }

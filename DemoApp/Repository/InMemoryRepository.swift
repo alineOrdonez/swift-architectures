@@ -33,7 +33,7 @@ final class InMemoryRepository: Repository {
     }
     
     func add(_ item: Drink, completion: @escaping(RepResult<Bool, Error>) -> Void) {
-        updoadImage(item) { result in
+        uploadImage(item) { result in
             switch result {
             case .success(let drink):
                 Self.drinks.append(drink)
@@ -48,8 +48,9 @@ final class InMemoryRepository: Repository {
         guard let index = Self.drinks.firstIndex(where: {$0.id == item.id}) else {
             return completion(.failure(FileError.noObject))
         }
-        
-        Self.drinks.remove(at: index)
+        deleteImage(item.name) { _ in
+            Self.drinks.remove(at: index)
+        }
         completion(.success(true))
     }
     

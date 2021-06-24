@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 struct Drink: Codable {
     let id: String
@@ -14,7 +13,7 @@ struct Drink: Codable {
     let video: String?
     let category: String?
     var thumb: String
-    var image: UIImage?
+    var image: Data?
     let glass: String?
     var listOfIngredients: [[String: String]]?
     var instructions: String?
@@ -57,11 +56,12 @@ struct Drink: Codable {
         case strMeasure7 = "strMeasure7"
     }
     
-    init(id: String, name: String, category: String? = nil, thumb: String) {
+    init(id: String, name: String, category: String? = nil, thumb: String, image: Data? = nil) {
         self.id = id
         self.name = name
         self.category = category
         self.thumb = thumb
+        self.image = image
         self.video = nil
         self.glass = nil
         self.instructions = nil

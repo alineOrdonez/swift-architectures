@@ -51,16 +51,9 @@ class RecipeInteractor: RecipePresenterToInteractorProtocol {
                 }
                 return
             }
-            guard let image = UIImage(data: data) else {
-                DispatchQueue.main.async() { [weak self] in
-                    let error = NetworkingError.invalidResponse.localizedDescription
-                    self?.presenter?.requestFailed(with: error)
-                }
-                return
-            }
             
             DispatchQueue.main.async() { [weak self] in
-                self?.presenter?.recievedImage(image)
+                self?.presenter?.recievedImage(data)
             }
         }
     }

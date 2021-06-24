@@ -38,7 +38,7 @@ class RecipePresenter: RecipeViewToPresenterProtocol, RecipeInteractorToPresente
         view?.showError(message)
     }
     
-    func recievedImage(_ image: UIImage) {
+    func recievedImage(_ image: Data) {
         view?.showImage(image)
     }
     

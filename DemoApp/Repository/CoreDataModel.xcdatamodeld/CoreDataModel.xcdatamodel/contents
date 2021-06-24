@@ -3,10 +3,11 @@
     <entity name="DrinkMO" representedClassName=".DrinkMO" syncable="YES">
         <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="thumb" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="DrinkMO" positionX="174.31640625" positionY="313.6441650390625" width="128" height="89"/>
+        <element name="DrinkMO" positionX="174.31640625" positionY="313.6441650390625" width="128" height="104"/>
     </elements>
 </model>
