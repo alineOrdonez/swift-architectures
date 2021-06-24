@@ -16,8 +16,8 @@ public struct StrongReferences {
 }
 
 class TargetAction: NSObject {
-    var handle: () -> ()
-    init(_ handle: @escaping () -> ()) {
+    var handle: () -> Void
+    init(_ handle: @escaping () -> Void) {
         self.handle = handle
     }
     @objc func performAction(sender: UIButton) {
@@ -26,8 +26,8 @@ class TargetAction: NSObject {
 }
 
 final class NCDelegate: NSObject, UINavigationControllerDelegate {
-    var back: (() -> ())
-    init(back: @escaping () -> ()) {
+    var back: (() -> Void)
+    init(back: @escaping () -> Void) {
         self.back = back
     }
     
@@ -48,8 +48,8 @@ class TextfieldDelegate: NSObject, UITextFieldDelegate {
 
 class TableViewBacking<A>: NSObject, UITableViewDataSource, UITableViewDelegate {
     let cells: [TableViewCell<A>]
-    let callback: ((A) -> ())?
-    init(cells: [TableViewCell<A>], callback: ((A) -> ())? = nil) {
+    let callback: ((A) -> Void)?
+    init(cells: [TableViewCell<A>], callback: ((A) -> Void)? = nil) {
         self.cells = cells
         self.callback = callback
     }
@@ -83,7 +83,7 @@ class TableViewBacking<A>: NSObject, UITableViewDataSource, UITableViewDelegate 
 }
 
 extension BarButtonItem {
-    func render(_ callback: @escaping (Message) -> (), viewController: UIViewController, change: inout UIBarButtonItem?) -> [Any] {
+    func render(_ callback: @escaping (Message) -> Void, viewController: UIViewController, change: inout UIBarButtonItem?) -> [Any] {
         switch self {
         case .builtin(let button):
             if change != button { change = button }
@@ -107,8 +107,8 @@ extension BarButtonItem {
 
 public struct Renderer<A> {
     public var strongReferences = StrongReferences()
-    private let callback: (A) -> ()
-    public init(callback: @escaping (A) -> ()) {
+    private let callback: (A) -> Void
+    public init(callback: @escaping (A) -> Void) {
         self.callback = callback
     }
     
@@ -203,7 +203,7 @@ public struct Renderer<A> {
 
 
 extension ViewController {
-    public func render(callback: @escaping (Message) -> (), change: inout UIViewController) -> StrongReferences {
+    public func render(callback: @escaping (Message) -> Void, change: inout UIViewController) -> StrongReferences {
         switch self {
         case let .navigationController(newNC):
             var n: UINavigationController! = change as? UINavigationController
@@ -235,7 +235,7 @@ extension ViewController {
 
 
 extension NavigationItem {
-    func render(callback: @escaping (Message) -> (), viewController: inout UIViewController) -> StrongReferences {
+    func render(callback: @escaping (Message) -> Void, viewController: inout UIViewController) -> StrongReferences {
         var strongReferences = self.viewController.render(callback: callback, change: &viewController)
         let ni = viewController.navigationItem
         strongReferences.append(leftBarButtonItem?.render(callback, viewController: viewController, change: &ni.leftBarButtonItem) ?? [])
@@ -246,7 +246,7 @@ extension NavigationItem {
 }
 
 extension NavigationController {
-    func render(callback: @escaping (Message) -> (), viewController nc: UINavigationController) -> StrongReferences {
+    func render(callback: @escaping (Message) -> Void, viewController nc: UINavigationController) -> StrongReferences {
         var strongReferences = StrongReferences()
         if let back = back {
             let delegate = NCDelegate {

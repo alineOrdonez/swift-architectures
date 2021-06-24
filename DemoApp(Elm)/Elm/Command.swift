@@ -23,7 +23,7 @@ public enum Command<A: Equatable> {
 }
 
 extension Command {
-    func interpret(viewController: UIViewController!, callback: @escaping (A) -> ()) {
+    func interpret(viewController: UIViewController, callback: @escaping (A) -> Void) {
         switch self {
         case let .request(request, available: available):
             URLSession.shared.dataTask(with: request) { (data, response, error) in

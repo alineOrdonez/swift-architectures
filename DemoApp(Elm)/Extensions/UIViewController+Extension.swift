@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIViewController {
-    func modalTextAlert(title: String, accept: String = "Ok", cancel: String = "Cancel", callback: @escaping (String?) -> ()) {
+    func modalTextAlert(title: String, accept: String = "Ok", cancel: String = "Cancel", callback: @escaping (String?) -> Void) {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: cancel, style: .cancel) { _ in
             callback(nil)

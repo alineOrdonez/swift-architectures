@@ -31,7 +31,7 @@ final public class Driver<Model> where Model: Component {
         }
     }
     
-    public func send(action: Model.Message) { // todo this should probably be in a serial queue
+    public func send(action: Model.Message) {
         let commands = model.send(action)
         refresh()
         for command in commands {

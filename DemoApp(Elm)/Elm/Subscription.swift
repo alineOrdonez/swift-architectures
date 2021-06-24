@@ -30,10 +30,10 @@ extension Subscription {
 }
 
 final class SubscriptionManager<Message: Equatable> {
-    var callback: (Message) -> ()
+    var callback: (Message) -> Void
     var timers: [Timer] = []
     
-    init(_ callback: @escaping (Message) -> ()) {
+    init(_ callback: @escaping (Message) -> Void) {
         self.callback = callback
     }
     
