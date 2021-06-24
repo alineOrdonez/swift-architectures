@@ -7,9 +7,11 @@
 
 import Foundation
 import CoreData
+import FirebaseStorage
 
 
 class CoreDataRepository: Repository {
+    var storage: StorageReference = Storage.storage().reference()
     
     private var persistentContainer: NSPersistentContainer
     
@@ -50,7 +52,7 @@ class CoreDataRepository: Repository {
         }
     }
     
-    func add(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+    func add(_ item: Drink, completion: @escaping(RepResult<Bool, Error>) -> Void) {
         let drink = DrinkMO(context: persistentContainer.viewContext)
         drink.id = item.id
         drink.name = item.name

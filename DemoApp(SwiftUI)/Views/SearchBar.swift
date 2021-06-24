@@ -38,9 +38,6 @@ struct SearchBar: UIViewRepresentable {
         
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
             text = searchText
-            if searchText.isEmpty {
-                searchingChanged(.notSearching)
-            }
         }
         
         func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

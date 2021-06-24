@@ -20,7 +20,7 @@ class RDrink: Object, Storable {
         return "id"
     }
     
-    required init(drink: Drink) {
+    required init(drink: Entity) {
         self.id = drink.id
         self.name = drink.name
         self.category = drink.category

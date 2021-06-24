@@ -11,7 +11,7 @@ import SwiftUI
 
 final class SearchListViewModel: ObservableObject {
     
-    @Published private(set) var state = State.idle
+    @Published private(set) var state = State.start
     @Published var searchText: String = ""
     @Published var isSearching: Bool = false
     
@@ -36,16 +36,13 @@ final class SearchListViewModel: ObservableObject {
             switch value {
             case .searching:
                 isSearching = true
-                state = .searching
-                return .onStart
+                return .startSearch
             case .searched:
                 isSearching = false
-                state = .searched
                 searchRecipe()
-                return .onSearch
+                return .search
             case .notSearching:
-                state = .idle
-                return .onCancel
+                return .cancel
             }
         }()
         send(event: event)
@@ -67,7 +64,7 @@ final class SearchListViewModel: ObservableObject {
     
     func whenSearching() -> Feedback<State, Event> {
         Feedback { (state: State) -> AnyPublisher<Event, Never> in
-            guard case .searched = state else { return Empty().eraseToAnyPublisher() }
+            guard case .loading = state else { return Empty().eraseToAnyPublisher() }
             
             return self.service.searchRecipe(.search(self.searchText))
                 .tryMap({ list in
@@ -76,7 +73,7 @@ final class SearchListViewModel: ObservableObject {
                     }
                     return drinks.map(ListItem.init)
                 })
-                .map(Event.onDrinksLoaded)
+                .map(Event.onSuccess)
                 .catch { Just(Event.onFailure($0)) }
                 .eraseToAnyPublisher()
         }
@@ -89,18 +86,18 @@ final class SearchListViewModel: ObservableObject {
 
 extension SearchListViewModel {
     enum State {
-        case idle
+        case start
         case searching
-        case searched
-        case loaded([ListItem])
+        case loading
+        case searchResults([ListItem])
         case error(Error)
     }
     
     enum Event {
-        case onStart
-        case onCancel
-        case onSearch
-        case onDrinksLoaded([ListItem])
+        case startSearch
+        case cancel
+        case search
+        case onSuccess([ListItem])
         case onFailure(Error)
     }
     
@@ -133,21 +130,36 @@ extension SearchListViewModel {
     
     static func reduce(_ state: State, _ event: Event) -> State {
         switch state {
-        case .idle:
-            return state
-        case .searching:
-            return state
-        case .searched:
+        case .start:
             switch event {
-            case .onFailure(let error):
-                return .error(error)
-            case .onDrinksLoaded(let drinks):
-                return .loaded(drinks)
+            case .startSearch:
+                return .searching
             default:
                 return state
             }
-        case .loaded(_):
-            return state
+        case .searching:
+            switch event {
+            case .search:
+                return .loading
+            case .cancel:
+                return .start
+            default:
+                return state
+            }
+        case .loading:
+            switch event {
+            case .onSuccess(let items):
+                return .searchResults(items)
+            default:
+                return state
+            }
+        case .searchResults(_):
+            switch event {
+            case .startSearch:
+                return .searching
+            default:
+                return state
+            }
         case .error(_):
             return state
         }

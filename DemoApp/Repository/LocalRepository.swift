@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseStorage
 
 enum FileError: String, LocalizedError {
     case unableToReadFile = "Couldn't read file."
@@ -18,6 +19,8 @@ enum FileError: String, LocalizedError {
 }
 
 class LocalRepository: Repository {
+    
+    var storage: StorageReference = Storage.storage().reference()
     
     func exist(id: String, completion: @escaping (RepResult<Bool, Error>) -> Void) {
         guard fileExist else {
@@ -73,7 +76,7 @@ class LocalRepository: Repository {
         }
     }
     
-    func add(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+    func add(_ item: Drink, completion: @escaping(RepResult<Bool, Error>) -> Void) {
         if fileExist {
             update(item, completion: completion)
         } else {

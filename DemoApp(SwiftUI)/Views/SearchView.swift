@@ -26,15 +26,15 @@ struct SearchView: View {
     
     private var content: some View {
         switch viewModel.state {
-        case .idle:
+        case .start:
             return StartSearchView().eraseToAnyView()
-        case .searched:
+        case .loading:
             return ActivityIndicator(isAnimating: true, style: .large).eraseToAnyView()
         case .error:
             return ErrorView().eraseToAnyView()
         case .searching:
             return Color.clear.eraseToAnyView()
-        case .loaded(let items):
+        case .searchResults(let items):
             return list(of: items).eraseToAnyView()
         }
     }

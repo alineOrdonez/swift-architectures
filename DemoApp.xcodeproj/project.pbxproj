@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D7231B5A268441D500232AB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7A4C55326603CCF004F476D /* Assets.xcassets */; };
+		D7231B5D2684478300232AB0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D7231B5C2684478300232AB0 /* FirebaseStorage */; };
+		D7231B5F2684486B00232AB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7231B5E2684486A00232AB0 /* GoogleService-Info.plist */; };
 		D733E5CB268052A100B0928E /* DrinkMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733E5C9268052A100B0928E /* DrinkMO+CoreDataClass.swift */; };
 		D733E5CC268052A100B0928E /* DrinkMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733E5CA268052A100B0928E /* DrinkMO+CoreDataProperties.swift */; };
 		D733E5CE2680759A00B0928E /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733E5CD2680759A00B0928E /* Array+Extension.swift */; };
@@ -18,7 +21,6 @@
 		D7567A7A2665DC400069547E /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7567A792665DC400069547E /* SearchView.swift */; };
 		D7567A7E2665E9370069547E /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7567A7D2665E9370069547E /* CategoriesView.swift */; };
 		D7567A802665EC670069547E /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7567A7F2665EC670069547E /* SearchBar.swift */; };
-		D7567A812665ECE70069547E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7A4C55326603CCF004F476D /* Assets.xcassets */; };
 		D784EF27267C25BA00B4E9AF /* InMemoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784EF26267C25BA00B4E9AF /* InMemoryRepository.swift */; };
 		D784EF29267C32D700B4E9AF /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784EF28267C32D700B4E9AF /* LoadingViewController.swift */; };
 		D784EF2C267C523D00B4E9AF /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784EF2B267C523D00B4E9AF /* Driver.swift */; };
@@ -124,6 +126,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D7231B5E2684486A00232AB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D733E5C9268052A100B0928E /* DrinkMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrinkMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D733E5CA268052A100B0928E /* DrinkMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrinkMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D733E5CD2680759A00B0928E /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
@@ -150,7 +153,7 @@
 		D79A35D62677229B0069B68B /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		D79A35DD267726380069B68B /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		D79A35DF267726440069B68B /* CoreDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRepository.swift; sourceTree = "<group>"; };
-		D7A4C54726603CCA004F476D /* DemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7A4C54726603CCA004F476D /* VIPER Arch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VIPER Arch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A4C54A26603CCA004F476D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7A4C54E26603CCA004F476D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D7A4C55126603CCA004F476D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -228,14 +231,14 @@
 		D7C456C22667313A00E1DE6F /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		D7C456C42667316900E1DE6F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		D7EEE06D266ED2A4001CA324 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
-		D7EEE073266F09C3001CA324 /* DemoApp(Elm).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DemoApp(Elm).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7EEE073266F09C3001CA324 /* Elm Arch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Elm Arch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7EEE075266F09C3001CA324 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7EEE077266F09C3001CA324 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D7EEE07C266F09C3001CA324 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D7EEE07E266F09C6001CA324 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D7EEE081266F09C6001CA324 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D7EEE083266F09C6001CA324 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D7F0A7792664C2DC001C27F8 /* DemoApp(SwiftUI).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DemoApp(SwiftUI).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7F0A7792664C2DC001C27F8 /* MVVM Arch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MVVM Arch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F0A77B2664C2DC001C27F8 /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
 		D7F0A77D2664C2DC001C27F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D7F0A7822664C2DD001C27F8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -249,6 +252,7 @@
 			files = (
 				D79A35DC267726000069B68B /* RealmSwift in Frameworks */,
 				D79A35DA267726000069B68B /* Realm in Frameworks */,
+				D7231B5D2684478300232AB0 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,9 +373,9 @@
 		D7A4C54826603CCA004F476D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D7A4C54726603CCA004F476D /* DemoApp.app */,
-				D7F0A7792664C2DC001C27F8 /* DemoApp(SwiftUI).app */,
-				D7EEE073266F09C3001CA324 /* DemoApp(Elm).app */,
+				D7A4C54726603CCA004F476D /* VIPER Arch.app */,
+				D7F0A7792664C2DC001C27F8 /* MVVM Arch.app */,
+				D7EEE073266F09C3001CA324 /* Elm Arch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -379,6 +383,7 @@
 		D7A4C54926603CCA004F476D /* DemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				D7231B5E2684486A00232AB0 /* GoogleService-Info.plist */,
 				D7A4C5A42660B101004F476D /* Utilities */,
 				D7A4C55826603CCF004F476D /* Info.plist */,
 				D7A4C54A26603CCA004F476D /* AppDelegate.swift */,
@@ -635,9 +640,10 @@
 			packageProductDependencies = (
 				D79A35D9267726000069B68B /* Realm */,
 				D79A35DB267726000069B68B /* RealmSwift */,
+				D7231B5C2684478300232AB0 /* FirebaseStorage */,
 			);
 			productName = DemoApp;
-			productReference = D7A4C54726603CCA004F476D /* DemoApp.app */;
+			productReference = D7A4C54726603CCA004F476D /* VIPER Arch.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D7EEE072266F09C3001CA324 /* DemoApp(Elm) */ = {
@@ -654,7 +660,7 @@
 			);
 			name = "DemoApp(Elm)";
 			productName = "DemoApp(Elm)";
-			productReference = D7EEE073266F09C3001CA324 /* DemoApp(Elm).app */;
+			productReference = D7EEE073266F09C3001CA324 /* Elm Arch.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D7F0A7782664C2DC001C27F8 /* DemoApp(SwiftUI) */ = {
@@ -674,7 +680,7 @@
 				D7BA7E0E2668AB9300728137 /* ImageLoader */,
 			);
 			productName = "DemoApp(SwiftUI)";
-			productReference = D7F0A7792664C2DC001C27F8 /* DemoApp(SwiftUI).app */;
+			productReference = D7F0A7792664C2DC001C27F8 /* MVVM Arch.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -709,6 +715,7 @@
 			packageReferences = (
 				D7BA7DF526686CCD00728137 /* XCRemoteSwiftPackageReference "ImageLoader" */,
 				D79A35D8267726000069B68B /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				D7231B5B2684478300232AB0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = D7A4C54826603CCA004F476D /* Products */;
 			projectDirPath = "";
@@ -728,6 +735,7 @@
 			files = (
 				D7A4C55726603CCF004F476D /* LaunchScreen.storyboard in Resources */,
 				D7A4C55426603CCF004F476D /* Assets.xcassets in Resources */,
+				D7231B5F2684486B00232AB0 /* GoogleService-Info.plist in Resources */,
 				D746F8D82660D1C4003982CF /* DrinkTableViewCell.xib in Resources */,
 				D7A4C55226603CCA004F476D /* Main.storyboard in Resources */,
 			);
@@ -747,7 +755,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7567A812665ECE70069547E /* Assets.xcassets in Resources */,
+				D7231B5A268441D500232AB0 /* Assets.xcassets in Resources */,
 				D7F0A7832664C2DD001C27F8 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1046,7 +1054,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aordonez.personal.drinks;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "VIPER Arch";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1066,7 +1074,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aordonez.personal.drinks;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "VIPER Arch";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1078,13 +1086,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F74ZL5Z8XL;
 				INFOPLIST_FILE = "DemoApp(Elm)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aordonez.drinks-Elm";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Elm Arch";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1096,13 +1105,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F74ZL5Z8XL;
 				INFOPLIST_FILE = "DemoApp(Elm)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aordonez.drinks-Elm";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Elm Arch";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1111,7 +1121,7 @@
 		D7F0A7862664C2DD001C27F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-SwiftUI";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DemoApp(SwiftUI)/Preview Content\"";
@@ -1124,7 +1134,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aordonez.personal.drinks-SwiftUI";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "MVVM Arch";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1133,7 +1143,7 @@
 		D7F0A7872664C2DD001C27F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-SwiftUI";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DemoApp(SwiftUI)/Preview Content\"";
@@ -1146,7 +1156,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aordonez.personal.drinks-SwiftUI";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "MVVM Arch";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1194,6 +1204,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D7231B5B2684478300232AB0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.2.0;
+			};
+		};
 		D79A35D8267726000069B68B /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa.git";
@@ -1213,6 +1231,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D7231B5C2684478300232AB0 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7231B5B2684478300232AB0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
 		D79A35D9267726000069B68B /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D79A35D8267726000069B68B /* XCRemoteSwiftPackageReference "realm-cocoa" */;

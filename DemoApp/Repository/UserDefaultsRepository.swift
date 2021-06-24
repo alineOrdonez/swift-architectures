@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseStorage
 
 enum UserDefaultsError: String, LocalizedError {
     case unableToEncode = "Unable to encode object into data"
@@ -19,6 +20,8 @@ enum UserDefaultsError: String, LocalizedError {
 }
 
 class UserDefaultsRepository: Repository {
+    
+    var storage: StorageReference = Storage.storage().reference()
     
     private let userDefaults = UserDefaults.standard
     private let dataKey = "drinks"
@@ -78,20 +81,23 @@ class UserDefaultsRepository: Repository {
     }
     
     func add(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
-        guard let data = userDefaults.data(forKey: dataKey) else {
-            return completion(.failure(UserDefaultsError.noValue))
-        }
-        do {
-            let decoder = JSONDecoder()
-            var drinks = try decoder.decode([UDDrink].self, from: data)
-            drinks.append(UDDrink.init(drink: item))
-            
-            let encoder = JSONEncoder()
-            let data = try encoder.encode(drinks)
-            userDefaults.set(data, forKey: dataKey)
-            completion(.success(true))
-        } catch (let error) {
-            completion(.failure(error))
+        updoadImage(item) { result in
+            switch result {
+            case .success(let drink):
+                if self.foundData {
+                    self.update(drink, completion: completion)
+                } else {
+                    self.insert(drink, completion: completion)
+                }
+                
+            case .failure(_):
+                if self.foundData {
+                    self.update(item, completion: completion)
+                } else {
+                    self.insert(item, completion: completion)
+                }
+                break
+            }
         }
     }
     
@@ -123,5 +129,38 @@ class UserDefaultsRepository: Repository {
 extension UserDefaultsRepository {
     var foundData: Bool {
         return userDefaults.data(forKey: dataKey) != nil
+    }
+    
+    private func update(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+        guard let data = userDefaults.data(forKey: dataKey) else {
+            return completion(.failure(UserDefaultsError.noValue))
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            var drinks = try decoder.decode([UDDrink].self, from: data)
+            drinks.append(UDDrink.init(drink: item))
+            
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(drinks)
+            self.userDefaults.set(data, forKey: self.dataKey)
+            completion(.success(true))
+            
+        } catch {
+            completion(.failure(FileError.unableToWriteFile))
+        }
+    }
+    
+    private func insert(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+        do {
+            let drinks: [UDDrink] = [UDDrink.init(drink: item)]
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(drinks)
+            self.userDefaults.set(data, forKey: self.dataKey)
+            completion(.success(true))
+            
+        } catch {
+            completion(.failure(FileError.unableToWriteFile))
+        }
     }
 }

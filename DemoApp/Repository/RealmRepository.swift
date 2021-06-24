@@ -7,8 +7,10 @@
 
 import Foundation
 import RealmSwift
+import FirebaseStorage
 
 class RealmRepository: Repository {
+    var storage: StorageReference = Storage.storage().reference()
     
     private let realm: Realm
     
@@ -39,7 +41,7 @@ class RealmRepository: Repository {
         completion(.success(domainObjects))
     }
     
-    func add(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+    func add(_ item: Drink, completion: @escaping(RepResult<Bool, Error>) -> Void) {
         do {
             try realm.write {
                 realm.add(RDrink.init(drink: item))

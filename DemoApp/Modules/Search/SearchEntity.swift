@@ -13,7 +13,7 @@ struct Drink: Codable {
     let name: String
     let video: String?
     let category: String?
-    let thumb: String
+    var thumb: String
     var image: UIImage?
     let glass: String?
     var listOfIngredients: [[String: String]]?

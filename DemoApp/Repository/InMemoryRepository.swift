@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import FirebaseStorage
 
 final class InMemoryRepository: Repository {
+    
+    var storage: StorageReference = Storage.storage().reference()
     
     private static var drinks: [Drink] = [Drink]()
     
@@ -29,8 +32,15 @@ final class InMemoryRepository: Repository {
         completion(.success(Self.drinks))
     }
     
-    func add(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
-        Self.drinks.append(item)
+    func add(_ item: Drink, completion: @escaping(RepResult<Bool, Error>) -> Void) {
+        updoadImage(item) { result in
+            switch result {
+            case .success(let drink):
+                Self.drinks.append(drink)
+            case .failure(_):
+                Self.drinks.append(item)
+            }
+        }
         completion(.success(true))
     }
     

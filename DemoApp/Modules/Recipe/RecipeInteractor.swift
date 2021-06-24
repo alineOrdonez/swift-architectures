@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 class RecipeInteractor: RecipePresenterToInteractorProtocol {
     
     var presenter: RecipeInteractorToPresenterProtocol?

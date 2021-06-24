@@ -15,7 +15,7 @@ struct UDDrink: Codable, Storable {
     let category: String?
     let thumb: String
     
-    init(drink: Drink) {
+    init(drink: Entity) {
         self.id = drink.id
         self.name = drink.name
         self.category = drink.category
