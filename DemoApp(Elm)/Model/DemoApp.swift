@@ -12,12 +12,26 @@ struct Drink: Identifiable, Codable {
     let category: String
     let thumb: String
     var image: UIImage?
+    let instructions: String
+    let ingredients: [Ingredient]
     
     enum CodingKeys: String, CodingKey {
         case id = "idDrink"
         case name = "strDrink"
         case category = "strCategory"
         case thumb = "strDrinkThumb"
+        case instructions = "strInstructions"
+        case ingredients = "strIngredients"
+    }
+}
+
+struct Ingredient: Codable {
+    let name: String
+    let measure: String
+    
+    enum CodingKeys: String, CodingKey {
+        case name = "strIngredient"
+        case measure = "strMeasure"
     }
 }
 
@@ -49,7 +63,7 @@ extension Array where Element == Drink {
 extension DemoApp: Component {
     
     static var findURL: URL {
-        return URL(string: "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=coffee")!
+        return URL(string: "https://1e7ef212-6cca-41a5-9495-9d473fd35cc0.mock.pstmn.io/getFavorites")!
     }
     
     public enum Message {
@@ -77,7 +91,13 @@ extension DemoApp: Component {
             NavigationItem(title: "Favorite Drinks", leftBarButtonItem: nil, viewController: lists.tableViewController)
         ]
         if let item = selectedItem {
-            viewControllers.append(NavigationItem(title: item.name, leftBarButtonItem: nil, viewController: .viewController(.label(text: item.name))))
+            var elements: [View<Message>] = [.imageView(image: item.image), .label(text: "Ingredients:")]
+            for ingredient in item.ingredients {
+                elements.append(.stackView(views: [.label(text: ingredient.name), .label(text: ingredient.measure)], axis: .horizontal, distribution: .fillEqually))
+            }
+            elements.append(.label(text: "Instructions:"))
+            elements.append(.label(text: item.instructions))
+            viewControllers.append(NavigationItem(title: item.name, leftBarButtonItem: nil, viewController: .viewController(.stackView(views: elements, distribution: .fill, spacing: 10.0))))
         }
         return ViewController.navigationController(NavigationController(viewControllers: viewControllers, back: .back))
     }
@@ -96,7 +116,8 @@ extension DemoApp: Component {
                     return []
                 }
                 lists = drinks
-            } catch {
+            } catch(let error) {
+                print(error)
                 return []
             }
             var commands: [Command<Message>] = []

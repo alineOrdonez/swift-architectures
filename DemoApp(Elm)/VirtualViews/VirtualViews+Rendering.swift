@@ -115,12 +115,17 @@ public struct Renderer<A> {
     private func render(label text: String, into l: UILabel) {
         l.text = text
         l.backgroundColor = .white
+        l.textAlignment = .justified
+        l.numberOfLines = 0
     }
     
     private func render(_ stackView: StackView<A>, into result: UIStackView) {
         result.distribution = stackView.distribution
         result.axis = stackView.axis
         result.backgroundColor = stackView.backgroundColor
+        result.spacing = stackView.spacing
+        result.layoutMargins = stackView.layoutMargins
+        result.isLayoutMarginsRelativeArrangement = true
     }
     
     public mutating func render(_ tableView: TableView<A>, into result: UITableView) {
@@ -143,15 +148,16 @@ public struct Renderer<A> {
             let result = UIStackView(arrangedSubviews: views)
             render(stackView, into: result)
             return result
+        case let .scrollView(sv):
+            let views = sv.views.map { render(view: $0) }
+            let result = UIScrollView(frame: UIScreen.main.bounds)
+            views.forEach({result.addSubview($0)})
+            return result
         case let .imageView(image):
             return UIImageView(image: image)
         case let .tableView(tableView):
             let result = UITableView(frame: .zero, style: .plain)
             render(tableView, into: result)
-            return result
-        case let .activityIndicator(style):
-            let result = UIActivityIndicatorView(style: style)
-            result.startAnimating()
             return result
         }
     }
@@ -164,12 +170,6 @@ public struct Renderer<A> {
             }
             render(label: text, into: l)
             return l
-        case let .activityIndicator(style: style):
-            guard let a = existing as? UIActivityIndicatorView else {
-                return render(view: view)
-            }
-            a.style = style
-            return a
         case let ._stackView(stackView):
             guard let result = existing as? UIStackView, result.arrangedSubviews.count == stackView.views.count else {
                 return render(view: view)
@@ -184,11 +184,26 @@ public struct Renderer<A> {
             }
             render(stackView, into: result)
             return result
+        case let .scrollView(scrollView):
+            guard let result = existing as? UIScrollView, result.subviews.count == scrollView.views.count else {
+                return render(view: view)
+            }
+            for (index, existingSubview) in result.subviews.enumerated() {
+                let sub = scrollView.views[index]
+                let new = update(view: sub, into: existingSubview)
+                if new !== existingSubview {
+                    existingSubview.removeFromSuperview()
+                    result.addSubview(new)
+                }
+            }
+            return result
         case let .imageView(image):
             guard let result = existing as? UIImageView else {
                 return render(view: view)
             }
             result.image = image
+            result.contentMode = .scaleAspectFit
+            result.clipsToBounds = true
             return result
         case let .tableView(tableView):
             guard let result = existing as? UITableView else {

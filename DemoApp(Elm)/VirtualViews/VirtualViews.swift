@@ -1,19 +1,36 @@
 import UIKit
 
+public struct ScrollView<A> {
+    public let views: [View<A>]
+    
+    public init(views: [View<A>]) {
+        self.views = views
+    }
+    
+    func map<B>(_ transform: @escaping (A) -> B) -> ScrollView<B> {
+        return ScrollView<B>(views: views.map { view in view.map(transform) })
+    }
+}
+
 public struct StackView<A> {
     public let views: [View<A>]
     public let axis: NSLayoutConstraint.Axis
     public let distribution: UIStackView.Distribution
     public let backgroundColor: UIColor
-    public init(views: [View<A>], axis: NSLayoutConstraint.Axis = .vertical, distribution: UIStackView.Distribution = .equalCentering, backgroundColor: UIColor = .white) {
+    public let spacing: CGFloat
+    public let layoutMargins: UIEdgeInsets
+    
+    public init(views: [View<A>], axis: NSLayoutConstraint.Axis = .vertical, distribution: UIStackView.Distribution = .equalSpacing, backgroundColor: UIColor = .white, spacing: CGFloat = 5.0, layoutMargins: UIEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)) {
         self.views = views
         self.axis = axis
         self.distribution = distribution
         self.backgroundColor = backgroundColor
+        self.spacing = spacing
+        self.layoutMargins = layoutMargins
     }
     
     func map<B>(_ transform: @escaping (A) -> B) -> StackView<B> {
-        return StackView<B>(views: views.map { view in view.map(transform) }, axis: axis, distribution: distribution, backgroundColor: backgroundColor)
+        return StackView<B>(views: views.map { view in view.map(transform) }, axis: axis, distribution: distribution, backgroundColor: backgroundColor, spacing: spacing, layoutMargins: layoutMargins)
     }
 }
 
@@ -105,7 +122,7 @@ indirect public enum View<A> {
     case imageView(image: UIImage?)
     case _stackView(StackView<A>)
     case tableView(TableView<A>)
-    case activityIndicator(style: UIActivityIndicatorView.Style)
+    case scrollView(ScrollView<A>)
     
     func map<B>(_ transform: @escaping (A) -> B) -> View<B> {
         switch self {
@@ -117,24 +134,18 @@ indirect public enum View<A> {
             return ._stackView(s.map(transform))
         case let .tableView(t):
             return .tableView(t.map(transform))
-        case let .activityIndicator(style):
-            return .activityIndicator(style: style)
+        case let .scrollView(s):
+            return .scrollView(s.map(transform))
         }
     }
 }
 
 extension View {
-    public static func stackView(views: [View<A>], axis: NSLayoutConstraint.Axis = .vertical, distribution: UIStackView.Distribution = .equalCentering, backgroundColor: UIColor = .white) -> View<A> {
-        return ._stackView(StackView(views: views, axis: axis, distribution: distribution, backgroundColor: backgroundColor))
+    public static func stackView(views: [View<A>], axis: NSLayoutConstraint.Axis = .vertical, distribution: UIStackView.Distribution = .fillProportionally, backgroundColor: UIColor = .white, spacing: CGFloat = 5.0) -> View<A> {
+        return ._stackView(StackView(views: views, axis: axis, distribution: distribution, backgroundColor: backgroundColor, spacing: spacing))
     }
-}
-
-public struct Modal<Message> {
-    let viewController: ViewController<Message>
-    let presentationStyle: UIModalPresentationStyle
-    
-    func map<B>(_ transform: @escaping (Message) -> B) -> Modal<B> {
-        return Modal<B>(viewController: viewController.map(transform), presentationStyle: presentationStyle)
+    public static func scrollView(views: [View<A>]) -> View<A> {
+        return .scrollView(ScrollView(views: views))
     }
 }
 

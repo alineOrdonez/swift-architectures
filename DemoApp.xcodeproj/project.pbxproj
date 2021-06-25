@@ -384,7 +384,6 @@
 			isa = PBXGroup;
 			children = (
 				D7231B5E2684486A00232AB0 /* GoogleService-Info.plist */,
-				D7A4C5A42660B101004F476D /* Utilities */,
 				D7A4C55826603CCF004F476D /* Info.plist */,
 				D7A4C54A26603CCA004F476D /* AppDelegate.swift */,
 				D7A4C56D26605A3C004F476D /* SceneDelegate.swift */,
@@ -393,9 +392,10 @@
 				D7A4C577266076D1004F476D /* Extensions */,
 				D7A4C55526603CCF004F476D /* LaunchScreen.storyboard */,
 				D7A4C55026603CCA004F476D /* Main.storyboard */,
-				D79A35D5267722890069B68B /* Repository */,
 				D7A4C55E26603CD9004F476D /* Modules */,
 				D7A4C57A2660785D004F476D /* Networking */,
+				D79A35D5267722890069B68B /* Repository */,
+				D7A4C5A42660B101004F476D /* Utilities */,
 			);
 			path = DemoApp;
 			sourceTree = "<group>";
@@ -498,6 +498,14 @@
 			path = CateoryDetail;
 			sourceTree = "<group>";
 		};
+		D7A5928A26858FB60003549A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D784EF3E267C5B5300B4E9AF /* DemoApp.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D7A6DABA2679C93000A2DBC4 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
@@ -583,6 +591,7 @@
 		D7EEE074266F09C3001CA324 /* DemoApp(Elm) */ = {
 			isa = PBXGroup;
 			children = (
+				D7A5928A26858FB60003549A /* Model */,
 				D784EF36267C589700B4E9AF /* VirtualViews */,
 				D784EF31267C52E400B4E9AF /* Extensions */,
 				D784EF2A267C523400B4E9AF /* Elm */,
@@ -592,7 +601,6 @@
 				D7EEE07E266F09C6001CA324 /* Assets.xcassets */,
 				D7EEE080266F09C6001CA324 /* LaunchScreen.storyboard */,
 				D7EEE083266F09C6001CA324 /* Info.plist */,
-				D784EF3E267C5B5300B4E9AF /* DemoApp.swift */,
 			);
 			path = "DemoApp(Elm)";
 			sourceTree = "<group>";
