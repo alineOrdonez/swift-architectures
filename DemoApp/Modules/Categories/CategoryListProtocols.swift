@@ -14,20 +14,20 @@ protocol CategoryListViewToPresenterProtocol: AnyObject {
     var router: CategoryListPresenterToRouterProtocol? { get set }
     
     func fetchCategories()
-    func showDrinks(for selectedCategory: Category, navigationController: UINavigationController)
+    func showDrinks(for selectedCategory: CategoryEntity, navigationController: UINavigationController)
 }
 
 protocol CategoryListPresenterToViewProtocol: AnyObject {
     var presenter: CategoryListViewToPresenterProtocol? { get set }
     
-    func showData(_ categories: [Category])
+    func showData(_ categories: [CategoryEntity])
     func showError(_ message: String)
 }
 
 protocol CategoryListPresenterToRouterProtocol: AnyObject {
     static func createModule() -> UINavigationController
     
-    func showDrinks(for selectedCategory: Category, navigationController: UINavigationController)
+    func showDrinks(for selectedCategory: CategoryEntity, navigationController: UINavigationController)
 }
 
 protocol CategoryListPresenterToInteractorProtocol: AnyObject {
@@ -38,6 +38,6 @@ protocol CategoryListPresenterToInteractorProtocol: AnyObject {
 
 protocol CategoryListInteractorToPresenterProtocol: AnyObject {
     
-    func recievedData(categories: [Category])
+    func recievedData(categories: [CategoryEntity])
     func requestFailed(with message: String)
 }

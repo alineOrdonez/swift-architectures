@@ -10,7 +10,7 @@ import UIKit
 class CategoryDetailViewController: UIViewController, CategoryDetailPresenterToViewProtocol {
     
     var presenter: CategoryDetailViewToPresenterProtocol?
-    var drinks: [Drink]?
+    var drinks: [CategoryDetailEntity]?
     var categoryName: String?
     
     @IBOutlet weak var tableView: UITableView!
@@ -49,7 +49,7 @@ class CategoryDetailViewController: UIViewController, CategoryDetailPresenterToV
         presenter?.downloadImage(from: newURL)
     }
     
-    func showData(_ drinks: [Drink]) {
+    func showData(_ drinks: [CategoryDetailEntity]) {
         self.drinks = drinks
         tableView.reloadData()
     }
@@ -89,7 +89,6 @@ extension CategoryDetailViewController: UITableViewDelegate, UITableViewDataSour
         }
         
         cell.drinkLabel.text = drink.name
-        cell.categoryLabel.text = drink.category
         return cell
     }
     

@@ -21,7 +21,7 @@ protocol CategoryDetailPresenterToViewProtocol {
     var presenter: CategoryDetailViewToPresenterProtocol? { get set }
     var categoryName: String? { get }
     
-    func showData(_ drinks: [Drink])
+    func showData(_ drinks: [CategoryDetailEntity])
     func showError(_ message: String)
     func showImage(_ image: Data, from url: String)
 }
@@ -40,7 +40,7 @@ protocol CategoryDetailPresenterToInteractorProtocol {
 
 protocol CategoryDetailInteractorToPresenterProtocol {
     
-    func recievedData(drinks: [Drink])
+    func recievedData(drinks: [CategoryDetailEntity])
     func requestFailed(with message: String)
     func recievedImage(_ image: Data, from url: String)
 }

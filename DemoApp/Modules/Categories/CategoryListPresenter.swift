@@ -18,11 +18,11 @@ class CategoryListPresenter: CategoryListViewToPresenterProtocol, CategoryListIn
         interactor?.getCategories()
     }
     
-    func showDrinks(for selectedCategory: Category, navigationController: UINavigationController) {
+    func showDrinks(for selectedCategory: CategoryEntity, navigationController: UINavigationController) {
         router?.showDrinks(for: selectedCategory, navigationController: navigationController)
     }
     
-    func recievedData(categories: [Category]) {
+    func recievedData(categories: [CategoryEntity]) {
         view?.showData(categories)
     }
     

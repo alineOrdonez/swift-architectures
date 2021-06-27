@@ -20,7 +20,7 @@ protocol SearchViewToPresenterProtocol: AnyObject {
 protocol SearchPresenterToViewProtocol: AnyObject {
     var presenter: SearchViewToPresenterProtocol? { get set }
     
-    func showData(_ drinks: [Drink])
+    func showData(_ drinks: [SearchEntity])
     func showError(_ message: String)
     
     func showImage(_ image: Data, from url: String)
@@ -40,7 +40,7 @@ protocol SearchPresenterToInteractorProtocol: AnyObject {
 
 protocol SearchInteractorToPresenterProtocol: AnyObject {
     
-    func recievedData(drinks: [Drink])
+    func recievedData(drinks: [SearchEntity])
     func requestFailed(with message: String)
     
     func recievedImage(_ image: Data, from url: String)

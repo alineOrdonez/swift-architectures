@@ -45,18 +45,18 @@ protocol Repository: AnyObject {
     var storage: StorageReference { get set }
     
     func exist(id: String, completion: @escaping(RepResult<Bool, Error>) -> Void)
-    func get(id: String, completion: @escaping(RepResult<Drink, Error>) -> Void)
-    func list(completion: @escaping(RepResult<[Drink], Error>) -> Void)
-    func add(_ item: Drink, completion: @escaping(RepResult<Bool, Error>) -> Void)
-    func delete(_ item: Drink, completion: @escaping(RepResult<Bool, Error>) -> Void)
+    func get(id: String, completion: @escaping(RepResult<FavoritesEntity, Error>) -> Void)
+    func list(completion: @escaping(RepResult<[FavoritesEntity], Error>) -> Void)
+    func add(_ item: FavoritesEntity, completion: @escaping(RepResult<Bool, Error>) -> Void)
+    func delete(_ item: FavoritesEntity, completion: @escaping(RepResult<Bool, Error>) -> Void)
     
-    func uploadImage(_ item: Drink, completion: @escaping(RepResult<Drink, Error>) -> Void)
+    func uploadImage(_ item: FavoritesEntity, completion: @escaping(RepResult<FavoritesEntity, Error>) -> Void)
     func deleteImage(_ name: String, completion: @escaping(RepResult<Bool, Error>) -> Void)
 }
 
 extension Repository {
     
-    func uploadImage(_ item: Drink, completion: @escaping(RepResult<Drink, Error>) -> Void) {
+    func uploadImage(_ item: FavoritesEntity, completion: @escaping(RepResult<FavoritesEntity, Error>) -> Void) {
         
         guard let data = try? Data(contentsOf: URL(string: item.thumb)!) else {
             return completion(.failure(FileError.noObject))

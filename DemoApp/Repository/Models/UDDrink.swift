@@ -8,7 +8,7 @@
 import Foundation
 
 struct UDDrink: Codable, Storable {
-    typealias Entity = Drink
+    typealias Entity = FavoritesEntity
     
     let id: String
     let name: String
@@ -23,6 +23,6 @@ struct UDDrink: Codable, Storable {
     }
     
     var model: Entity {
-        return Entity(id: self.id, name: self.name, category: self.category, thumb: self.thumb)
+        return Entity(id: self.id, name: self.name, thumb: self.thumb, category: self.category)
     }
 }

@@ -26,7 +26,7 @@ class RealmRepository: Repository {
         }
     }
     
-    func get(id: String, completion: @escaping (RepResult<Drink, Error>) -> Void) {
+    func get(id: String, completion: @escaping (RepResult<FavoritesEntity, Error>) -> Void) {
         let predicate = NSPredicate(format: "id == %@", id)
         
         guard let item = realm.objects(RDrink.self).filter(predicate).first else {
@@ -35,13 +35,13 @@ class RealmRepository: Repository {
         completion(.success(item.model))
     }
     
-    func list(completion: @escaping (RepResult<[Drink], Error>) -> Void) {
+    func list(completion: @escaping (RepResult<[FavoritesEntity], Error>) -> Void) {
         let objects = realm.objects(RDrink.self)
-        let domainObjects: [Drink] = objects.compactMap{$0.model}
+        let domainObjects: [FavoritesEntity] = objects.compactMap{$0.model}
         completion(.success(domainObjects))
     }
     
-    func add(_ item: Drink, completion: @escaping(RepResult<Bool, Error>) -> Void) {
+    func add(_ item: FavoritesEntity, completion: @escaping(RepResult<Bool, Error>) -> Void) {
         do {
             try realm.write {
                 realm.add(RDrink.init(drink: item))
@@ -52,7 +52,7 @@ class RealmRepository: Repository {
         }
     }
     
-    func delete(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+    func delete(_ item: FavoritesEntity, completion: @escaping (RepResult<Bool, Error>) -> Void) {
         do {
             try realm.write {
                 let predicate = NSPredicate(format: "id == %@", item.id)

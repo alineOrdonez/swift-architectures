@@ -20,7 +20,7 @@ protocol FavoritesViewToPresenterProtocol {
 protocol FavoritesPresenterToViewProtocol {
     var presenter: FavoritesViewToPresenterProtocol? { get set }
     
-    func showData(_ drinks: [Drink])
+    func showData(_ drinks: [FavoritesEntity])
     func showError(_ message: String)
     func showImage(_ image: Data, from url: String)
 }
@@ -39,7 +39,7 @@ protocol FavoritesPresenterToInteractorProtocol {
 
 protocol FavoritesInteractorToPresenterProtocol {
     
-    func recievedData(drinks: [Drink])
+    func recievedData(drinks: [FavoritesEntity])
     func requestFailed(with message: String)
     func recievedImage(_ image: Data, from url: String)
 }

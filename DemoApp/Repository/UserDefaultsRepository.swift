@@ -45,7 +45,7 @@ class UserDefaultsRepository: Repository {
         }
     }
     
-    func get(id: String, completion: @escaping (RepResult<Drink, Error>) -> Void) {
+    func get(id: String, completion: @escaping (RepResult<FavoritesEntity, Error>) -> Void) {
         guard let data = userDefaults.data(forKey: dataKey) else {
             return completion(.failure(UserDefaultsError.noValue))
         }
@@ -64,7 +64,7 @@ class UserDefaultsRepository: Repository {
         }
     }
     
-    func list(completion: @escaping (RepResult<[Drink], Error>) -> Void) {
+    func list(completion: @escaping (RepResult<[FavoritesEntity], Error>) -> Void) {
         guard let data = userDefaults.data(forKey: dataKey) else {
             return completion(.failure(UserDefaultsError.noValue))
         }
@@ -80,7 +80,7 @@ class UserDefaultsRepository: Repository {
         }
     }
     
-    func add(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+    func add(_ item: FavoritesEntity, completion: @escaping (RepResult<Bool, Error>) -> Void) {
         uploadImage(item) { result in
             switch result {
             case .success(let drink):
@@ -101,7 +101,7 @@ class UserDefaultsRepository: Repository {
         }
     }
     
-    func delete(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+    func delete(_ item: FavoritesEntity, completion: @escaping (RepResult<Bool, Error>) -> Void) {
         guard let data = userDefaults.data(forKey: dataKey) else {
             return completion(.failure(UserDefaultsError.noValue))
         }
@@ -133,7 +133,7 @@ extension UserDefaultsRepository {
         return userDefaults.data(forKey: dataKey) != nil
     }
     
-    private func update(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+    private func update(_ item: FavoritesEntity, completion: @escaping (RepResult<Bool, Error>) -> Void) {
         guard let data = userDefaults.data(forKey: dataKey) else {
             return completion(.failure(UserDefaultsError.noValue))
         }
@@ -153,7 +153,7 @@ extension UserDefaultsRepository {
         }
     }
     
-    private func insert(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+    private func insert(_ item: FavoritesEntity, completion: @escaping (RepResult<Bool, Error>) -> Void) {
         do {
             let drinks: [UDDrink] = [UDDrink.init(drink: item)]
             let encoder = JSONEncoder()

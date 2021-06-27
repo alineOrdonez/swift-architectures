@@ -11,7 +11,7 @@ import UIKit
 class CategoryListViewController: UIViewController, CategoryListPresenterToViewProtocol {
     
     var presenter: CategoryListViewToPresenterProtocol?
-    private var categories: [Category]?
+    private var categories: [CategoryEntity]?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -35,7 +35,7 @@ class CategoryListViewController: UIViewController, CategoryListPresenterToViewP
         presenter?.fetchCategories()
     }
     
-    func showData(_ categories: [Category]) {
+    func showData(_ categories: [CategoryEntity]) {
         self.categories = categories
         tableView.reloadData()
     }

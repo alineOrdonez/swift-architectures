@@ -12,7 +12,7 @@ final class InMemoryRepository: Repository {
     
     var storage: StorageReference = Storage.storage().reference()
     
-    private static var drinks: [Drink] = [Drink]()
+    private static var drinks: [FavoritesEntity] = [FavoritesEntity]()
     
     func exist(id: String, completion: @escaping (RepResult<Bool, Error>) -> Void) {
         if let _ = Self.drinks.filter({$0.id == id}).first {
@@ -21,18 +21,18 @@ final class InMemoryRepository: Repository {
         return completion(.success(false))
     }
     
-    func get(id: String, completion: @escaping (RepResult<Drink, Error>) -> Void) {
+    func get(id: String, completion: @escaping (RepResult<FavoritesEntity, Error>) -> Void) {
         if let drink = Self.drinks.filter({$0.id == id}).first {
             return completion(.success(drink))
         }
         return completion(.failure(FileError.noObject))
     }
     
-    func list(completion: @escaping (RepResult<[Drink], Error>) -> Void) {
+    func list(completion: @escaping (RepResult<[FavoritesEntity], Error>) -> Void) {
         completion(.success(Self.drinks))
     }
     
-    func add(_ item: Drink, completion: @escaping(RepResult<Bool, Error>) -> Void) {
+    func add(_ item: FavoritesEntity, completion: @escaping(RepResult<Bool, Error>) -> Void) {
         uploadImage(item) { result in
             switch result {
             case .success(let drink):
@@ -44,7 +44,7 @@ final class InMemoryRepository: Repository {
         completion(.success(true))
     }
     
-    func delete(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+    func delete(_ item: FavoritesEntity, completion: @escaping (RepResult<Bool, Error>) -> Void) {
         guard let index = Self.drinks.firstIndex(where: {$0.id == item.id}) else {
             return completion(.failure(FileError.noObject))
         }

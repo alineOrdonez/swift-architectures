@@ -14,7 +14,7 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
     
     var presenter: RecipeViewToPresenterProtocol?
     var recipeId: String = ""
-    var drink: Drink?
+    var drink: RecipeEntity?
     
     private let loadingView = LoadingViewController()
     private lazy var isFavoriteDrink: Bool = false {
@@ -112,13 +112,13 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
         presenter?.getRecipe(with: recipeId)
     }
     
-    func downloadImage(drink: Drink) {
+    func downloadImage(drink: RecipeEntity) {
         if let url = URL(string: drink.thumb) {
             presenter?.downloadImage(from: url)
         }
     }
     
-    func showRecipe(_ recipe: Drink) {
+    func showRecipe(_ recipe: RecipeEntity) {
         DispatchQueue.main.async { [weak self] in
             self?.stopAnimating()
             
@@ -158,7 +158,7 @@ extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return drink?.listOfIngredients?.count ?? 0
+            return drink?.ingredients.count ?? 0
         default:
             return 1
         }
@@ -187,10 +187,10 @@ extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.section {
         case 0:
-            let dictionary = drink.listOfIngredients?[indexPath.row]
+            let dictionary = drink.ingredients[indexPath.row]
             let cell = UITableViewCell(style: .value1, reuseIdentifier: "RecipeTableViewCell")
-            cell.textLabel?.text = dictionary?.keys.first
-            cell.detailTextLabel?.text = dictionary?.values.first
+            cell.textLabel?.text = dictionary.keys.first
+            cell.detailTextLabel?.text = dictionary.values.first
             cell.selectionStyle = .none
             return cell
         case 1:

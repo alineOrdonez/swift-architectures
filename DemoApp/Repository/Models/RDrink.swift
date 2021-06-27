@@ -10,7 +10,7 @@ import RealmSwift
 import UIKit
 
 class RDrink: Object, Storable {
-    typealias Entity = Drink
+    typealias Entity = FavoritesEntity
     
     @objc dynamic var id: String
     @objc dynamic var name: String
@@ -47,6 +47,6 @@ class RDrink: Object, Storable {
     }
     
     var model: Entity {
-        return Entity(id: self.id, name: self.name, category: self.category, thumb: self.thumb, image: image)
+        return Entity(id: self.id, name: self.name, thumb: self.thumb, category: self.category)
     }
 }

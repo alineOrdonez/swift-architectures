@@ -7,18 +7,6 @@
 
 import Foundation
 
-struct Category: Codable {
+struct CategoryEntity {
     let name: String
-    
-    enum CodingKeys: String, CodingKey {
-        case name = "strCategory"
-    }
-}
-
-struct CategoryList: Codable {
-    let categories: [Category]?
-    
-    enum CodingKeys: String, CodingKey {
-        case categories = "drinks"
-    }
 }

@@ -28,7 +28,7 @@ class CategoryDetailPresenter: CategoryDetailViewToPresenterProtocol, CategoryDe
         router?.showRecipe(for: id, navigationController: navigationController)
     }
     
-    func recievedData(drinks: [Drink]) {
+    func recievedData(drinks: [CategoryDetailEntity]) {
         view?.showData(drinks)
     }
     func requestFailed(with message: String) {

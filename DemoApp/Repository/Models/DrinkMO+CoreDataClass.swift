@@ -12,7 +12,7 @@ import CoreData
 
 public class DrinkMO: NSManagedObject, Storable {
     
-    typealias Entity = Drink
+    typealias Entity = FavoritesEntity
     
     required convenience init(drink: Entity) {
         self.init()
@@ -23,7 +23,7 @@ public class DrinkMO: NSManagedObject, Storable {
     }
     
     var model: Entity {
-        return Entity(id: self.id, name: self.name, category: self.category, thumb: self.thumb)
+        return Entity(id: self.id, name: self.name, thumb: self.thumb, category: self.category)
     }
 }
 

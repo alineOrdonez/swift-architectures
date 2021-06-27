@@ -26,7 +26,7 @@ class CategoryTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setupUI(with category: Category) {
+    func setupUI(with category: CategoryEntity) {
         categoryLabel.text = category.name
         let name = category.name.formatName()
         categoryImage.image = UIImage(named: name)

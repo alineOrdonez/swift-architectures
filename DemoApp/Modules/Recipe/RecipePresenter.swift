@@ -26,11 +26,11 @@ class RecipePresenter: RecipeViewToPresenterProtocol, RecipeInteractorToPresente
         interactor?.isFavorite(drink: drink)
     }
     
-    func addRemove(drink: Drink, isFavorite: Bool) {
+    func addRemove(drink: RecipeEntity, isFavorite: Bool) {
         interactor?.addRemove(drink: drink, isFavorite: isFavorite)
     }
     
-    func recievedData(recipe: Drink) {
+    func recievedData(recipe: RecipeEntity) {
         view?.showRecipe(recipe)
     }
     

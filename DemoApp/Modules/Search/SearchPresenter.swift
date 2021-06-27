@@ -26,7 +26,7 @@ class SearchPresenter: SearchViewToPresenterProtocol, SearchInteractorToPresente
     }
     
     // MARK: - Search result
-    func recievedData(drinks: [Drink]) {
+    func recievedData(drinks: [SearchEntity]) {
         view?.showData(drinks)
     }
     func requestFailed(with message: String) {

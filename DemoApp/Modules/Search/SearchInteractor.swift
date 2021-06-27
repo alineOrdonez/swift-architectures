@@ -28,7 +28,8 @@ class SearchInteractor: SearchPresenterToInteractorProtocol {
                     self.presenter?.requestFailed(with: error)
                     return
                 }
-                self.presenter?.recievedData(drinks: drinks)
+                let searchList: [SearchEntity] = drinks.map({SearchEntity.init(id: $0.id, name: $0.name, category: $0.category!, thumb: $0.thumb)})
+                self.presenter?.recievedData(drinks: searchList)
             case .failure(let error):
                 self.presenter?.requestFailed(with: error.localizedDescription)
             }

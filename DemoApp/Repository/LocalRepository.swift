@@ -42,7 +42,7 @@ class LocalRepository: Repository {
         }
     }
     
-    func get(id: String, completion: @escaping (RepResult<Drink, Error>) -> Void) {
+    func get(id: String, completion: @escaping (RepResult<FavoritesEntity, Error>) -> Void) {
         guard fileExist else {
             return completion(.failure(FileError.unableToReadFile))
         }
@@ -63,7 +63,7 @@ class LocalRepository: Repository {
         }
     }
     
-    func list(completion: @escaping (RepResult<[Drink], Error>) -> Void) {
+    func list(completion: @escaping (RepResult<[FavoritesEntity], Error>) -> Void) {
         do {
             let data = try Data(contentsOf: fullPath)
             let decoder = JSONDecoder()
@@ -77,7 +77,7 @@ class LocalRepository: Repository {
         }
     }
     
-    func add(_ item: Drink, completion: @escaping(RepResult<Bool, Error>) -> Void) {
+    func add(_ item: FavoritesEntity, completion: @escaping(RepResult<Bool, Error>) -> Void) {
         uploadImage(item) { result in
             switch result {
             case .success(let drink):
@@ -100,7 +100,7 @@ class LocalRepository: Repository {
         
     }
     
-    func delete(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+    func delete(_ item: FavoritesEntity, completion: @escaping (RepResult<Bool, Error>) -> Void) {
         do {
             var data = try Data(contentsOf: fullPath)
             
@@ -139,7 +139,7 @@ extension LocalRepository {
         return paths[0]
     }
     
-    private func update(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+    private func update(_ item: FavoritesEntity, completion: @escaping (RepResult<Bool, Error>) -> Void) {
         do {
             var data = try Data(contentsOf: fullPath)
             
@@ -158,7 +158,7 @@ extension LocalRepository {
         }
     }
     
-    private func insert(_ item: Drink, completion: @escaping (RepResult<Bool, Error>) -> Void) {
+    private func insert(_ item: FavoritesEntity, completion: @escaping (RepResult<Bool, Error>) -> Void) {
         do {
             let drinks: [UDDrink] = [UDDrink.init(drink: item)]
             let encoder = JSONEncoder()
@@ -172,7 +172,7 @@ extension LocalRepository {
         }
     }
     
-    func uploadImage(_ item: Drink, completion: @escaping(RepResult<Drink, Error>) -> Void) {
+    func uploadImage(_ item: FavoritesEntity, completion: @escaping(RepResult<FavoritesEntity, Error>) -> Void) {
         let path = getDocumentsDirectory().appendingPathComponent("images")
         
         if !FileManager.default.fileExists(atPath: path.path) {

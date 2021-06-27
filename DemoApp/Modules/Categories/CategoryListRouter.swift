@@ -26,7 +26,7 @@ class CategoryListRouter: CategoryListPresenterToRouterProtocol {
         return UINavigationController(rootViewController: viewController)
     }
     
-    func showDrinks(for selectedCategory: Category, navigationController: UINavigationController) {
+    func showDrinks(for selectedCategory: CategoryEntity, navigationController: UINavigationController) {
         let viewController = CategoryDetailRouter.createModule()
         viewController.categoryName = selectedCategory.name
         navigationController.pushViewController(viewController, animated: true)

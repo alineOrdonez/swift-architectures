@@ -11,7 +11,7 @@ class SearchViewController: UIViewController, SearchPresenterToViewProtocol, UIS
     
     var presenter: SearchViewToPresenterProtocol?
     var searchController = UISearchController(searchResultsController: nil)
-    var searchResults: [Drink]?
+    var searchResults: [SearchEntity]?
     let imageCache = NSCache<AnyObject, AnyObject>()
     
     @IBOutlet weak var tableView: UITableView!
@@ -69,7 +69,7 @@ class SearchViewController: UIViewController, SearchPresenterToViewProtocol, UIS
         presenter?.downloadImage(from: newURL)
     }
     
-    func showData(_ drinks: [Drink]) {
+    func showData(_ drinks: [SearchEntity]) {
         searchResults = drinks
         tableView.reloadData()
     }

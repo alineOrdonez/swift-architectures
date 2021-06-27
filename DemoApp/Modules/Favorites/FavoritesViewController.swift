@@ -10,7 +10,7 @@ import UIKit
 class FavoritesViewController: UIViewController, FavoritesPresenterToViewProtocol {
     
     var presenter: FavoritesViewToPresenterProtocol?
-    var drinks: [Drink]?
+    var drinks: [FavoritesEntity]?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -84,7 +84,7 @@ class FavoritesViewController: UIViewController, FavoritesPresenterToViewProtoco
         presenter?.downloadImage(from: newURL)
     }
     
-    func showData(_ drinks: [Drink]) {
+    func showData(_ drinks: [FavoritesEntity]) {
         self.drinks = drinks
         tableView.reloadData()
     }

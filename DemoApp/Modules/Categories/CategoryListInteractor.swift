@@ -25,7 +25,8 @@ class CategoryListInteractor: CategoryListPresenterToInteractorProtocol {
                     self?.presenter?.requestFailed(with: error)
                     return
                 }
-                self?.presenter?.recievedData(categories: categories)
+                let categoryEntities = categories.map{ CategoryEntity.init(name: $0.name) }
+                self?.presenter?.recievedData(categories: categoryEntities)
             case .failure(let error):
                 self?.presenter?.requestFailed(with: error.localizedDescription)
             }

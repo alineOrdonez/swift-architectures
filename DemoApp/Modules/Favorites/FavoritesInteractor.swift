@@ -24,11 +24,11 @@ class FavoritesInteractor: FavoritesPresenterToInteractorProtocol {
     
     func getDrinks() {
         repository = RepoType.current.repository()
-        //TODO: When fresh install, local repository returns error
         repository.list { result in
             switch result {
             case .success(let drinks):
-                self.presenter?.recievedData(drinks: drinks)
+                let entities = drinks.map( {FavoritesEntity(id: $0.id, name: $0.name, thumb: $0.thumb, category: $0.category)} )
+                self.presenter?.recievedData(drinks: entities)
             case .failure(let error):
                 self.presenter?.requestFailed(with: error.localizedDescription)
             }
