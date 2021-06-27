@@ -64,6 +64,10 @@ class LocalRepository: Repository {
     }
     
     func list(completion: @escaping (RepResult<[FavoritesEntity], Error>) -> Void) {
+        guard fileExist else {
+            return completion(.success([FavoritesEntity]()))
+        }
+        
         do {
             let data = try Data(contentsOf: fullPath)
             let decoder = JSONDecoder()

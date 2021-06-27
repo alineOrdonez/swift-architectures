@@ -66,7 +66,7 @@ class UserDefaultsRepository: Repository {
     
     func list(completion: @escaping (RepResult<[FavoritesEntity], Error>) -> Void) {
         guard let data = userDefaults.data(forKey: dataKey) else {
-            return completion(.failure(UserDefaultsError.noValue))
+            return completion(.success([FavoritesEntity]()))
         }
         
         do {
