@@ -171,7 +171,7 @@ extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Ingredients:"
+            return "Ingredients"
         case 1:
             return "Glass"
         default:
@@ -191,6 +191,7 @@ extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = UITableViewCell(style: .value1, reuseIdentifier: "RecipeTableViewCell")
             cell.textLabel?.text = dictionary.keys.first
             cell.detailTextLabel?.text = dictionary.values.first
+            cell.detailTextLabel?.numberOfLines = 0
             cell.selectionStyle = .none
             return cell
         case 1:

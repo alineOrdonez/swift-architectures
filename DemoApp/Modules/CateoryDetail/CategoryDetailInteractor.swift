@@ -30,7 +30,7 @@ class CategoryDetailInteractor: CategoryDetailPresenterToInteractorProtocol {
                     self.presenter?.requestFailed(with: error)
                     return
                 }
-                let entities = drinks.map({CategoryDetailEntity.init(id: $0.id, name: $0.name, thumb: $0.thumb)})
+                let entities = drinks.map({CategoryDetailEntity.init(id: $0.id, name: $0.name, thumb: $0.thumb, category: $0.category)})
                 self.presenter?.recievedData(drinks: entities)
             case .failure(let error):
                 self.presenter?.requestFailed(with: error.localizedDescription)

@@ -12,11 +12,13 @@ struct CategoryDetailEntity {
     let name: String
     let thumb: String
     var image: Data?
+    let category: String?
     
-    init(id: String, name: String, thumb: String) {
+    init(id: String, name: String, thumb: String, category: String?) {
         self.id = id
         self.name = name
         self.thumb = thumb
         self.image = nil
+        self.category = category
     }
 }

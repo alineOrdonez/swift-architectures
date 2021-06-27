@@ -89,6 +89,14 @@ extension CategoryDetailViewController: UITableViewDelegate, UITableViewDataSour
         }
         
         cell.drinkLabel.text = drink.name
+        
+        if let category = drink.category  {
+            cell.categoryLabel.isHidden = false
+            cell.categoryLabel.text = category
+        } else {
+            cell.categoryLabel.isHidden = true
+        }
+        
         return cell
     }
     
