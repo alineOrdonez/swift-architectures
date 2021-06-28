@@ -218,4 +218,9 @@ extension LocalRepository {
             completion(.failure(FileError.unableToWriteFile))
         }
     }
+    
+    func getImage(from url: URL) -> Data? {
+        let path = getDocumentsDirectory().appendingPathComponent("images").appendingPathComponent(url.lastPathComponent)
+        return try! Data(contentsOf: path)
+    }
 }

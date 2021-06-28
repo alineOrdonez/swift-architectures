@@ -110,7 +110,13 @@ class FavoritesViewController: UIViewController, FavoritesPresenterToViewProtoco
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return drinks?.count ?? 1
+        guard let count = drinks?.count, count > 0 else {
+            self.tableView.addBackgroundView(with: "No favorites recipes.")
+            return 0
+        }
+        
+        self.tableView.restore()
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -41,6 +41,12 @@ class FavoritesInteractor: FavoritesPresenterToInteractorProtocol {
             return
         }
         
+        if url.isFileURL, let image = repository.getImage(from: url) {
+            self.presenter?.recievedImage(image, from: url.absoluteString)
+            return
+        }
+        
+        
         manager.getData(from: url) { data, response, error in
             guard let data = data else {
                 DispatchQueue.main.async() { [weak self] in

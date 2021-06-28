@@ -52,6 +52,8 @@ protocol Repository: AnyObject {
     
     func uploadImage(_ item: FavoritesEntity, completion: @escaping(RepResult<FavoritesEntity, Error>) -> Void)
     func deleteImage(_ name: String, completion: @escaping(RepResult<Bool, Error>) -> Void)
+    
+    func getImage(from url: URL) -> Data?
 }
 
 extension Repository {
@@ -86,6 +88,10 @@ extension Repository {
             
             return completion(.success(true))
         }
+    }
+    
+    func getImage(from url: URL) -> Data? {
+        fatalError("Not implemented")
     }
 }
 

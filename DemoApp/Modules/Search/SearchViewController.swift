@@ -93,7 +93,14 @@ class SearchViewController: UIViewController, SearchPresenterToViewProtocol, UIS
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults?.count ?? 1
+        
+        guard let count = searchResults?.count, count > 0 else {
+            self.tableView.addBackgroundView(with: "Search for recipes!!")
+            return 0
+        }
+        
+        self.tableView.restore()
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

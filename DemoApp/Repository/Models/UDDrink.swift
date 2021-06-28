@@ -13,6 +13,7 @@ struct UDDrink: Codable, Storable {
     let id: String
     let name: String
     let category: String?
+    var image: Data?
     let thumb: String
     
     init(drink: Entity) {
@@ -20,6 +21,7 @@ struct UDDrink: Codable, Storable {
         self.name = drink.name
         self.category = drink.category
         self.thumb = drink.thumb
+        self.image = drink.image
     }
     
     var model: Entity {
