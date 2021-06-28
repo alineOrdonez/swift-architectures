@@ -11,21 +11,17 @@ import UIKit
 public protocol Component {
     associatedtype Message: Equatable
     mutating func send(_: Message) -> [Command<Message>]
-    var subscriptions: [Subscription<Message>] { get }
     var viewController: ViewController<Message> { get }
 }
 
 final public class Driver<Model> where Model: Component {
     private var model: Model
     private var strongReferences: StrongReferences = StrongReferences()
-    private var subscriptions: SubscriptionManager<Model.Message>!
     public private(set) var viewController: UIViewController = UIViewController()
     
     public init(_ initial: Model, commands: [Command<Model.Message>] = []) {
         model = initial
         strongReferences = model.viewController.render(callback: self.asyncSend, change: &viewController)
-        subscriptions = SubscriptionManager(self.asyncSend)
-        subscriptions?.update(subscriptions: model.subscriptions)
         for command in commands {
             interpret(command: command)
         }
@@ -50,7 +46,6 @@ final public class Driver<Model> where Model: Component {
     }
     
     func refresh() {
-        subscriptions?.update(subscriptions: model.subscriptions)
         strongReferences = model.viewController.render(callback: self.asyncSend, change: &viewController)
     }
 }

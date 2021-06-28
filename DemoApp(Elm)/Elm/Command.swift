@@ -9,8 +9,6 @@ import Foundation
 import UIKit
 
 public enum Command<A: Equatable> {
-    // Custom
-    
     // Networking
     case request(URLRequest, available: (Data?) -> A)
     

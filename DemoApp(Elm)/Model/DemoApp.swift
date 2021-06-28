@@ -62,6 +62,10 @@ extension Array where Element == Drink {
 
 extension DemoApp: Component {
     
+    static var Spacer: String {
+        return "\n\n"
+    }
+    
     static var findURL: URL {
         return URL(string: "https://1e7ef212-6cca-41a5-9495-9d473fd35cc0.mock.pstmn.io/getFavorites")!
     }
@@ -91,15 +95,25 @@ extension DemoApp: Component {
             NavigationItem(title: "Favorite Drinks", leftBarButtonItem: nil, viewController: lists.tableViewController)
         ]
         if let item = selectedItem {
-            var elements: [View<Message>] = [.imageView(image: item.image), .label(text: "Ingredients:")]
-            for ingredient in item.ingredients {
-                elements.append(.stackView(views: [.label(text: ingredient.name), .label(text: ingredient.measure)], axis: .horizontal, distribution: .fillEqually))
-            }
-            elements.append(.label(text: "Instructions:"))
-            elements.append(.label(text: item.instructions))
-            viewControllers.append(NavigationItem(title: item.name, leftBarButtonItem: nil, viewController: .viewController(.stackView(views: elements, distribution: .fill, spacing: 10.0))))
+            let viewDetail: View<Message> = .stackView(views: viewDetail, distribution: .equalSpacing, spacing: 8.0)
+            viewControllers.append(NavigationItem(title: item.name, leftBarButtonItem: nil, viewController: .viewController(viewDetail)))
         }
         return ViewController.navigationController(NavigationController(viewControllers: viewControllers, back: .back))
+    }
+    
+    private var viewDetail: [View<Message>] {
+        var elements: [View<Message>] = []
+        if let item = selectedItem {
+            elements = [.imageView(image: item.image), .label(Label(text: "Ingredients:", font: UIFont.boldSystemFont(ofSize: 16)))]
+            
+            for ingredient in item.ingredients {
+                elements.append(.stackView(views: [.label(Label(text: ingredient.name)), .label(Label(text: ingredient.measure))], axis: .horizontal, distribution: .fillEqually))
+            }
+            elements.append(.label(Label(text: "Instructions:", font: UIFont.boldSystemFont(ofSize: 16), numberOfLines: 1)))
+            elements.append(.label(Label(text: item.instructions)))
+            elements.append(.label(Label(text: Self.Spacer)))
+        }
+        return elements
     }
     
     mutating public func send(_ msg: Message) -> [Command<Message>] {
@@ -139,10 +153,6 @@ extension DemoApp: Component {
             lists.remove(at: index)
             return []
         }
-    }
-    
-    public var subscriptions: [Subscription<Message>] {
-        return []
     }
 }
 

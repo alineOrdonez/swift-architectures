@@ -30,8 +30,6 @@
 		D784EF29267C32D700B4E9AF /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784EF28267C32D700B4E9AF /* LoadingViewController.swift */; };
 		D784EF2C267C523D00B4E9AF /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784EF2B267C523D00B4E9AF /* Driver.swift */; };
 		D784EF2E267C527900B4E9AF /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784EF2D267C527900B4E9AF /* Command.swift */; };
-		D784EF30267C52A400B4E9AF /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784EF2F267C52A400B4E9AF /* Subscription.swift */; };
-		D784EF33267C52F400B4E9AF /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784EF32267C52F400B4E9AF /* UIViewController+Extension.swift */; };
 		D784EF3B267C589800B4E9AF /* VirtualViews+Rendering.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784EF37267C589700B4E9AF /* VirtualViews+Rendering.swift */; };
 		D784EF3C267C589800B4E9AF /* VirtualViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784EF39267C589700B4E9AF /* VirtualViews.swift */; };
 		D784EF3F267C5B5300B4E9AF /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784EF3E267C5B5300B4E9AF /* DemoApp.swift */; };
@@ -152,8 +150,6 @@
 		D784EF28267C32D700B4E9AF /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		D784EF2B267C523D00B4E9AF /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		D784EF2D267C527900B4E9AF /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
-		D784EF2F267C52A400B4E9AF /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
-		D784EF32267C52F400B4E9AF /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		D784EF37267C589700B4E9AF /* VirtualViews+Rendering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VirtualViews+Rendering.swift"; sourceTree = "<group>"; };
 		D784EF39267C589700B4E9AF /* VirtualViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualViews.swift; sourceTree = "<group>"; };
 		D784EF3E267C5B5300B4E9AF /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
@@ -318,7 +314,6 @@
 			children = (
 				D784EF2B267C523D00B4E9AF /* Driver.swift */,
 				D784EF2D267C527900B4E9AF /* Command.swift */,
-				D784EF2F267C52A400B4E9AF /* Subscription.swift */,
 			);
 			path = Elm;
 			sourceTree = "<group>";
@@ -326,7 +321,6 @@
 		D784EF31267C52E400B4E9AF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D784EF32267C52F400B4E9AF /* UIViewController+Extension.swift */,
 				D784EF40267C607100B4E9AF /* Array+Extension.swift */,
 			);
 			path = Extensions;
@@ -872,10 +866,8 @@
 			files = (
 				D7EEE076266F09C3001CA324 /* AppDelegate.swift in Sources */,
 				D784EF41267C607100B4E9AF /* Array+Extension.swift in Sources */,
-				D784EF30267C52A400B4E9AF /* Subscription.swift in Sources */,
 				D7EEE078266F09C3001CA324 /* SceneDelegate.swift in Sources */,
 				D784EF3C267C589800B4E9AF /* VirtualViews.swift in Sources */,
-				D784EF33267C52F400B4E9AF /* UIViewController+Extension.swift in Sources */,
 				D784EF3B267C589800B4E9AF /* VirtualViews+Rendering.swift in Sources */,
 				D784EF2E267C527900B4E9AF /* Command.swift in Sources */,
 				D784EF2C267C523D00B4E9AF /* Driver.swift in Sources */,

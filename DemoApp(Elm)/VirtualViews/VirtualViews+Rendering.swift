@@ -112,11 +112,14 @@ public struct Renderer<A> {
         self.callback = callback
     }
     
-    private func render(label text: String, into l: UILabel) {
-        l.text = text
+    private func render(label: Label<A>, into l: UILabel) {
+        l.text = label.text
         l.backgroundColor = .white
-        l.textAlignment = .justified
-        l.numberOfLines = 0
+        l.textAlignment = label.alignment
+        l.font = label.font
+        l.textColor = label.textColor
+        l.numberOfLines = label.numberOfLines
+        l.sizeToFit()
     }
     
     private func render(_ stackView: StackView<A>, into result: UIStackView) {
@@ -137,11 +140,16 @@ public struct Renderer<A> {
         result.reloadData()
     }
     
+    public func render(_ scrollView: ScrollView<A>, into result: UIScrollView) {
+        result.frame = UIScreen.main.bounds
+        result.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     public mutating func render(view: View<A>) -> UIView {
         switch view {
-        case let .label(text: text):
+        case let .label(label):
             let l = UILabel()
-            render(label: text, into: l)
+            render(label: label, into: l)
             return l
         case let ._stackView(stackView):
             let views = stackView.views.map { render(view: $0) }
@@ -152,9 +160,15 @@ public struct Renderer<A> {
             let views = sv.views.map { render(view: $0) }
             let result = UIScrollView(frame: UIScreen.main.bounds)
             views.forEach({result.addSubview($0)})
+            render(sv, into: result)
             return result
         case let .imageView(image):
-            return UIImageView(image: image)
+            let imageView = UIImageView(image: image)
+            imageView.contentMode = .scaleAspectFit
+            let constant = UIScreen.main.bounds.height / 2.5
+            let height = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: constant)
+            imageView.addConstraints([height])
+            return imageView
         case let .tableView(tableView):
             let result = UITableView(frame: .zero, style: .plain)
             render(tableView, into: result)
@@ -164,11 +178,11 @@ public struct Renderer<A> {
     
     public mutating func update(view: View<A>, into existing: UIView) -> UIView {
         switch view {
-        case let .label(text: text):
+        case let .label(label):
             guard let l = existing as? UILabel else {
                 return render(view: view)
             }
-            render(label: text, into: l)
+            render(label: label, into: l)
             return l
         case let ._stackView(stackView):
             guard let result = existing as? UIStackView, result.arrangedSubviews.count == stackView.views.count else {

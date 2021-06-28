@@ -12,6 +12,26 @@ public struct ScrollView<A> {
     }
 }
 
+public struct Label<A> {
+    public let text: String
+    public let font: UIFont
+    public let textColor: UIColor
+    public let alignment: NSTextAlignment
+    public let numberOfLines: Int
+    
+    public init(text: String, font: UIFont = UIFont.systemFont(ofSize: 13), textColor: UIColor = .black, alignment: NSTextAlignment = .justified, numberOfLines: Int = 0) {
+        self.text = text
+        self.font = font
+        self.textColor = textColor
+        self.alignment = alignment
+        self.numberOfLines = numberOfLines
+    }
+    
+    func map<B>(_ transform: @escaping (A) -> B) -> Label<B> {
+        return Label<B>(text: text, font: font, textColor: textColor, alignment: alignment, numberOfLines: numberOfLines)
+    }
+}
+
 public struct StackView<A> {
     public let views: [View<A>]
     public let axis: NSLayoutConstraint.Axis
@@ -118,7 +138,7 @@ public struct NavigationController<Message> {
 
 
 indirect public enum View<A> {
-    case label(text: String)
+    case label(Label<A>)
     case imageView(image: UIImage?)
     case _stackView(StackView<A>)
     case tableView(TableView<A>)
@@ -126,8 +146,8 @@ indirect public enum View<A> {
     
     func map<B>(_ transform: @escaping (A) -> B) -> View<B> {
         switch self {
-        case let .label(text):
-            return .label(text: text)
+        case let .label(l):
+            return .label(l.map(transform))
         case let .imageView(image: img):
             return .imageView(image: img)
         case let ._stackView(s):
