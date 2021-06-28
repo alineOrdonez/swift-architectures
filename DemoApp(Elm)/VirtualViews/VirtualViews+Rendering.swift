@@ -165,7 +165,7 @@ public struct Renderer<A> {
         case let .imageView(image):
             let imageView = UIImageView(image: image)
             imageView.contentMode = .scaleAspectFit
-            let constant = UIScreen.main.bounds.height / 2.5
+            let constant = UIScreen.main.bounds.height / 3.5
             let height = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: constant)
             imageView.addConstraints([height])
             return imageView
