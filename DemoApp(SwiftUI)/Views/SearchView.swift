@@ -10,6 +10,7 @@ import ImageLoader
 
 struct SearchView: View {
     @ObservedObject var viewModel: SearchListViewModel
+    @AppStorage("favorites") var favorites: [String] = []
     
     var body: some View {
         return NavigationView {
@@ -43,7 +44,26 @@ struct SearchView: View {
         return List {
             ForEach(drinks, id:\.self) { drink in
                 ResultListItemView(item: drink)
+                    .contextMenu(ContextMenu(menuItems: {
+                        Button {
+                            addToFavorites(id: drink.id)
+                        } label: {
+                            if let _ = favorites.firstIndex(where: {$0 == drink.id} ) {
+                                Label("Remove from Favorites", systemImage: "heart.fill")
+                            } else {
+                                Label("Add to Favorites", systemImage: "heart")
+                            }
+                        }
+                    }))
             }
+        }
+    }
+    
+    private func addToFavorites(id: String) {
+        if let index = favorites.firstIndex(where: {$0 == id}) {
+            favorites.remove(at: index)
+        } else {
+            favorites.append(id)
         }
     }
     

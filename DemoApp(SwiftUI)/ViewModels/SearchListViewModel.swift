@@ -27,10 +27,6 @@ final class SearchListViewModel: ObservableObject {
         input.send(event)
     }
     
-    var showSearchCancelButton: Bool {
-        return isSearching
-    }
-    
     func searchStatusChanged(_ value: SearchBar.Status) {
         let event: Event = {
             switch value {
@@ -38,7 +34,6 @@ final class SearchListViewModel: ObservableObject {
                 isSearching = true
                 return .startSearch
             case .searched:
-                isSearching = false
                 searchRecipe()
                 return .search
             case .notSearching:
@@ -66,11 +61,14 @@ final class SearchListViewModel: ObservableObject {
         Feedback { (state: State) -> AnyPublisher<Event, Never> in
             guard case .loading = state else { return Empty().eraseToAnyPublisher() }
             
+            self.isSearching = false
+            
             return self.service.searchRecipe(.search(self.searchText))
                 .tryMap({ list in
                     guard let drinks = list.drinks else {
                         throw APIError.invalidData
                     }
+                    self.state = .start
                     return drinks.map(ListItem.init)
                 })
                 .map(Event.onSuccess)
