@@ -10,6 +10,8 @@
 		D7231B5A268441D500232AB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7A4C55326603CCF004F476D /* Assets.xcassets */; };
 		D7231B5D2684478300232AB0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D7231B5C2684478300232AB0 /* FirebaseStorage */; };
 		D7231B5F2684486B00232AB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7231B5E2684486A00232AB0 /* GoogleService-Info.plist */; };
+		D724430D2698117C00703705 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D724430C2698117C00703705 /* Drink.swift */; };
+		D724430F269811AB00703705 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D724430E269811AB00703705 /* Ingredient.swift */; };
 		D733E5CB268052A100B0928E /* DrinkMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733E5C9268052A100B0928E /* DrinkMO+CoreDataClass.swift */; };
 		D733E5CC268052A100B0928E /* DrinkMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733E5CA268052A100B0928E /* DrinkMO+CoreDataProperties.swift */; };
 		D733E5CE2680759A00B0928E /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733E5CD2680759A00B0928E /* Array+Extension.swift */; };
@@ -131,6 +133,8 @@
 
 /* Begin PBXFileReference section */
 		D7231B5E2684486A00232AB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D724430C2698117C00703705 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
+		D724430E269811AB00703705 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		D733E5C9268052A100B0928E /* DrinkMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrinkMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D733E5CA268052A100B0928E /* DrinkMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrinkMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D733E5CD2680759A00B0928E /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
@@ -521,6 +525,8 @@
 			isa = PBXGroup;
 			children = (
 				D784EF3E267C5B5300B4E9AF /* DemoApp.swift */,
+				D724430C2698117C00703705 /* Drink.swift */,
+				D724430E269811AB00703705 /* Ingredient.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -869,6 +875,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7EEE076266F09C3001CA324 /* AppDelegate.swift in Sources */,
+				D724430D2698117C00703705 /* Drink.swift in Sources */,
+				D724430F269811AB00703705 /* Ingredient.swift in Sources */,
 				D784EF41267C607100B4E9AF /* Array+Extension.swift in Sources */,
 				D7EEE078266F09C3001CA324 /* SceneDelegate.swift in Sources */,
 				D784EF3C267C589800B4E9AF /* VirtualViews.swift in Sources */,

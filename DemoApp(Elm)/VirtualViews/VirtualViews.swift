@@ -86,21 +86,12 @@ public struct TableViewCell<Action> {
 }
 
 public enum BarButtonItem<Message> {
-    case builtin(UIBarButtonItem)
     case system(UIBarButtonItem.SystemItem, action: Message)
-    case custom(text: String, action: Message)
-    case editButtonItem
     
     func map<B>(_ transform: (Message) -> B) -> BarButtonItem<B> {
         switch self {
-        case let .builtin(b):
-            return .builtin(b)
         case let .system(i, action: message):
             return .system(i, action: transform(message))
-        case let .custom(text: text, action: action):
-            return .custom(text: text, action: transform(action))
-        case .editButtonItem:
-            return .editButtonItem
         }
     }
 }

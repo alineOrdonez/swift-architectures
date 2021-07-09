@@ -6,39 +6,6 @@
 //
 import UIKit
 
-struct Drink: Identifiable, Codable {
-    let id: String
-    let name: String
-    let category: String
-    let thumb: String
-    var image: UIImage?
-    let instructions: String
-    let ingredients: [Ingredient]
-    
-    enum CodingKeys: String, CodingKey {
-        case id = "idDrink"
-        case name = "strDrink"
-        case category = "strCategory"
-        case thumb = "strDrinkThumb"
-        case instructions = "strInstructions"
-        case ingredients = "strIngredients"
-    }
-}
-
-struct Ingredient: Codable {
-    let name: String
-    let measure: String
-    
-    enum CodingKeys: String, CodingKey {
-        case name = "strIngredient"
-        case measure = "strMeasure"
-    }
-}
-
-struct DrinkList: Codable {
-    let drinks: [Drink]?
-}
-
 public struct DemoApp {
     var lists: [Drink]
     var selectedIndex: Int?
@@ -47,16 +14,6 @@ public struct DemoApp {
     public init() {
         lists = []
         selectedIndex = nil
-    }
-}
-
-extension Array where Element == Drink {
-    var tableViewController: ViewController<DemoApp.Message> {
-        let cells: [TableViewCell<DemoApp.Message>] = zip(self, self.indices).map { (element) in
-            let (item, index) = element
-            return TableViewCell(text: item.name, onSelect: .select(listIndex: index), image: item.image, onDelete: .delete(listIndex: index), category: item.category)
-        }
-        return ViewController.tableViewController(TableView(items: cells))
     }
 }
 

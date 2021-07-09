@@ -85,21 +85,10 @@ class TableViewBacking<A>: NSObject, UITableViewDataSource, UITableViewDelegate 
 extension BarButtonItem {
     func render(_ callback: @escaping (Message) -> Void, viewController: UIViewController, change: inout UIBarButtonItem?) -> [Any] {
         switch self {
-        case .builtin(let button):
-            if change != button { change = button }
-            return []
-        case let .custom(text: text, action: action):
-            let target = TargetAction { callback(action) }
-            change = UIBarButtonItem(title: text, style: .plain, target: target, action: #selector(TargetAction.performAction(sender:)))
-            return [target]
         case let .system(item, action: action):
             let target = TargetAction { callback(action) }
             change = UIBarButtonItem(barButtonSystemItem: item, target: target, action: #selector(TargetAction.performAction(sender:)))
             return [target]
-            
-        case .editButtonItem:
-            change = viewController.editButtonItem
-            return []
         }
     }
 }
