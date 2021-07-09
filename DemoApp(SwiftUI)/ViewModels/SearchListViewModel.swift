@@ -31,7 +31,6 @@ final class SearchListViewModel: ObservableObject {
         let event: Event = {
             switch value {
             case .searching:
-                isSearching = true
                 return .startSearch
             case .searched:
                 searchRecipe()
@@ -60,8 +59,6 @@ final class SearchListViewModel: ObservableObject {
     func whenSearching() -> Feedback<State, Event> {
         Feedback { (state: State) -> AnyPublisher<Event, Never> in
             guard case .loading = state else { return Empty().eraseToAnyPublisher() }
-            
-            self.isSearching = false
             
             return self.service.searchRecipe(.search(self.searchText))
                 .tryMap({ list in
@@ -130,6 +127,8 @@ extension SearchListViewModel {
         switch state {
         case .start:
             switch event {
+            case .search:
+                return .loading
             case .startSearch:
                 return .searching
             default:

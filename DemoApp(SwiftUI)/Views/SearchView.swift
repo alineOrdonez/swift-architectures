@@ -16,11 +16,12 @@ struct SearchView: View {
         return NavigationView {
             VStack(spacing: 0) {
                 SearchBar(text: $viewModel.searchText,
-                          isEditing: $viewModel.isSearching,
+                          isSearching: $viewModel.isSearching,
                           searchingChanged: viewModel.searchStatusChanged)
                 content
                 Spacer()
-            }.navigationBarTitle(Text("Search recipes"))
+            }
+            .navigationBarTitle(Text("Search recipes"))
             .edgesIgnoringSafeArea([.bottom])
         }
     }

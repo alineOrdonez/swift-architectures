@@ -43,7 +43,7 @@ struct CategoriesView: View {
                 CategoryListItemView(category: category)
                 NavigationLink(destination:CategoryDetailView(viewModel: CategoryDetailViewModel(name: category.title))) {
                     EmptyView()
-                }
+                }.hidden()
             }
         }
     }
@@ -58,7 +58,7 @@ struct CategoryListItemView: View {
             Image(category.poster)
                 .resizable()
                 .scaledToFit()
-                .overlay(title, alignment: .bottom)
+            title
             Spacer()
         }
     }
@@ -69,8 +69,8 @@ struct CategoryListItemView: View {
                 .font(.callout)
                 .padding(6)
                 .foregroundColor(.white)
-        }.background(Color.black)
-        .opacity(0.8)
+        }
+        .background(Color.black.opacity(0.8))
         .cornerRadius(10.0)
         .padding(6)
     }
