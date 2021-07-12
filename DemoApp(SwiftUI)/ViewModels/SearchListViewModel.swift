@@ -14,6 +14,7 @@ final class SearchListViewModel: ObservableObject {
     @Published private(set) var state = State.start
     @Published var searchText: String = ""
     @Published var isSearching: Bool = false
+    @AppStorage("favorites") var favorites: [String] = []
     
     private let service = SearchService()
     private var bag = Set<AnyCancellable>()
@@ -76,6 +77,21 @@ final class SearchListViewModel: ObservableObject {
     
     func userInput(input: AnyPublisher<Event, Never>) -> Feedback<State, Event> {
         Feedback { _ in input }
+    }
+    
+    func shouldAddToFavorites(_ current: ListItem) -> Bool {
+        if let _ = favorites.firstIndex(where: {$0 == current.id}) {
+            return true
+        }
+        return false
+    }
+    
+    func addOrRemove(_ current: ListItem) {
+        if let index = favorites.firstIndex(where: {$0 == current.id}) {
+            favorites.remove(at: index)
+        } else {
+            favorites.append(current.id)
+        }
     }
 }
 

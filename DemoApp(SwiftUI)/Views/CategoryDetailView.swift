@@ -10,7 +10,6 @@ import ImageLoader
 
 struct CategoryDetailView: View {
     @ObservedObject var viewModel: CategoryDetailViewModel
-    @AppStorage("favorites") var favorites: [String] = []
     
     var body: some View {
         content
@@ -53,9 +52,9 @@ struct CategoryDetailView: View {
                 }
                 .contextMenu(ContextMenu(menuItems: {
                     Button {
-                        addToFavorites(id: drink.id)
+                        viewModel.addOrRemove(drink)
                     } label: {
-                        if let _ = favorites.firstIndex(where: {$0 == drink.id} ) {
+                        if viewModel.shouldAddToFavorites(drink) {
                             Text("Remove from Favorites")
                             Image(systemName: "heart.fill")
                                 .foregroundColor(.red)
@@ -67,14 +66,6 @@ struct CategoryDetailView: View {
                     }
                 }))
             }
-        }
-    }
-    
-    private func addToFavorites(id: String) {
-        if let index = favorites.firstIndex(where: {$0 == id}) {
-            favorites.remove(at: index)
-        } else {
-            favorites.append(id)
         }
     }
 }

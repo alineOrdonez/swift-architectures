@@ -11,7 +11,6 @@ import ImageLoader
 
 struct RecipeView: View {
     @ObservedObject var viewModel: RecipeViewModel
-    @AppStorage("favorites") var favorites: [String] = []
     
     var body: some View {
         content
@@ -27,7 +26,7 @@ struct RecipeView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack {
                         Button {
-                            addToFavorites()
+                            viewModel.addOrRemove()
                         } label: {
                             favoriteButton.eraseToAnyView()
                         }
@@ -87,16 +86,8 @@ struct RecipeView: View {
         return EmptyView().eraseToAnyView()
     }
     
-    private func addToFavorites() {
-        if let index = favorites.firstIndex(where: {$0 == self.viewModel.id}) {
-            favorites.remove(at: index)
-        } else {
-            favorites.append(self.viewModel.id)
-        }
-    }
-    
     private var favoriteButton: some View {
-        if let _ = favorites.firstIndex(where: {$0 == self.viewModel.id}) {
+        if viewModel.shouldAddToFavorites() {
             return Image(systemName: "heart.fill")
         } else {
             return Image(systemName: "heart")

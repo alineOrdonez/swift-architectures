@@ -17,6 +17,8 @@ final class CategoryDetailViewModel: ObservableObject {
     private var bag = Set<AnyCancellable>()
     private let input = PassthroughSubject<Event, Never>()
     
+    @AppStorage("favorites") var favorites: [String] = []
+    
     init(name: String) {
         state = .idle(name)
         
@@ -55,6 +57,21 @@ final class CategoryDetailViewModel: ObservableObject {
     
     func userInput(input: AnyPublisher<Event, Never>) -> Feedback<State, Event> {
         Feedback { _ in input }
+    }
+    
+    func shouldAddToFavorites(_ current: ListItem) -> Bool {
+        if let _ = favorites.firstIndex(where: {$0 == current.id}) {
+            return true
+        }
+        return false
+    }
+    
+    func addOrRemove(_ current: ListItem) {
+        if let index = favorites.firstIndex(where: {$0 == current.id}) {
+            favorites.remove(at: index)
+        } else {
+            favorites.append(current.id)
+        }
     }
 }
 

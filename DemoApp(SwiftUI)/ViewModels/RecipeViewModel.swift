@@ -13,6 +13,7 @@ final class RecipeViewModel: ObservableObject {
     
     @Published private(set) var state: State
     @Published var favorite: Item?
+    @AppStorage("favorites") var favorites: [String] = []
     
     private let service = RecipeService()
     private var bag = Set<AnyCancellable>()
@@ -61,6 +62,21 @@ final class RecipeViewModel: ObservableObject {
     
     func userInput(input: AnyPublisher<Event, Never>) -> Feedback<State, Event> {
         Feedback { _ in input }
+    }
+    
+    func shouldAddToFavorites() -> Bool {
+        if let _ = favorites.firstIndex(where: {$0 == id}) {
+            return true
+        }
+        return false
+    }
+    
+    func addOrRemove() {
+        if let index = favorites.firstIndex(where: {$0 == id}) {
+            favorites.remove(at: index)
+        } else {
+            favorites.append(id)
+        }
     }
 }
 
