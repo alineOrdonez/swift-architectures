@@ -63,11 +63,14 @@ class FavoritesViewController: UIViewController, FavoritesPresenterToViewProtoco
             self.fetchDrinks()
         })
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        
         alert.addAction(coreDataAction)
         alert.addAction(realmAction)
         alert.addAction(localStorageAction)
         alert.addAction(userDefaultsAction)
         alert.addAction(inMemoryStorageAction)
+        alert.addAction(cancelAction)
         
         present(alert, animated: true, completion: nil)
     }
