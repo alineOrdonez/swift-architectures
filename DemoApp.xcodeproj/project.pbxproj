@@ -120,6 +120,7 @@
 		D7C456C026672EF500E1DE6F /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C456BF26672EF500E1DE6F /* CategoryListViewModel.swift */; };
 		D7C456C32667313A00E1DE6F /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C456C22667313A00E1DE6F /* Drink.swift */; };
 		D7C456C52667316900E1DE6F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C456C42667316900E1DE6F /* Category.swift */; };
+		D7E8A32426A7D7D80063812D /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E8A32326A7D7D80063812D /* WelcomeView.swift */; };
 		D7EEE06E266ED2A4001CA324 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EEE06D266ED2A4001CA324 /* WebView.swift */; };
 		D7EEE076266F09C3001CA324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EEE075266F09C3001CA324 /* AppDelegate.swift */; };
 		D7EEE078266F09C3001CA324 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EEE077266F09C3001CA324 /* SceneDelegate.swift */; };
@@ -242,6 +243,7 @@
 		D7C456BF26672EF500E1DE6F /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		D7C456C22667313A00E1DE6F /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		D7C456C42667316900E1DE6F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		D7E8A32326A7D7D80063812D /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		D7EEE06D266ED2A4001CA324 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		D7EEE073266F09C3001CA324 /* Elm Arch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Elm Arch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7EEE075266F09C3001CA324 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				D7567A792665DC400069547E /* SearchView.swift */,
 				D7B7C7CC266DB52000601FA1 /* StartSearchView.swift */,
 				D7EEE06D266ED2A4001CA324 /* WebView.swift */,
+				D7E8A32326A7D7D80063812D /* WelcomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -919,6 +922,7 @@
 				D7C456C026672EF500E1DE6F /* CategoryListViewModel.swift in Sources */,
 				D7BA7DF22668627000728137 /* View+Extension.swift in Sources */,
 				D7B7C7D3266DECD900601FA1 /* RecipeService.swift in Sources */,
+				D7E8A32426A7D7D80063812D /* WelcomeView.swift in Sources */,
 				D7C456C52667316900E1DE6F /* Category.swift in Sources */,
 				D7B7C7CD266DB52000601FA1 /* StartSearchView.swift in Sources */,
 				D7BA7E132668B14C00728137 /* SearchService.swift in Sources */,

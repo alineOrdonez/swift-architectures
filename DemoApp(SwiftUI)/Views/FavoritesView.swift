@@ -16,6 +16,7 @@ struct FavoritesView: View {
             VStack {
                 content
                     .navigationTitle("Favorites")
+                    .accentColor(Color(UIColor(red: 34/255, green: 14/255, blue: 36/255, alpha: 1)))
             }
         }
         .onAppear(perform: {
