@@ -24,10 +24,10 @@ struct ContentView: View {
     @AppStorage("favorites") var favorites: [String] = []
     
     init() {
-        UITabBar.appearance().barTintColor = UIColor(Color.lightBlue)
-        UITabBar.appearance().unselectedItemTintColor = UIColor.white
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color.darkPurple)]
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.darkPurple)]
+        UITabBar.appearance().barTintColor = .white
+        UITabBar.appearance().unselectedItemTintColor = .lightGray
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color.lightPurple)]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.lightPurple)]
     }
     
     var body: some View {

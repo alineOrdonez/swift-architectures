@@ -26,32 +26,27 @@ struct WelcomeView: View {
                 .overlay(Circle().stroke(Color.white, lineWidth: 4))
                 .shadow(radius: 10)
                 .padding(.bottom, 40)
-//            TextField("What's your name?", text: self.$username)
-//                .padding()
-//                .background(Color.themeTextField)
-//                .cornerRadius(20.0)
-//                .padding([.leading, .trailing], 15.0)
+            //            TextField("What's your name?", text: self.$username)
+            //                .padding()
+            //                .background(Color.themeTextField)
+            //                .cornerRadius(20.0)
+            //                .padding([.leading, .trailing], 15.0)
             Button(action: {skip.toggle()} ) {
                 Text("Enter")
                     .font(.headline)
                     .foregroundColor(.white)
                     .padding()
                     .frame(width: 300, height: 50)
-                    .background(buttonColor)
+                    .background(Color.darkPurple)
                     .cornerRadius(15.0)
-                    .shadow(radius: 10.0, x: 20, y: 10)
+                    .shadow(radius: 10.0,  x: 20, y: 10)
             }
             .padding(.top, 30)
-            .disabled(self.username.isEmpty)
             Spacer()
         }
         .background(
             LinearGradient(gradient: Gradient(colors: [Color.lightPurple, Color.lightBlue]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all))
-    }
-    
-    var buttonColor: Color {
-        return self.username.isEmpty ? .accentColor : Color.darkPurple
     }
 }
 
