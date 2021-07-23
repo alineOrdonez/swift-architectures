@@ -19,7 +19,7 @@ enum UserDefaultsError: String, LocalizedError {
     }
 }
 
-class UserDefaultsRepository: Repository {
+class UserDefaultsRepository: Repository, ImageStorageProtocol {
     
     var storage: StorageReference = Storage.storage().reference()
     

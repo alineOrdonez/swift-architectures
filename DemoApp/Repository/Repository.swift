@@ -23,11 +23,11 @@ enum RepoType: Int {
         case .coreData:
             return CoreDataRepository(persistentContainer: CoreDataManager.shared.persistentContainer)
         case .realm:
-            return RealmRepository()
+            return RealmRepository(.persistent)
         case .localStorage:
             return LocalRepository()
         case .inMemoryStorage:
-            return InMemoryRepository()
+            return RealmRepository(.inMemory)
         case .userDefaults:
             return UserDefaultsRepository()
         case .keyChain:
@@ -42,56 +42,18 @@ enum RepResult<Success, Failure> where Failure : Error {
 }
 
 protocol Repository: AnyObject {
-    var storage: StorageReference { get set }
     
     func exist(id: String, completion: @escaping(RepResult<Bool, Error>) -> Void)
     func get(id: String, completion: @escaping(RepResult<FavoritesEntity, Error>) -> Void)
     func list(completion: @escaping(RepResult<[FavoritesEntity], Error>) -> Void)
     func add(_ item: FavoritesEntity, completion: @escaping(RepResult<Bool, Error>) -> Void)
     func delete(_ item: FavoritesEntity, completion: @escaping(RepResult<Bool, Error>) -> Void)
-    
-    func uploadImage(_ item: FavoritesEntity, completion: @escaping(RepResult<FavoritesEntity, Error>) -> Void)
-    func deleteImage(_ name: String, completion: @escaping(RepResult<Bool, Error>) -> Void)
-    
     func getImage(from url: URL) -> Data?
 }
 
 extension Repository {
-    
-    func uploadImage(_ item: FavoritesEntity, completion: @escaping(RepResult<FavoritesEntity, Error>) -> Void) {
-        
-        guard let data = try? Data(contentsOf: URL(string: item.thumb)!) else {
-            return completion(.failure(FileError.noObject))
-        }
-        
-        storage.child("images/\(item.name).jpg").putData(data, metadata: nil) { _, error in
-            guard error == nil else {
-                return completion(.failure(FileError.noObject))
-            }
-            
-            self.storage.child("images/\(item.name).jpg").downloadURL { url, error in
-                guard let url = url, error == nil else {
-                    return completion(.failure(FileError.noObject))
-                }
-                var updatedDrink = item
-                updatedDrink.thumb = url.absoluteString
-                return completion(.success(updatedDrink))
-            }
-        }
-    }
-    
-    func deleteImage(_ name: String, completion: @escaping(RepResult<Bool, Error>) -> Void) {
-        storage.child("images/\(name).jpg").delete { error in
-            guard error == nil else {
-                return completion(.failure(error!))
-            }
-            
-            return completion(.success(true))
-        }
-    }
-    
     func getImage(from url: URL) -> Data? {
-        fatalError("Not implemented")
+        fatalError("Method not implemented.")
     }
 }
 

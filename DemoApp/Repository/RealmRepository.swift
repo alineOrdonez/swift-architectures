@@ -9,13 +9,23 @@ import Foundation
 import RealmSwift
 import FirebaseStorage
 
+enum StorageType {
+    case persistent, inMemory
+}
+
 class RealmRepository: Repository {
-    var storage: StorageReference = Storage.storage().reference()
     
     private let realm: Realm
     
-    init() {
-        realm = try! Realm()
+    init(_ storageType: StorageType) {
+        if storageType == .inMemory {
+            var config = Realm.Configuration()
+            config.inMemoryIdentifier = "RealmDatabase"
+            
+            realm = try! Realm(configuration: config)
+        } else {
+            realm = try! Realm()
+        }
     }
     
     func exist(id: String, completion: @escaping (RepResult<Bool, Error>) -> Void) {

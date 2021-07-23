@@ -20,8 +20,6 @@ enum FileError: String, LocalizedError {
 
 class LocalRepository: Repository {
     
-    var storage: StorageReference = Storage.storage().reference()
-    
     func exist(id: String, completion: @escaping (RepResult<Bool, Error>) -> Void) {
         guard fileExist else {
             return completion(.success(false))

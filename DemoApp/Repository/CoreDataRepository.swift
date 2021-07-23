@@ -11,7 +11,6 @@ import FirebaseStorage
 
 
 class CoreDataRepository: Repository {
-    var storage: StorageReference = Storage.storage().reference()
     
     private var persistentContainer: NSPersistentContainer
     

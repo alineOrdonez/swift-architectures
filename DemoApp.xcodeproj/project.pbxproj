@@ -29,7 +29,6 @@
 		D764CA55268928C9007104E2 /* RecipeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D764CA54268928C9007104E2 /* RecipeEntity.swift */; };
 		D764CA5726892EEB007104E2 /* FavoritesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D764CA5626892EEB007104E2 /* FavoritesEntity.swift */; };
 		D764CA592689A137007104E2 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D764CA582689A137007104E2 /* UITableView+Extension.swift */; };
-		D784EF27267C25BA00B4E9AF /* InMemoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784EF26267C25BA00B4E9AF /* InMemoryRepository.swift */; };
 		D784EF29267C32D700B4E9AF /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784EF28267C32D700B4E9AF /* LoadingViewController.swift */; };
 		D784EF2C267C523D00B4E9AF /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784EF2B267C523D00B4E9AF /* Driver.swift */; };
 		D784EF2E267C527900B4E9AF /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784EF2D267C527900B4E9AF /* Command.swift */; };
@@ -121,6 +120,7 @@
 		D7C456C32667313A00E1DE6F /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C456C22667313A00E1DE6F /* Drink.swift */; };
 		D7C456C52667316900E1DE6F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C456C42667316900E1DE6F /* Category.swift */; };
 		D7C57E6526AA80BD00B0E77F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C57E6426AA80BD00B0E77F /* UIColor+Extension.swift */; };
+		D7C57E6726AA846600B0E77F /* ImageStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C57E6626AA846600B0E77F /* ImageStorageProtocol.swift */; };
 		D7E8A32426A7D7D80063812D /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E8A32326A7D7D80063812D /* WelcomeView.swift */; };
 		D7EEE06E266ED2A4001CA324 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EEE06D266ED2A4001CA324 /* WebView.swift */; };
 		D7EEE076266F09C3001CA324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EEE075266F09C3001CA324 /* AppDelegate.swift */; };
@@ -154,7 +154,6 @@
 		D764CA54268928C9007104E2 /* RecipeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeEntity.swift; sourceTree = "<group>"; };
 		D764CA5626892EEB007104E2 /* FavoritesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesEntity.swift; sourceTree = "<group>"; };
 		D764CA582689A137007104E2 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
-		D784EF26267C25BA00B4E9AF /* InMemoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryRepository.swift; sourceTree = "<group>"; };
 		D784EF28267C32D700B4E9AF /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		D784EF2B267C523D00B4E9AF /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		D784EF2D267C527900B4E9AF /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
@@ -245,6 +244,7 @@
 		D7C456C22667313A00E1DE6F /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		D7C456C42667316900E1DE6F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		D7C57E6426AA80BD00B0E77F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		D7C57E6626AA846600B0E77F /* ImageStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStorageProtocol.swift; sourceTree = "<group>"; };
 		D7E8A32326A7D7D80063812D /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		D7EEE06D266ED2A4001CA324 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		D7EEE073266F09C3001CA324 /* Elm Arch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Elm Arch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -373,12 +373,12 @@
 			children = (
 				D7A6DAB62679B24800A2DBC4 /* CoreDataManager.swift */,
 				D79A35DF267726440069B68B /* CoreDataRepository.swift */,
-				D784EF26267C25BA00B4E9AF /* InMemoryRepository.swift */,
 				D7BFEC1826786D6500F9F9C9 /* LocalRepository.swift */,
 				D79A35DD267726380069B68B /* RealmRepository.swift */,
 				D79A35D62677229B0069B68B /* Repository.swift */,
 				D7BFEC1426784BD700F9F9C9 /* UserDefaultsRepository.swift */,
 				D7A6DAB126798C8F00A2DBC4 /* CoreDataModel.xcdatamodeld */,
+				D7C57E6826AA84BB00B0E77F /* Images */,
 				D7BFEC0F267840CF00F9F9C9 /* Models */,
 			);
 			path = Repository;
@@ -620,6 +620,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		D7C57E6826AA84BB00B0E77F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				D7C57E6626AA846600B0E77F /* ImageStorageProtocol.swift */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		D7EEE074266F09C3001CA324 /* DemoApp(Elm) */ = {
 			isa = PBXGroup;
 			children = (
@@ -808,6 +816,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7A6DAC02679C96600A2DBC4 /* FavoritesProtocols.swift in Sources */,
+				D7C57E6726AA846600B0E77F /* ImageStorageProtocol.swift in Sources */,
 				D7A6DABE2679C95B00A2DBC4 /* FavoritesRouter.swift in Sources */,
 				D764CA55268928C9007104E2 /* RecipeEntity.swift in Sources */,
 				D7A4C59B2660A5B1004F476D /* CategoryListPresenter.swift in Sources */,
@@ -872,7 +881,6 @@
 				D7A4C5B12660C73C004F476D /* CategoryDetailInteractor.swift in Sources */,
 				D7A4C54B26603CCA004F476D /* AppDelegate.swift in Sources */,
 				D7A4C5862660785D004F476D /* RequestProtocol.swift in Sources */,
-				D784EF27267C25BA00B4E9AF /* InMemoryRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
