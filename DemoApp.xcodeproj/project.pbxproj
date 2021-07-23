@@ -120,6 +120,7 @@
 		D7C456C026672EF500E1DE6F /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C456BF26672EF500E1DE6F /* CategoryListViewModel.swift */; };
 		D7C456C32667313A00E1DE6F /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C456C22667313A00E1DE6F /* Drink.swift */; };
 		D7C456C52667316900E1DE6F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C456C42667316900E1DE6F /* Category.swift */; };
+		D7C57E6526AA80BD00B0E77F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C57E6426AA80BD00B0E77F /* UIColor+Extension.swift */; };
 		D7E8A32426A7D7D80063812D /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E8A32326A7D7D80063812D /* WelcomeView.swift */; };
 		D7EEE06E266ED2A4001CA324 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EEE06D266ED2A4001CA324 /* WebView.swift */; };
 		D7EEE076266F09C3001CA324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EEE075266F09C3001CA324 /* AppDelegate.swift */; };
@@ -243,6 +244,7 @@
 		D7C456BF26672EF500E1DE6F /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		D7C456C22667313A00E1DE6F /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		D7C456C42667316900E1DE6F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		D7C57E6426AA80BD00B0E77F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D7E8A32326A7D7D80063812D /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		D7EEE06D266ED2A4001CA324 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		D7EEE073266F09C3001CA324 /* Elm Arch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Elm Arch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -553,6 +555,7 @@
 				D7BA7DF12668627000728137 /* View+Extension.swift */,
 				D7BA7E0B2668A42C00728137 /* String+Extension.swift */,
 				D733E5CD2680759A00B0928E /* Array+Extension.swift */,
+				D7C57E6426AA80BD00B0E77F /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -907,6 +910,7 @@
 				D7B7C7CB266DB2AF00601FA1 /* ErrorView.swift in Sources */,
 				D7BA7DFA26686E0D00728137 /* NetworkAPI.swift in Sources */,
 				D7C456C32667313A00E1DE6F /* Drink.swift in Sources */,
+				D7C57E6526AA80BD00B0E77F /* UIColor+Extension.swift in Sources */,
 				D7F0A77E2664C2DC001C27F8 /* ContentView.swift in Sources */,
 				D7BA7DFC2668710500728137 /* Agent.swift in Sources */,
 				D7C456B92667132200E1DE6F /* DrinkCell.swift in Sources */,
