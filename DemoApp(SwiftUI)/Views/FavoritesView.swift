@@ -17,6 +17,7 @@ struct FavoritesView: View {
                 content
                     .navigationTitle("Favorites")
                     .accentColor(Color(UIColor(red: 34/255, green: 14/255, blue: 36/255, alpha: 1)))
+                    .accessibility(label: Text("Favorites Recipes"))
             }
         }
         .onAppear(perform: {
@@ -45,7 +46,7 @@ struct FavoritesView: View {
                         RemoteImageView(url: url, placeholder: {
                             ActivityIndicator(isAnimating: true, style: .medium)
                         })
-                        .frame(width: 100, height: 100)
+                            .frame(width: 100, height: 100)
                         .cornerRadius(10)                }
                     NavigationLink(destination:RecipeView(viewModel: RecipeViewModel(id: drink.id))) {
                         Text(drink.title)
@@ -55,6 +56,9 @@ struct FavoritesView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
+                .accessibilityElement(children: .ignore)
+                .accessibilityHint("Double tap to see the full recipe")
+                .accessibilityLabel(Text("\(drink.title)"))
             }
         }
     }

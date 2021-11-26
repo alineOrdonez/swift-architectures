@@ -16,6 +16,7 @@ struct CategoriesView: View {
             VStack {
                 content
                     .navigationTitle("Categories")
+                    .accessibilityHint("Swipe Left or Right to navigate between categories")
                 
             }
         }
@@ -43,7 +44,7 @@ struct CategoriesView: View {
                 CategoryListItemView(category: category)
                 NavigationLink(destination:CategoryDetailView(viewModel: CategoryDetailViewModel(name: category.title))) {
                     EmptyView()
-                }.hidden()
+                }.buttonStyle(PlainButtonStyle())
             }
         }
     }
@@ -58,9 +59,11 @@ struct CategoryListItemView: View {
             Image(category.poster)
                 .resizable()
                 .scaledToFit()
+                .accessibility(hidden: true)
             title
             Spacer()
         }
+        .accessibilityElement(children: .combine)
     }
     
     private var title: some View {

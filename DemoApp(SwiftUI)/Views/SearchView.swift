@@ -15,7 +15,6 @@ struct SearchView: View {
         return NavigationView {
             VStack(spacing: 0) {
                 SearchBar(text: $viewModel.searchText,
-                          isSearching: $viewModel.isSearching,
                           searchingChanged: viewModel.searchStatusChanged)
                 content
                 Spacer()
@@ -66,11 +65,15 @@ struct SearchView: View {
             HStack {
                 if let url = URL(string: item.thumb) {
                     displayImage(from: url)
+                        .accessibilityHidden(true)
                 }
                 NavigationLink(destination:RecipeView(viewModel: RecipeViewModel(id: item.id))) {
                     addDetail()
                 }
             }
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel(item.title)
+            .accessibilityHint("Double tap to access the recipe")
         }
         
         private func displayImage(from url: URL) -> some View {

@@ -14,7 +14,9 @@ struct StartSearchView: View {
             Text("Search for cocktail recipes").font(.headline)
             Spacer().frame(height: 10)
             Text("Type in the search field above, and hit the search button to find recipes").font(.body)
-        }.padding()
+        }
+        .padding()
+        .accessibilityElement(children: .combine)
     }
 }
 

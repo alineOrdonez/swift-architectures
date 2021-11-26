@@ -19,10 +19,6 @@ struct RecipeView: View {
             })
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    HStack {
-                    }
-                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack {
                         Button {
@@ -30,6 +26,9 @@ struct RecipeView: View {
                         } label: {
                             favoriteButton.eraseToAnyView()
                         }
+                        .accessibilityLabel("Like Button")
+                        .accessibilityHint("Press Button to Add or Remove the recipe to Favorites")
+                        .accessibility(sortPriority: 1)
                     }
                 }
             }
@@ -50,9 +49,16 @@ struct RecipeView: View {
     
     private func Recipe(_ item: RecipeViewModel.Item) -> some View {
         VStack {
-            header(item)
-            Text(item.title)
-                .font(.title)
+            VStack {
+                header(item)
+                    .accessibility(hidden: true)
+                Text(item.title)
+                    .font(.title)
+            }
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("Cocktail \(item.title)")
+            .accessibility(sortPriority: 2)
+            
             TabView {
                 ScrollView {
                     ingredients(for: item)
@@ -63,8 +69,10 @@ struct RecipeView: View {
                     GenericViewCell(top: " Instructions", bottom: item.instructions)
                     Spacer()
                 }
-            }.tabViewStyle(PageTabViewStyle())
+            }
+            .tabViewStyle(PageTabViewStyle())
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+            .accessibility(sortPriority: 0)
         }.padding()
     }
     
@@ -78,9 +86,9 @@ struct RecipeView: View {
             return RemoteImageView(url: url, placeholder: {
                 ActivityIndicator(isAnimating: true, style: .medium)
             })
-            .aspectRatio(contentMode: .fit)
-            .frame(maxWidth: .infinity)
-            .eraseToAnyView()
+                .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: .infinity)
+                .eraseToAnyView()
         }
         
         return EmptyView().eraseToAnyView()
@@ -95,37 +103,36 @@ struct RecipeView: View {
     }
     
     private func ingredients(for item: RecipeViewModel.Item) -> some View {
-        return
-            Section(header: Text(" Ingredients").font(.title3)
+        return Section(header: Text(" Ingredients").font(.title3)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .background(Color.gray)
                         .foregroundColor(.white)) {
-                ForEach(item.ingredients!, id:\.self) { dict in
-                    SectionView(dict: dict)
-                        .padding(5)
-                }
+            ForEach(item.ingredients!, id:\.self) { dict in
+                SectionView(dict: dict)
+                    .padding(5)
             }
+        }
+                        .accessibilityElement(children: .combine)
     }
     
     struct SectionView : View {
         @State var dict = [String: String]()
         
         var body: some View {
-            let keys = dict.map{$0.key}
-            let values = dict.map {$0.value}
-            
-            return  ForEach(keys.indices) {index in
+            return ForEach(Array(dict.keys), id: \.self) { key in
                 HStack {
-                    Text(keys[index])
+                    Text(key)
                         .font(.subheadline)
                         .frame(alignment: .leading)
                         .foregroundColor(.black)
                     Spacer()
-                    Text("\(values[index])")
+                    Text("\(dict[key]!)")
                         .font(.subheadline)
                         .frame(alignment: .trailing)
                         .foregroundColor(.secondary)
+                        .accessibilityLabel("\(dict[key]!)")
                 }
+                .accessibilityElement(children: .combine)
             }
         }
     }
@@ -146,6 +153,8 @@ struct RecipeView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(.secondary)
             }
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("\(top), \(bottom)")
         }
     }
 }

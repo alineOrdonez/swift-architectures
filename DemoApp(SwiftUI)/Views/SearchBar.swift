@@ -14,12 +14,11 @@ struct SearchBar: View {
     }
     
     @Binding var searchText: String
-    @Binding var searching: Bool
+    @State var searching: Bool = false
     let searchingChanged: (Status) -> Void
     
-    init(text: Binding<String>, isSearching: Binding<Bool>, searchingChanged: @escaping (Status) -> Void) {
+    init(text: Binding<String>, searchingChanged: @escaping (Status) -> Void) {
         _searchText = text
-        _searching = isSearching
         self.searchingChanged = searchingChanged
     }
     
@@ -29,27 +28,27 @@ struct SearchBar: View {
                 .foregroundColor(Color(UIColor.systemGray6))
             HStack {
                 Image(systemName: "magnifyingglass")
-                TextField("Seach drink", text: $searchText) { startedEditing in
-                    if startedEditing {
-                        withAnimation {
-                            searching = true
-                            self.searchingChanged(.searching)
-                        }
-                    }
-                } onCommit: {
+                    .accessibilityHidden(true)
+                TextField("Seach drink", text: $searchText, onEditingChanged: {_ in
                     withAnimation {
-                        searching = false
+                        self.searching = true
+                        self.searchingChanged(.searching)
+                    }
+                }, onCommit: {
+                    withAnimation {
+                        self.searching = false
                         self.searchingChanged(.searched)
                     }
-                }
+                })
                 if searching {
                     Button("Cancel") {
                         self.searchText = ""
                         self.searchingChanged(.notSearching)
-                        searching = false
+                        self.searching = false
                         UIApplication.shared.dismissKeyboard()
                     }
                     .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    .accessibilityLabel("Cancel Button")
                     Spacer()
                 }
             }
@@ -59,13 +58,15 @@ struct SearchBar: View {
         .frame(height: 40)
         .cornerRadius(13)
         .padding()
+        .accessibilityLabel("Search drink")
+        .accessibilityAddTraits(AccessibilityTraits.isSearchField)
     }
 }
 
 
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(text: .constant(""), isSearching: .constant(true), searchingChanged: { _ in })
+        SearchBar(text: .constant(""), searchingChanged: { _ in })
             .previewLayout(.sizeThatFits)
     }
 }

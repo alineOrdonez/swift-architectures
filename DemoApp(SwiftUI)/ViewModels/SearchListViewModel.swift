@@ -13,7 +13,6 @@ final class SearchListViewModel: ObservableObject {
     
     @Published private(set) var state = State.start
     @Published var searchText: String = ""
-    @Published var isSearching: Bool = false
     @AppStorage("favorites") var favorites: [String] = []
     
     private let service = SearchService()

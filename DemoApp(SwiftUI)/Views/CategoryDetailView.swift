@@ -41,7 +41,9 @@ struct CategoryDetailView: View {
                             ActivityIndicator(isAnimating: true, style: .medium)
                         })
                         .frame(width: 100, height: 100)
-                        .cornerRadius(10)                }
+                        .cornerRadius(10)
+                        .accessibility(hidden: true)
+                    }
                     NavigationLink(destination:RecipeView(viewModel: RecipeViewModel(id: drink.id))) {
                         Text(drink.title)
                             .font(.title2)
@@ -50,6 +52,7 @@ struct CategoryDetailView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
+                .accessibilityElement(children: .combine)
                 .contextMenu(ContextMenu(menuItems: {
                     Button {
                         viewModel.addOrRemove(drink)
