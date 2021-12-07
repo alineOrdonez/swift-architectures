@@ -57,62 +57,87 @@ struct SearchView: View {
             }
         }
     }
+}
+
+struct ResultListItemView: View {
+    let item: SearchListViewModel.ListItem
     
-    struct ResultListItemView: View {
-        let item: SearchListViewModel.ListItem
-        
-        var body: some View {
-            HStack {
-                if let url = URL(string: item.thumb) {
-                    displayImage(from: url)
-                        .accessibilityHidden(true)
-                }
-                NavigationLink(destination:RecipeView(viewModel: RecipeViewModel(id: item.id))) {
-                    addDetail()
-                }
+    var body: some View {
+        HStack {
+            if let url = URL(string: item.thumb) {
+                displayImage(from: url)
+                    .accessibilityHidden(true)
             }
-            .accessibilityElement(children: .combine)
-            .accessibilityLabel(item.title)
-            .accessibilityHint("Double tap to access the recipe")
+            NavigationLink(destination:RecipeView(viewModel: RecipeViewModel(id: item.id))) {
+                addDetail()
+            }
         }
-        
-        private func displayImage(from url: URL) -> some View {
-            return RemoteImageView(url: url, placeholder: {
-                ActivityIndicator(isAnimating: true, style: .medium)
-            })
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(item.title)
+        .accessibilityHint("Double tap to access the recipe")
+    }
+    
+    private func displayImage(from url: URL) -> some View {
+        return RemoteImageView(url: url, placeholder: {
+            ActivityIndicator(isAnimating: true, style: .medium)
+        })
             .frame(width: 100, height: 100)
             .cornerRadius(10)
             .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
-        }
-        
-        private func addDetail() -> some View {
-            return VStack(alignment: .leading, spacing: 5) {
-                Text(item.title)
-                    .font(.title2)
-                    .fontWeight(.medium)
-                    .foregroundColor(.black)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Text(item.category)
-                    .foregroundColor(.secondary)
-                    .fontWeight(.semibold)
-                if let tags = item.tags {
-                    addTags(tags)
-                }
+    }
+    
+    private func addDetail() -> some View {
+        return VStack(alignment: .leading, spacing: 5) {
+            Text(item.title)
+                .font(.title3)
+                .fontWeight(.medium)
+                .foregroundColor(.black)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text(item.category)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                .fontWeight(.semibold)
+            if let tags = item.tags {
+                TagView(tags: tags)
             }
         }
-        
-        private func addTags(_ tags: [String]) -> some View {
-            return HStack {
-                ForEach(tags, id: \.self) { tag in
-                    ZStack {
-                        Text(tag)
-                            .font(.subheadline)
-                            .padding(6)
-                            .foregroundColor(.white)
-                    }.background(Color.gray)
-                    .opacity(0.8)
-                    .cornerRadius(10.0)
-                    .padding(6)
+    }
+    
+    private struct TagView: View {
+        @Environment(\.sizeCategory) var sizeCategory
+        var tags: [String]
+        var body: some View {
+            Group {
+                if sizeCategory > ContentSizeCategory.medium {
+                    VStack(alignment: .leading) {
+                        ForEach(tags, id: \.self) { tag in
+                            ZStack {
+                                Text(tag)
+                                    .font(.caption2)
+                                    .padding(2)
+                                    .foregroundColor(.white)
+                                    .lineLimit(1)
+                            }.background(Color.gray)
+                                .opacity(0.8)
+                                .cornerRadius(5.0)
+                                .padding(2)
+                        }
+                    }
+                } else {
+                    HStack {
+                        ForEach(tags, id: \.self) { tag in
+                            ZStack {
+                                Text(tag)
+                                    .font(.caption2)
+                                    .padding(2)
+                                    .foregroundColor(.white)
+                                    .lineLimit(1)
+                            }.background(Color.gray)
+                                .opacity(0.8)
+                                .cornerRadius(5.0)
+                                .padding(2)
+                        }
+                    }
                 }
             }
         }

@@ -9,11 +9,13 @@ import SwiftUI
 
 struct StartSearchView: View {
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
             Spacer().frame(height: 10)
-            Text("Search for cocktail recipes").font(.headline)
+            Text("Search for cocktail recipes")
+                .font(.headline)
             Spacer().frame(height: 10)
-            Text("Type in the search field above, and hit the search button to find recipes").font(.body)
+            Text("Type in the search field above, and hit the search button to find recipes")
+                .font(.subheadline)
         }
         .padding()
         .accessibilityElement(children: .combine)
