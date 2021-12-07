@@ -106,39 +106,41 @@ struct ResultListItemView: View {
     private struct TagView: View {
         @Environment(\.sizeCategory) var sizeCategory
         var tags: [String]
+        let columns = [
+            GridItem(.flexible()),
+            GridItem(.flexible())
+        ]
         var body: some View {
-            Group {
-                if sizeCategory > ContentSizeCategory.medium {
-                    VStack(alignment: .leading) {
-                        ForEach(tags, id: \.self) { tag in
-                            ZStack {
-                                Text(tag)
-                                    .font(.caption2)
-                                    .padding(2)
-                                    .foregroundColor(.white)
-                                    .lineLimit(1)
-                            }.background(Color.gray)
-                                .opacity(0.8)
-                                .cornerRadius(5.0)
+            if sizeCategory > ContentSizeCategory.large {
+                VStack(alignment: .leading) {
+                    ForEach(tags, id: \.self) { tag in
+                        ZStack {
+                            Text(tag)
+                                .font(.caption2)
                                 .padding(2)
-                        }
-                    }
-                } else {
-                    HStack {
-                        ForEach(tags, id: \.self) { tag in
-                            ZStack {
-                                Text(tag)
-                                    .font(.caption2)
-                                    .padding(2)
-                                    .foregroundColor(.white)
-                                    .lineLimit(1)
-                            }.background(Color.gray)
-                                .opacity(0.8)
-                                .cornerRadius(5.0)
-                                .padding(2)
-                        }
+                                .foregroundColor(.white)
+                                .lineLimit(1)
+                        }.background(Color.gray)
+                            .opacity(0.8)
+                            .cornerRadius(5.0)
+                            .padding(2)
                     }
                 }
+            } else {
+                LazyHGrid(rows: columns, spacing: 20) {
+                    ForEach(tags, id: \.self) { tag in
+                        Text(tag)
+                            .font(.caption2)
+                            .padding(2)
+                            .foregroundColor(.white)
+                            .lineLimit(1)
+                            .background(Color.gray)
+                            .opacity(0.8)
+                            .cornerRadius(5.0)
+                            .padding(2)
+                    }
+                }
+                .padding(.vertical)
             }
         }
     }

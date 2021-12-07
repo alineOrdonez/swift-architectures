@@ -63,7 +63,7 @@ struct RecipeView: View {
                 ScrollView {
                     ingredients(for: item)
                 }
-                VStack {
+                ScrollView {
                     GenericViewCell(top: " Glass", bottom: item.glass)
                         .padding(.bottom)
                     GenericViewCell(top: " Instructions", bottom: item.instructions)
@@ -149,7 +149,7 @@ struct RecipeView: View {
                     .background(Color.gray)
                     .foregroundColor(.white)
                 Text(bottom)
-                    .font(.subheadline)
+                    .font(.body)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(.secondary)
             }
