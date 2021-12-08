@@ -46,7 +46,7 @@ struct CategoryDetailView: View {
                     }
                     NavigationLink(destination:RecipeView(viewModel: RecipeViewModel(id: drink.id))) {
                         Text(drink.title)
-                            .font(.title2)
+                            .font(.title3)
                             .fontWeight(.medium)
                             .foregroundColor(.black)
                             .frame(maxWidth: .infinity, alignment: .leading)

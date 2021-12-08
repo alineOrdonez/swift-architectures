@@ -11,6 +11,7 @@ import ImageLoader
 
 struct RecipeView: View {
     @ObservedObject var viewModel: RecipeViewModel
+    @Environment(\.sizeCategory) var sizeCategory
     
     var body: some View {
         content
@@ -43,17 +44,48 @@ struct RecipeView: View {
         case .error:
             return ErrorView().eraseToAnyView()
         case .loaded(let item):
-            return Recipe(item).eraseToAnyView()
+            if sizeCategory.isAccessibilityCategory {
+                return RecipeInScrollView(item).eraseToAnyView()
+            } else {
+                return RecipeInStackView(item).eraseToAnyView()
+            }
         }
     }
     
-    private func Recipe(_ item: RecipeViewModel.Item) -> some View {
-        VStack {
-            VStack {
+    private func RecipeInScrollView(_ item: RecipeViewModel.Item) -> some View {
+        ScrollView {
+            Group {
                 header(item)
                     .accessibility(hidden: true)
                 Text(item.title)
                     .font(.title)
+                    .fontWeight(.medium)
+                    .foregroundColor(.black)
+            }
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("Cocktail \(item.title)")
+            .accessibility(sortPriority: 2)
+            Group {
+                Spacer()
+                ingredients(for: item)
+                GenericViewCell(top: " Glass", bottom: item.glass)
+                    .padding(.bottom)
+                GenericViewCell(top: " Instructions", bottom: item.instructions)
+                Spacer()
+            }
+        }.padding()
+    }
+    
+    private func RecipeInStackView(_ item: RecipeViewModel.Item) -> some View {
+        VStack {
+            Group {
+                header(item)
+                    .accessibility(hidden: true)
+                Text(item.title)
+                    .font(.title)
+                    .fontWeight(.medium)
+                    .foregroundColor(.black)
+                    .frame(maxWidth: .infinity, alignment: .center)
             }
             .accessibilityElement(children: .combine)
             .accessibilityLabel("Cocktail \(item.title)")
@@ -70,8 +102,7 @@ struct RecipeView: View {
                     Spacer()
                 }
             }
-            .tabViewStyle(PageTabViewStyle())
-            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+            .tabViewStyle(.page(indexDisplayMode: .never))
             .accessibility(sortPriority: 0)
         }.padding()
     }
@@ -122,12 +153,12 @@ struct RecipeView: View {
             return ForEach(Array(dict.keys), id: \.self) { key in
                 HStack {
                     Text(key)
-                        .font(.subheadline)
+                        .font(.body)
                         .frame(alignment: .leading)
                         .foregroundColor(.black)
                     Spacer()
                     Text("\(dict[key]!)")
-                        .font(.subheadline)
+                        .font(.callout)
                         .frame(alignment: .trailing)
                         .foregroundColor(.secondary)
                         .accessibilityLabel("\(dict[key]!)")
@@ -144,14 +175,14 @@ struct RecipeView: View {
         var body: some View {
             VStack(spacing: 10) {
                 Text(top)
-                    .font(.title3)
+                    .font(.body)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(Color.gray)
                     .foregroundColor(.white)
                 Text(bottom)
-                    .font(.body)
+                    .font(.callout)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.black)
             }
             .accessibilityElement(children: .combine)
             .accessibilityLabel("\(top), \(bottom)")
