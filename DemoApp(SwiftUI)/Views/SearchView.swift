@@ -111,7 +111,7 @@ struct ResultListItemView: View {
             GridItem(.flexible())
         ]
         var body: some View {
-            if sizeCategory > ContentSizeCategory.large {
+            if sizeCategory > ContentSizeCategory.extraLarge {
                 VStack(alignment: .leading) {
                     ForEach(tags, id: \.self) { tag in
                         ZStack {
@@ -127,7 +127,7 @@ struct ResultListItemView: View {
                     }
                 }
             } else {
-                LazyHGrid(rows: columns, spacing: 20) {
+                LazyVGrid(columns: columns, spacing: 5) {
                     ForEach(tags, id: \.self) { tag in
                         Text(tag)
                             .font(.caption2)
