@@ -20,6 +20,7 @@ class SearchViewController: UIViewController, SearchPresenterToViewProtocol, UIS
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupUI()
+        setupAccessibility()
     }
     
     
@@ -129,5 +130,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         presenter?.showRecipe(for: drink.id, navigationController: self.navigationController!)
         
+    }
+}
+
+extension SearchViewController {
+    
+    func setupAccessibility() {
+        searchController.searchBar.accessibilityHint = "Type the name of the drink you're looking"
+        searchController.searchBar.accessibilityLabel = "Search recipe"
     }
 }

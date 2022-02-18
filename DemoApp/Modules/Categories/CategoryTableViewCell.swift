@@ -18,6 +18,7 @@ class CategoryTableViewCell: UITableViewCell {
         categoryImage.addBlur()
         categoryImage.layer.cornerRadius = 20
         categoryImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        setupAccessibility()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -31,5 +32,8 @@ class CategoryTableViewCell: UITableViewCell {
         let name = category.name.formatName()
         categoryImage.image = UIImage(named: name)
     }
-
+    
+    func setupAccessibility() {
+        accessibilityHint = "Double tap to see drinks for this category"
+    }
 }

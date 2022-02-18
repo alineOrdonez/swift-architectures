@@ -41,6 +41,7 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupAccessibility()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -105,6 +106,11 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
             let item = UIBarButtonItem(image: UIImage(systemName: "heart")!, style: .plain, target: self, action: #selector(addToFavorites(_:)))
             self.navigationItem.rightBarButtonItem = item
         }
+        
+        if UIAccessibility.isVoiceOverRunning {
+            self.navigationItem.rightBarButtonItem?.accessibilityLabel = "Like Button"
+            self.navigationItem.rightBarButtonItem?.accessibilityHint = "Press Button to Add or Remove the recipe to Favorites"
+        }
     }
     
     func getData() {
@@ -167,16 +173,29 @@ extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header: String
         switch section {
         case 0:
-            return "Ingredients"
+            header = "Ingredients"
         case 1:
-            return "Glass"
+            header = "Glass"
         default:
-            return "Instructions"
+            header = "Instructions"
         }
+        
+        let headerView = UITableViewHeaderFooterView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40.0))
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40.0))
+        label.text = header
+        label.font = UIFont.preferredFont(forTextStyle: .title2)
+        label.adjustsFontForContentSizeCategory = true
+        headerView.addSubview(label)
+        
+        let element = UIAccessibilityElement.init(accessibilityContainer: headerView)
+        element.isAccessibilityElement = false
+        
+        headerView.accessibilityElements = [element]
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -198,6 +217,7 @@ extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = UITableViewCell(style: .value1, reuseIdentifier: "RecipeTableViewCell")
             cell.textLabel?.text = drink.glass
             cell.selectionStyle = .none
+            cell.accessibilityLabel = "\(drink.glass)"
             return cell
         default:
             let cell = UITableViewCell(style: .default, reuseIdentifier: "RecipeTableViewCell")
@@ -205,9 +225,16 @@ extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.textAlignment = .justified
             cell.textLabel?.numberOfLines = 0
             cell.selectionStyle = .none
+            cell.accessibilityLabel = "\(drink.instructions)"
             return cell
         }
     }
+}
+
+extension RecipeViewController {
     
-    
+    func setupAccessibility() {
+        nameLabel.font = UIFont.preferredFont(forTextStyle: .title3)
+        nameLabel.adjustsFontForContentSizeCategory = true
+    }
 }

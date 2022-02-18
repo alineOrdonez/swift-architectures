@@ -37,12 +37,21 @@ class TabBarRouter: TabBarPresenterToRouterProtocol {
         
         let searchTabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 101)
         submodules.search.tabBarItem = searchTabBarItem
+        submodules.search.tabBarItem.accessibilityLabel = "Search"
+        submodules.search.tabBarItem.accessibilityTraits = [.button]
+        submodules.search.tabBarItem.accessibilityHint = "Double tap to select"
         
         let categoryTabBarItem = UITabBarItem(title: "Categories", image: UIImage(systemName: "square.grid.2x2"), tag: 102)
         submodules.category.tabBarItem = categoryTabBarItem
+        submodules.category.tabBarItem.accessibilityLabel = "Categories"
+        submodules.category.tabBarItem.accessibilityTraits = [.button]
+        submodules.category.tabBarItem.accessibilityHint = "Double tap select"
         
         let favoriteTabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "heart"), tag: 103)
         submodules.favorite.tabBarItem = favoriteTabBarItem
+        submodules.favorite.tabBarItem.accessibilityLabel = "Favorites"
+        submodules.favorite.tabBarItem.accessibilityTraits = [.button]
+        submodules.favorite.tabBarItem.accessibilityHint = "Double tap to select"
         
         return (search: submodules.search, category: submodules.category, favorite: submodules.favorite)
     }

@@ -18,6 +18,7 @@ class FavoritesViewController: UIViewController, FavoritesPresenterToViewProtoco
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupUI()
+        setupAccessibility()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -147,5 +148,15 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         presenter?.showRecipe(for: drink.id, navigationController: self.navigationController!)
+    }
+}
+
+extension FavoritesViewController {
+    func         setupAccessibility() {
+        if UIAccessibility.isVoiceOverRunning {
+            self.navigationItem.rightBarButtonItem?.accessibilityHint = "Double tap to select a different type of storage"
+            self.navigationItem.rightBarButtonItem?.accessibilityLabel = "Select Storage"
+            self.navigationItem.rightBarButtonItem?.accessibilityTraits = [.button]
+        }
     }
 }
