@@ -29,11 +29,11 @@ extension UITableView {
         self.backgroundView = containerView
         self.separatorStyle = .none
         
-        if UIAccessibility.isVoiceOverRunning {
+//        if UIAccessibility.isVoiceOverRunning {
             accessibilityElements = [containerView, messageLabel, imageView]
             isAccessibilityElement = true
             accessibilityLabel = message
-        }
+//        }
     }
     
     func restore() {

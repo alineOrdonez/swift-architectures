@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4Kf-mC-rTb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4Kf-mC-rTb">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Category List View Controller-->
         <scene sceneID="DjO-QL-AJd">
             <objects>
-                <viewController storyboardIdentifier="CategoryListViewController" id="0Qg-Ca-0t6" customClass="CategoryListViewController" customModule="DemoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoryListViewController" id="0Qg-Ca-0t6" customClass="CategoryListViewController" customModule="VIPER_Arch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="m2z-9A-jAR">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,8 +22,8 @@
                                 <rect key="frame" x="0.0" y="44" width="428" height="848"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CategoryTableViewCell" rowHeight="150" id="eca-uN-3jt" customClass="CategoryTableViewCell" customModule="DemoApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.333333969116211" width="428" height="150"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CategoryTableViewCell" rowHeight="150" id="eca-uN-3jt" customClass="CategoryTableViewCell" customModule="VIPER_Arch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="428" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eca-uN-3jt" id="MLn-Mk-w13">
                                             <rect key="frame" x="0.0" y="0.0" width="428" height="150"/>
@@ -74,27 +76,43 @@
         <!--Category Detail View Controller-->
         <scene sceneID="VdH-5o-Ddb">
             <objects>
-                <viewController storyboardIdentifier="CategoryDetailViewController" id="N7a-fp-zD0" customClass="CategoryDetailViewController" customModule="DemoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoryDetailViewController" id="N7a-fp-zD0" customClass="CategoryDetailViewController" customModule="VIPER_Arch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fux-Rd-slI">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="p5c-YY-1gq">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="E3s-6X-C8Z">
                                 <rect key="frame" x="0.0" y="44" width="428" height="848"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BqZ-f5-qCb">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="kHr-nD-zBe">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0rV-H8-mvE">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fhh-xK-AWC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="fhh-xK-AWC" firstAttribute="bottom" secondItem="p5c-YY-1gq" secondAttribute="bottom" id="2W0-Em-lsB"/>
-                            <constraint firstItem="p5c-YY-1gq" firstAttribute="leading" secondItem="fhh-xK-AWC" secondAttribute="leading" id="Cua-sg-v0H"/>
-                            <constraint firstItem="fhh-xK-AWC" firstAttribute="trailing" secondItem="p5c-YY-1gq" secondAttribute="trailing" id="FMH-7c-ibx"/>
-                            <constraint firstItem="p5c-YY-1gq" firstAttribute="top" secondItem="fhh-xK-AWC" secondAttribute="top" id="S46-j0-Gxv"/>
+                            <constraint firstItem="E3s-6X-C8Z" firstAttribute="leading" secondItem="fhh-xK-AWC" secondAttribute="leading" id="KpE-Fa-Ca8"/>
+                            <constraint firstItem="fhh-xK-AWC" firstAttribute="trailing" secondItem="E3s-6X-C8Z" secondAttribute="trailing" id="OlL-eY-Wls"/>
+                            <constraint firstItem="fhh-xK-AWC" firstAttribute="bottom" secondItem="E3s-6X-C8Z" secondAttribute="bottom" id="U36-RD-7aN"/>
+                            <constraint firstItem="E3s-6X-C8Z" firstAttribute="top" secondItem="fhh-xK-AWC" secondAttribute="top" id="euL-XZ-f46"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="p5c-YY-1gq" id="sL0-Oa-mDu"/>
+                        <outlet property="collectionView" destination="E3s-6X-C8Z" id="sPs-Ds-P9i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GfY-KE-wZO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -104,7 +122,7 @@
         <!--Search View Controller-->
         <scene sceneID="1LN-a2-Jae">
             <objects>
-                <viewController storyboardIdentifier="SearchViewController" id="viq-yl-Awv" customClass="SearchViewController" customModule="DemoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" id="viq-yl-Awv" customClass="SearchViewController" customModule="VIPER_Arch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VgN-Sq-2cg">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -134,7 +152,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="6yt-8T-5J8">
             <objects>
-                <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="4Kf-mC-rTb" customClass="TabBarController" customModule="DemoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="4Kf-mC-rTb" customClass="TabBarController" customModule="VIPER_Arch" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VLi-re-nff">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -149,7 +167,7 @@
         <!--Recipe View Controller-->
         <scene sceneID="dJq-im-ORf">
             <objects>
-                <viewController storyboardIdentifier="RecipeViewController" id="Igj-m0-uGI" customClass="RecipeViewController" customModule="DemoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecipeViewController" id="Igj-m0-uGI" customClass="RecipeViewController" customModule="VIPER_Arch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zhs-lN-bsZ">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -208,7 +226,7 @@
         <!--Favorites View Controller-->
         <scene sceneID="OP6-Ia-feu">
             <objects>
-                <viewController storyboardIdentifier="FavoritesViewController" id="MX2-bX-G86" customClass="FavoritesViewController" customModule="DemoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoritesViewController" id="MX2-bX-G86" customClass="FavoritesViewController" customModule="VIPER_Arch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6eE-vc-dch">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

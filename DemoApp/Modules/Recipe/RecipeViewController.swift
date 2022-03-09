@@ -107,10 +107,8 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
             self.navigationItem.rightBarButtonItem = item
         }
         
-        if UIAccessibility.isVoiceOverRunning {
-            self.navigationItem.rightBarButtonItem?.accessibilityLabel = "Like Button"
-            self.navigationItem.rightBarButtonItem?.accessibilityHint = "Press Button to Add or Remove the recipe to Favorites"
-        }
+        self.navigationItem.rightBarButtonItem?.accessibilityLabel = "Like Button"
+        self.navigationItem.rightBarButtonItem?.accessibilityHint = "Press Button to Add or Remove the recipe to Favorites"
     }
     
     func getData() {

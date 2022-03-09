@@ -152,7 +152,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension FavoritesViewController {
-    func         setupAccessibility() {
+    func setupAccessibility() {
         if UIAccessibility.isVoiceOverRunning {
             self.navigationItem.rightBarButtonItem?.accessibilityHint = "Double tap to select a different type of storage"
             self.navigationItem.rightBarButtonItem?.accessibilityLabel = "Select Storage"

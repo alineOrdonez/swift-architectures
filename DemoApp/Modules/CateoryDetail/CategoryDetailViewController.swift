@@ -13,24 +13,32 @@ class CategoryDetailViewController: UIViewController, CategoryDetailPresenterToV
     var drinks: [CategoryDetailEntity]?
     var categoryName: String?
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView! {
+        didSet {
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .vertical
+            collectionView.clipsToBounds = true
+            collectionView.collectionViewLayout = layout
+            collectionView.contentInsetAdjustmentBehavior = .never
+            collectionView.register(DrinkCollectionViewCell.self,
+                                    forCellWithReuseIdentifier: DrinkCollectionViewCell.cellIdentifier)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupUI()
         fetchDrinksByCategory()
+        NotificationCenter.default.addObserver(self, selector: #selector(contentSizeChanged), name: nil, object: UIScreen.main.traitCollection)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func setupUI() {
         self.title = categoryName
-        
-        // Table View
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = 150
-        
-        tableView.register(UINib(nibName: DrinkTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DrinkTableViewCell.identifier)
     }
     
     // MARK: - Fetch Data
@@ -51,7 +59,10 @@ class CategoryDetailViewController: UIViewController, CategoryDetailPresenterToV
     
     func showData(_ drinks: [CategoryDetailEntity]) {
         self.drinks = drinks
-        tableView.reloadData()
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.reloadData()
     }
     
     func showError(_ message: String) {
@@ -65,48 +76,60 @@ class CategoryDetailViewController: UIViewController, CategoryDetailPresenterToV
             
             results[row] = drink
             drinks = results
-            tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
+            collectionView.reloadItems(at: [IndexPath(row: row, section: 0)])
         }
     }
+    
+    @objc
+    func contentSizeChanged() {
+        collectionView.reloadData()
+    }
+    
 }
 
-extension CategoryDetailViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension CategoryDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return drinks?.count ?? 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let drink = drinks?[indexPath.row], let cell = tableView.dequeueReusableCell(withIdentifier: DrinkTableViewCell.identifier) as? DrinkTableViewCell else {
-            return UITableViewCell()
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DrinkCollectionViewCell.cellIdentifier, for: indexPath) as? DrinkCollectionViewCell, let drink = drinks?[indexPath.row] else {
+            return UICollectionViewCell()
         }
-        
-        if let data = drink.image {
-            cell.drinkImage.image = UIImage(data: data)
-        } else {
-            self.downloadImage(from: drink.thumb)
-        }
-        
-        cell.drinkLabel.text = drink.name
-        
-        if let category = drink.category  {
-            cell.categoryLabel.isHidden = false
-            cell.categoryLabel.text = category
-        } else {
-            cell.categoryLabel.isHidden = true
-        }
-        
+        cell.setup(drink: drink, delegate: self)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
         
         guard let drink = drinks?[indexPath.row] else {
             return
         }
         
         presenter?.showRecipe(for: drink.id, navigationController: self.navigationController!)
+    }
+}
+
+extension CategoryDetailViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let currentContentSize = ContentSizeCategory(category: UIScreen.main.traitCollection.preferredContentSizeCategory)
+        
+        if currentContentSize.categorySizeNumber > 6 {
+            return CGSize(width: collectionView.frame.width, height: 150)
+        } else {
+            return CGSize(width: (collectionView.frame.width / 2) - 20, height: 150)
+        }
+    }
+}
+
+extension CategoryDetailViewController {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        guard previousTraitCollection?.preferredContentSizeCategory
+                != traitCollection.preferredContentSizeCategory
+        else { return }
+        collectionView.collectionViewLayout.invalidateLayout()
     }
 }

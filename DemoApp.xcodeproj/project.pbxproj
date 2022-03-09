@@ -110,6 +110,8 @@
 		D7BD78692664477200C13AFA /* RecipeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD78682664477200C13AFA /* RecipeRouter.swift */; };
 		D7BD786B2664477B00C13AFA /* RecipePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD786A2664477B00C13AFA /* RecipePresenter.swift */; };
 		D7BD786D2664478300C13AFA /* RecipeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD786C2664478300C13AFA /* RecipeInteractor.swift */; };
+		D7BE075E27D86CCD0017E36F /* DrinkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BE075C27D86CCD0017E36F /* DrinkCollectionViewCell.swift */; };
+		D7BE076127D877FC0017E36F /* ContentSizeCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BE076027D877FC0017E36F /* ContentSizeCategory.swift */; };
 		D7BFEC132678420C00F9F9C9 /* RDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BFEC122678420C00F9F9C9 /* RDrink.swift */; };
 		D7BFEC1526784BD700F9F9C9 /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BFEC1426784BD700F9F9C9 /* UserDefaultsRepository.swift */; };
 		D7BFEC1726784BF600F9F9C9 /* UDDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BFEC1626784BF600F9F9C9 /* UDDrink.swift */; };
@@ -234,6 +236,8 @@
 		D7BD78682664477200C13AFA /* RecipeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRouter.swift; sourceTree = "<group>"; };
 		D7BD786A2664477B00C13AFA /* RecipePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePresenter.swift; sourceTree = "<group>"; };
 		D7BD786C2664478300C13AFA /* RecipeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInteractor.swift; sourceTree = "<group>"; };
+		D7BE075C27D86CCD0017E36F /* DrinkCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkCollectionViewCell.swift; sourceTree = "<group>"; };
+		D7BE076027D877FC0017E36F /* ContentSizeCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSizeCategory.swift; sourceTree = "<group>"; };
 		D7BFEC122678420C00F9F9C9 /* RDrink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RDrink.swift; sourceTree = "<group>"; };
 		D7BFEC1426784BD700F9F9C9 /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
 		D7BFEC1626784BF600F9F9C9 /* UDDrink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDDrink.swift; sourceTree = "<group>"; };
@@ -509,6 +513,7 @@
 			children = (
 				D7A4C5A52660B115004F476D /* Bluring.swift */,
 				D784EF28267C32D700B4E9AF /* LoadingViewController.swift */,
+				D7BE076027D877FC0017E36F /* ContentSizeCategory.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -516,6 +521,7 @@
 		D7A4C5AB2660C534004F476D /* CateoryDetail */ = {
 			isa = PBXGroup;
 			children = (
+				D7BE075927D86C690017E36F /* CollectionViewCell */,
 				D7A4C5AC2660C73C004F476D /* CategoryDetailInteractor.swift */,
 				D7A4C5B02660C73C004F476D /* CategoryDetailPresenter.swift */,
 				D7A4C5AE2660C73C004F476D /* CategoryDetailProtocols.swift */,
@@ -586,6 +592,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D7BE075927D86C690017E36F /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D7BE075C27D86CCD0017E36F /* DrinkCollectionViewCell.swift */,
+			);
+			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
 		D7BFEC0F267840CF00F9F9C9 /* Models */ = {
@@ -823,6 +837,7 @@
 				D764CA51268924D4007104E2 /* Category.swift in Sources */,
 				D7A4C5A62660B115004F476D /* Bluring.swift in Sources */,
 				D7A4C5B32660C73C004F476D /* CategoryDetailProtocols.swift in Sources */,
+				D7BE076127D877FC0017E36F /* ContentSizeCategory.swift in Sources */,
 				D7A4C5852660785D004F476D /* HTTPMethod.swift in Sources */,
 				D7A6DAC22679C97500A2DBC4 /* FavoritesPresenter.swift in Sources */,
 				D7BD786D2664478300C13AFA /* RecipeInteractor.swift in Sources */,
@@ -859,6 +874,7 @@
 				D7BD78652664475400C13AFA /* RecipeViewController.swift in Sources */,
 				D7BD78692664477200C13AFA /* RecipeRouter.swift in Sources */,
 				D7BFEC1526784BD700F9F9C9 /* UserDefaultsRepository.swift in Sources */,
+				D7BE075E27D86CCD0017E36F /* DrinkCollectionViewCell.swift in Sources */,
 				D7A4C5AA2660B400004F476D /* String+Extension.swift in Sources */,
 				D7A4C56E26605A3C004F476D /* SceneDelegate.swift in Sources */,
 				D7A4C56A26604779004F476D /* TabBarRouter.swift in Sources */,
