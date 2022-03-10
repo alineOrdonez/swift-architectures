@@ -50,7 +50,7 @@ class DrinkCollectionViewCell: UICollectionViewCell {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
-        stack.distribution = .equalSpacing
+        stack.distribution = .equalCentering
         stack.alignment = .center
         stack.spacing = 5
         return stack
@@ -92,32 +92,21 @@ class DrinkCollectionViewCell: UICollectionViewCell {
         
         drinkImageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         drinkImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        drinkImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         
-        if currentContentSize.categorySizeNumber > 6 {
-            drinkImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-            drinkImageView.widthAnchor.constraint(equalToConstant: contentView.frame.width / 2).isActive = true
-        } else {
-            drinkImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-            drinkImageView.heightAnchor.constraint(equalToConstant: contentView.frame.height / 2).isActive = true
-        }
+        let value = currentContentSize.categorySizeNumber > 6 ? 3.0 : 2.0
+        let widthConstraint = drinkImageView.widthAnchor.constraint(equalToConstant: contentView.frame.width / value)
+        widthConstraint.isActive = true
+        widthConstraint.priority = UILayoutPriority(999.0)
     }
-
+    
     private func addLabelStackView() {
         labelStackView.addArrangedSubview(primaryLabel)
         labelStackView.addArrangedSubview(secondaryLabel)
         contentView.addSubview(labelStackView)
-        
-        if currentContentSize.categorySizeNumber > 6 {
-            labelStackView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-            labelStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-            labelStackView.widthAnchor.constraint(equalTo: drinkImageView.widthAnchor).isActive = true
-        } else {
-            labelStackView.topAnchor.constraint(equalTo: drinkImageView.bottomAnchor).isActive = true
-            labelStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-            labelStackView.leadingAnchor.constraint(equalTo: drinkImageView.leadingAnchor).isActive = true
-            labelStackView.trailingAnchor.constraint(equalTo: drinkImageView.trailingAnchor).isActive = true
-            labelStackView.heightAnchor.constraint(equalTo: drinkImageView.heightAnchor).isActive = true
-        }
+        labelStackView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        labelStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        labelStackView.trailingAnchor.constraint(equalTo: drinkImageView.leadingAnchor).isActive = true
     }
 }
 

@@ -116,10 +116,10 @@ extension CategoryDetailViewController: UICollectionViewDelegateFlowLayout {
         
         let currentContentSize = ContentSizeCategory(category: UIScreen.main.traitCollection.preferredContentSizeCategory)
         
-        if currentContentSize.categorySizeNumber > 6 {
-            return CGSize(width: collectionView.frame.width, height: 150)
+        if currentContentSize.categorySizeNumber > 10 {
+            return CGSize(width: collectionView.frame.width, height: 300)
         } else {
-            return CGSize(width: (collectionView.frame.width / 2) - 20, height: 150)
+            return CGSize(width: collectionView.frame.width, height: 150)
         }
     }
 }
@@ -130,6 +130,6 @@ extension CategoryDetailViewController {
         guard previousTraitCollection?.preferredContentSizeCategory
                 != traitCollection.preferredContentSizeCategory
         else { return }
-        collectionView.collectionViewLayout.invalidateLayout()
+        collectionView.reloadData()
     }
 }
