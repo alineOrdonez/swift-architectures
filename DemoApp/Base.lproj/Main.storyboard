@@ -32,17 +32,19 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kdm-eH-2mY">
                                                     <rect key="frame" x="10" y="2" width="408" height="146"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhU-Hf-NoQ">
-                                                    <rect key="frame" x="182" y="107" width="64" height="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhU-Hf-NoQ">
+                                                    <rect key="frame" x="22" y="107" width="384" height="30"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="MhU-Hf-NoQ" secondAttribute="trailing" constant="2" id="88V-hW-75M"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="MhU-Hf-NoQ" secondAttribute="bottom" constant="2" id="Bhz-Rl-zIZ"/>
                                                 <constraint firstItem="kdm-eH-2mY" firstAttribute="top" secondItem="MLn-Mk-w13" secondAttribute="top" constant="2" id="Cbo-1A-FOS"/>
                                                 <constraint firstAttribute="bottom" secondItem="kdm-eH-2mY" secondAttribute="bottom" constant="2" id="KUC-vi-nTB"/>
+                                                <constraint firstItem="MhU-Hf-NoQ" firstAttribute="leading" secondItem="MLn-Mk-w13" secondAttribute="leadingMargin" constant="2" id="N51-7T-8sT"/>
                                                 <constraint firstItem="kdm-eH-2mY" firstAttribute="leading" secondItem="MLn-Mk-w13" secondAttribute="leading" constant="10" id="N8T-5Z-bae"/>
                                                 <constraint firstItem="MhU-Hf-NoQ" firstAttribute="centerX" secondItem="MLn-Mk-w13" secondAttribute="centerX" id="Ysu-46-nCc"/>
                                                 <constraint firstAttribute="trailing" secondItem="kdm-eH-2mY" secondAttribute="trailing" constant="10" id="xRj-jl-Fsd"/>

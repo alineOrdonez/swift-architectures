@@ -12,6 +12,7 @@ class CategoryListViewController: UIViewController, CategoryListPresenterToViewP
     
     var presenter: CategoryListViewToPresenterProtocol?
     private var categories: [CategoryEntity]?
+    private var shoudlAddTopConstraint: Bool = false
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -55,7 +56,7 @@ extension CategoryListViewController: UITableViewDelegate, UITableViewDataSource
             return UITableViewCell()
         }
         
-        cell.setupUI(with: category)
+        cell.setupUI(with: category, shouldAddTopConstraint: shoudlAddTopConstraint)
         return cell
     }
     
@@ -68,5 +69,26 @@ extension CategoryListViewController: UITableViewDelegate, UITableViewDataSource
         }
         
         presenter?.showDrinks(for: category, navigationController: self.navigationController!)
+    }
+}
+
+extension CategoryListViewController {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+      super.traitCollectionDidChange(previousTraitCollection)
+      if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
+        configureView(for: traitCollection)
+      }
+    }
+    
+    private func configureView(for traitCollection: UITraitCollection) {
+      let contentSize = traitCollection.preferredContentSizeCategory
+      if contentSize.isAccessibilityCategory {
+          tableView.rowHeight = 200
+          shoudlAddTopConstraint = true
+      } else {
+          tableView.rowHeight = 150
+          shoudlAddTopConstraint = false
+      }
+        tableView.reloadData()
     }
 }

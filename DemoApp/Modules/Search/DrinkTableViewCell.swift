@@ -19,9 +19,6 @@ class DrinkTableViewCell: UITableViewCell {
         drinkImage.contentMode = .scaleAspectFit
         drinkImage.image = UIImage(named: "default_drink")
         
-        drinkLabel.font = UIFont.preferredFont(forTextStyle: .title3)
-        drinkLabel.adjustsFontForContentSizeCategory = true
-        
         setupAccessibility()
     }
     
@@ -33,5 +30,9 @@ class DrinkTableViewCell: UITableViewCell {
     
     func setupAccessibility() {
         accessibilityHint = "Double tap for more detail"
+        drinkLabel.font = UIFont.preferredFont(for: .title3, weight: .bold)
+        drinkLabel.adjustsFontForContentSizeCategory = true
+        categoryLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        categoryLabel.adjustsFontForContentSizeCategory = true
     }
 }

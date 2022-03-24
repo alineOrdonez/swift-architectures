@@ -136,7 +136,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 extension SearchViewController {
     
     func setupAccessibility() {
-        searchController.searchBar.accessibilityHint = "Type the name of the drink you're looking"
         searchController.searchBar.accessibilityLabel = "Search recipe"
+        searchController.searchBar.searchTextField.accessibilityLabel = "Type the name of the drink you're looking"
     }
 }

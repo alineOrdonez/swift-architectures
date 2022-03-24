@@ -17,6 +17,10 @@ class TabBarController: UITabBarController, TabBarPresenterToViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.tabBar.backgroundColor = UIColor(red: 90/255, green: 112/255, blue: 145/255, alpha: 1)
+        self.tabBar.tintColor = UIColor.white
+        self.tabBar.unselectedItemTintColor = UIColor.white.withAlphaComponent(0.7)
+        self.tabBar.barTintColor = UIColor(red: 90/255, green: 112/255, blue: 145/255, alpha: 1)
     }
     
     /*

@@ -27,13 +27,21 @@ class CategoryTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setupUI(with category: CategoryEntity) {
+    func setupUI(with category: CategoryEntity, shouldAddTopConstraint: Bool = false) {
         categoryLabel.text = category.name
         let name = category.name.formatName()
         categoryImage.image = UIImage(named: name)
+        
+        if shouldAddTopConstraint {
+            categoryLabel.topAnchor.constraint(equalTo: contentView.topAnchor,
+                                               constant: 2).isActive = true
+        }
     }
     
     func setupAccessibility() {
         accessibilityHint = "Double tap to see drinks for this category"
+        categoryLabel.font = UIFont.preferredFont(for: .subheadline, weight: .bold)
+        categoryLabel.adjustsFontForContentSizeCategory = true
+        categoryLabel.numberOfLines = 0
     }
 }

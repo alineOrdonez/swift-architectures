@@ -106,9 +106,6 @@ class RecipeViewController: UIViewController, WKNavigationDelegate, RecipePresen
             let item = UIBarButtonItem(image: UIImage(systemName: "heart")!, style: .plain, target: self, action: #selector(addToFavorites(_:)))
             self.navigationItem.rightBarButtonItem = item
         }
-        
-        self.navigationItem.rightBarButtonItem?.accessibilityLabel = "Like Button"
-        self.navigationItem.rightBarButtonItem?.accessibilityHint = "Press Button to Add or Remove the recipe to Favorites"
     }
     
     func getData() {
@@ -234,5 +231,7 @@ extension RecipeViewController {
     func setupAccessibility() {
         nameLabel.font = UIFont.preferredFont(forTextStyle: .title3)
         nameLabel.adjustsFontForContentSizeCategory = true
+        navigationItem.rightBarButtonItem?.accessibilityLabel = "Like Button"
+        navigationItem.rightBarButtonItem?.accessibilityHint = "Press Button to Add or Remove the recipe to Favorites"
     }
 }
